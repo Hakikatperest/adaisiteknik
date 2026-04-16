@@ -2,7 +2,7 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes"/>
 <title>Ada Isı Teknik | Aydın Kombi Servisi, Klima ve Elektrik - Kemal Türkmenoğlu</title>
 <meta name="description" content="Aydın'ın lider teknik servisi Ada Isı Teknik. Uzman kadro ile kombi servisi, klima kurulum ve bakım, elektrik tesisatı. Efeler, Köşk, İncirliova, Germencik ve tüm Aydın ilçelerinde 7/24 hizmet. 0544 906 64 50"/>
 <meta name="keywords" content="aydın kombi servisi, aydın klima servisi, aydın elektrik servisi, efeler kombi servisi, kombi bakım aydın, kemal türkmenoğlu, ada ısı teknik"/>
@@ -35,15 +35,26 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--background);color:var(--text);font-family:'Outfit',sans-serif;overflow-x:hidden;width:100%;max-width:100%;}
+body{
+  background:var(--background);
+  color:var(--text);
+  font-family:'Outfit',sans-serif;
+  overflow-x:hidden;
+  width:100%;
+  max-width:100%;
+}
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-track{background:#e2e8f0;}
 ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px;}
 
-/* ──────────────────────────────────────────────
-   NAV
-────────────────────────────────────────────── */
-nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .4s;background:transparent;}
+/* TÜM SEKSİYONLAR İÇİN KAYMA İYİLEŞTİRMESİ - GPU hızlandırma */
+section, .container, .hero, .flip-card, .flip-card-inner, .faq-item, .reg-wrap, .test-card, .strip-card, .art-sidebar {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
+
+/* NAV */
+nav{position:fixed;top:0;left:0;right:0;z-index:200;padding:18px 40px;display:flex;align-items:center;justify-content:space-between;transition:all .3s;background:transparent;}
 nav.scrolled{background:rgba(10,61,98,0.97);backdrop-filter:blur(14px);border-bottom:1px solid rgba(255,255,255,0.08);padding:12px 40px;box-shadow:0 4px 30px rgba(0,0,0,0.15);}
 .nav-logo{display:flex;align-items:center;gap:12px;text-decoration:none;}
 .nav-logo-icon{width:42px;height:42px;background:linear-gradient(135deg,var(--accent),var(--accent-dark));border-radius:12px;display:flex;align-items:center;justify-content:center;font-size:1.1rem;color:#fff;}
@@ -56,335 +67,80 @@ nav.scrolled{background:rgba(10,61,98,0.97);backdrop-filter:blur(14px);border-bo
 .nav-cta:hover{background:var(--accent-dark);transform:translateY(-2px);}
 @media(max-width:900px){.nav-links,.nav-cta{display:none;}nav,nav.scrolled{padding:14px 18px;}}
 
-/* ──────────────────────────────────────────────
-   HERO  
-────────────────────────────────────────────── */
+/* HERO */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;background:var(--primary);overflow:hidden;}
 .hero-bg{position:absolute;inset:0;background-image:url('https://www.aydinadateknik.com/images/hero.webp');background-size:cover;background-position:center 30%;filter:brightness(.42) contrast(1.1) saturate(1.1);transform:scale(1.05);z-index:1;}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(115deg,rgba(5,36,59,.92) 0%,rgba(10,61,98,.65) 45%,rgba(0,0,0,.25) 100%);z-index:2;}
-
-/* animated grid */
 .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.04) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.04) 1px,transparent 1px);background-size:60px 60px;z-index:3;pointer-events:none;animation:gridShift 20s linear infinite;}
 @keyframes gridShift{0%{background-position:0 0;}100%{background-position:60px 60px;}}
-
-/* floating orbs */
 .orb{position:absolute;border-radius:50%;filter:blur(80px);pointer-events:none;z-index:3;animation:orbFloat 8s ease-in-out infinite;}
 .orb1{width:600px;height:600px;background:radial-gradient(circle,rgba(243,156,18,.18),transparent 70%);top:-200px;right:-100px;animation-delay:0s;}
 .orb2{width:400px;height:400px;background:radial-gradient(circle,rgba(44,95,138,.3),transparent 70%);bottom:-100px;left:-50px;animation-delay:-4s;}
 @keyframes orbFloat{0%,100%{transform:translateY(0) scale(1);}50%{transform:translateY(-30px) scale(1.05);}}
-
-/* particles */
 #particles{position:absolute;inset:0;z-index:4;pointer-events:none;}
-
-/* Mobilde particles ve parallax kapalı */
-@media(max-width:900px){
-  #particles{display:none;}
-  .hero-bg{transform:scale(1.05) !important; /* parallax JS mobilde devrede dışı */}
-}
-
+@media(max-width:900px){#particles{display:none;}}
 .hero-content{position:relative;z-index:15;max-width:1300px;margin:0 auto;padding:130px 40px 90px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;width:100%;}
 @media(max-width:900px){.hero-content{grid-template-columns:1fr;gap:40px;padding:100px 20px 70px;}.hero-img-side{display:none;}}
-
 .hero-badge{display:inline-flex;align-items:center;gap:8px;padding:7px 20px;border:1px solid rgba(243,156,18,.7);border-radius:50px;font-size:.72rem;font-weight:700;color:var(--accent);letter-spacing:.12em;text-transform:uppercase;margin-bottom:26px;background:rgba(0,0,0,.3);backdrop-filter:blur(6px);}
 .hero-badge-dot{width:7px;height:7px;border-radius:50%;background:var(--accent);animation:blink 1.5s infinite;}
 @keyframes blink{0%,100%{opacity:1;box-shadow:0 0 0 0 rgba(243,156,18,.7);}50%{opacity:.5;box-shadow:0 0 0 5px rgba(243,156,18,0);}}
-
 h1.hero-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(3.8rem,9vw,7.5rem);line-height:.92;letter-spacing:.02em;margin-bottom:22px;color:#fff;text-shadow:0 2px 20px rgba(0,0,0,.2);}
 h1.hero-title .lf{color:var(--accent);display:block;}
 h1.hero-title .li{color:rgba(255,255,255,.95);display:block;}
 h1.hero-title .lw{color:#fff;display:block;}
-
 .hero-sub{font-size:1rem;color:rgba(255,255,255,.82);line-height:1.75;max-width:480px;margin-bottom:38px;}
 .hero-actions{display:flex;gap:14px;flex-wrap:wrap;}
-
 .btn-p,.btn-s{display:inline-flex;align-items:center;gap:10px;padding:15px 30px;border-radius:14px;font-weight:700;font-size:.95rem;text-decoration:none;transition:all .25s;}
 .btn-p{background:var(--accent);color:#fff;box-shadow:0 8px 24px rgba(243,156,18,.45);}
-.btn-p:hover{background:var(--accent-dark);transform:translateY(-3px);box-shadow:0 14px 30px rgba(243,156,18,.5);}
+.btn-p:hover{background:var(--accent-dark);transform:translateY(-3px);}
 .btn-s{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.3);color:#fff;backdrop-filter:blur(8px);}
 .btn-s:hover{background:rgba(255,255,255,.22);border-color:var(--accent);}
-
-/* animated counter stats */
 .hero-stats{display:flex;gap:36px;margin-top:44px;padding-top:38px;border-top:1px solid rgba(255,255,255,.15);flex-wrap:wrap;}
 .hs-num{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;line-height:1;color:var(--accent);}
 .hs-lbl{font-size:.72rem;color:rgba(255,255,255,.65);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;}
 
-  /* TÜM SAYFA İÇİN SORUNSUZ KAYDIRMA */
-html, body {
-  overflow-x: hidden;
-  width: 100%;
-  scroll-behavior: smooth; /* Zaten varsa sorun değil */
-}
-
-/* Tüm section'ların temel kuralları */
-section {
-  position: relative;
-  overflow-x: hidden;
-  /* 'transform: translateZ(0)' GPU hızlandırmasını açar, kayma performansını artırır */
-  transform: translateZ(0);
-  /* 'backface-visibility' olası titreşimleri engeller */
-  backface-visibility: hidden;
-}
-
-/* Flip kartlar için kayma iyileştirmesi */
-.flip-card {
-  /* perspective özelliği kaydırmayı etkilemesin diye */
-  perspective: 1200px;
-  /* GPU katmanı oluştur, kayma sırasında yeniden çizimi azalt */
-  will-change: transform;
-}
-
-.flip-card-inner {
-  /* Kayma sırasında yumuşak geçiş */
-  transition: transform 0.65s cubic-bezier(0.23, 1, 0.32, 1);
-  will-change: transform;
-}
-
-/* Mobil cihazlarda flip kartların minimum yüksekliğini esnek yap */
+/* MOBILE FIXLER */
+.container, .hero-content, .ft-grid, .strip-grid, .svc-grid, .test-grid, .reg-wrap, .con-grid {overflow-x:hidden;}
 @media (max-width: 900px) {
-  .flip-card-inner {
-    min-height: auto;
-  }
-  .flip-card-front, .flip-card-back {
-    position: relative;
-    height: auto;
-    transform: none !important; /* Mobilde flip'i devre dışı bırak, sadece tıklama ile göster/gizle yap */
-    backface-visibility: visible;
-  }
-  .flip-card-back {
-    display: none;
-    transform: none !important;
-  }
-  .flip-card.flipped .flip-card-back {
-    display: flex;
-  }
-  .flip-card.flipped .flip-card-front {
-    display: none;
-  }
-  .flip-hint {
-    display: none;
-  }
+  .hero-content{padding:100px 16px 70px;gap:30px;}
+  .hero-stats{gap:20px;justify-content:space-between;}
+  .hs-num{font-size:1.8rem;}
+  .hero-img-side{display:none;}
+  /* Flip kartlar mobilde - dönme efekti kalkmaz, sadece responsive olur */
+  .flip-card-front, .flip-card-back{padding:30px 20px;min-height:auto;}
+  .flip-hint{display:none;}
+  .faq-cta-card{padding:30px 24px;}
+  .faq-cta-card h3{font-size:1.8rem;}
+  .faq-q{padding:16px 18px;font-size:0.85rem;}
+  .reg-wrap{padding:30px 20px;}
+  .reg-grid{grid-template-columns:repeat(auto-fill,minmax(140px,1fr));gap:12px;}
+  .reg-item{padding:14px 16px;}
+  .reg-name{font-size:0.82rem;}
+  .con-img-wrap img{height:300px;}
+  .con-img-badge{bottom:16px;left:16px;padding:12px 16px;}
+  .con-img-badge .cn{font-size:1.2rem;}
+  .cii{gap:14px;}
+  .cii-icon{width:44px;height:44px;font-size:0.9rem;}
+  .cii-value{font-size:0.9rem;}
+  footer{padding:50px 20px 32px;}
+  .ft-grid{gap:32px;}
+  .ft-bottom{flex-direction:column;text-align:center;gap:8px;}
+  .art-hero-img img{max-height:250px;}
+  .art-body h3{font-size:1.3rem;margin-top:24px;}
+  .highlight-box{padding:16px 20px;}
+  .highlight-box p{font-size:0.85rem;}
+  .brand-pills{gap:6px;}
+  .brand-pill{padding:4px 12px;font-size:0.7rem;}
+  section{padding:60px 16px;}
+  .sec-title{font-size:clamp(2rem,5vw,3.5rem);}
+  .sec-sub{font-size:0.9rem;}
+  .btn-p, .btn-s{padding:12px 22px;font-size:0.85rem;}
 }
+@media (max-width: 600px){.test-card{padding:24px 20px;}.test-card p{font-size:0.85rem;}}
+@media (max-width: 500px){.strip-sec{padding:60px 16px;}.strip-card{padding:28px 20px;}.strip-icon{width:56px;height:56px;font-size:1.3rem;}}
+img{max-width:100%;height:auto;}
 
-/* FAQ Bölümü için kayma iyileştirmesi */
-.faq-item {
-  transform: translateZ(0);
-  transition: all 0.3s ease;
-}
-
-.faq-a {
-  transform: translateZ(0);
-  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
-}
-
-/* Hizmet Bölgeleri (Regions) kayma düzeltmesi */
-.reg-wrap {
-  transform: translateZ(0);
-  overflow-x: auto; /* Yatay kayma ihtimaline karşı */
-  -webkit-overflow-scrolling: touch;
-}
-
-.reg-grid {
-  transform: translateZ(0);
-}
-
-/* Hero kart yığını (hero-card-stack) mobilde taşma yapmasın */
-@media (max-width: 900px) {
-  .hero-card-stack {
-    height: auto;
-    margin-top: 30px;
-  }
-  .hc-main, .hc-mini {
-    position: relative;
-    top: auto;
-    left: auto;
-    right: auto;
-    bottom: auto;
-    margin-bottom: 20px;
-    width: 100%;
-  }
-  .hc-pulse {
-    display: none;
-  }
-}
-
-/* Tüm arka plan efektlerinin (blur, gradient) kayma performansını iyileştir */
-.hero-bg, .hero-overlay, .orb, .test-sec::before, .strip-sec::before {
-  transform: translateZ(0);
-  backface-visibility: hidden;
-}
-/* ──────────────────────────────────────────────
-   MOBILE FIXES
-────────────────────────────────────────────── */
-.container, 
-.hero-content, 
-.ft-grid,
-.strip-grid,
-.svc-grid,
-.test-grid,
-.reg-wrap,
-.con-grid {
-  overflow-x: hidden;
-}
-
-@media (max-width: 900px) {
-  .hero-content {
-    padding: 100px 16px 70px;
-    gap: 30px;
-  }
-  .hero-stats {
-    gap: 20px;
-    justify-content: space-between;
-  }
-  .hs-num {
-    font-size: 1.8rem;
-  }
-  .hero-img-side {
-    display: none;
-  }
-  .flip-card-front,
-  .flip-card-back {
-    padding: 30px 20px;
-    min-height: 480px;
-  }
-  .flip-card-front ul li {
-    font-size: 0.8rem;
-    gap: 8px;
-  }
-  .flip-card-front h3 {
-    font-size: 1.2rem;
-  }
-  .flip-hint {
-    top: 12px;
-    right: 12px;
-    width: 26px;
-    height: 26px;
-    font-size: 0.7rem;
-  }
-  .faq-cta-card {
-    padding: 30px 24px;
-  }
-  .faq-cta-card h3 {
-    font-size: 1.8rem;
-  }
-  .faq-q {
-    padding: 16px 18px;
-    font-size: 0.85rem;
-  }
-  .reg-wrap {
-    padding: 30px 20px;
-  }
-  .reg-grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 12px;
-  }
-  .reg-item {
-    padding: 14px 16px;
-  }
-  .reg-name {
-    font-size: 0.82rem;
-  }
-  .con-img-wrap img {
-    height: 300px;
-  }
-  .con-img-badge {
-    bottom: 16px;
-    left: 16px;
-    padding: 12px 16px;
-  }
-  .con-img-badge .cn {
-    font-size: 1.2rem;
-  }
-  .cii {
-    gap: 14px;
-  }
-  .cii-icon {
-    width: 44px;
-    height: 44px;
-    font-size: 0.9rem;
-  }
-  .cii-value {
-    font-size: 0.9rem;
-  }
-  footer {
-    padding: 50px 20px 32px;
-  }
-  .ft-grid {
-    gap: 32px;
-  }
-  .ft-bottom {
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
-  }
-  .art-hero-img img {
-    max-height: 250px;
-  }
-  .art-body h3 {
-    font-size: 1.3rem;
-    margin-top: 24px;
-  }
-  .highlight-box {
-    padding: 16px 20px;
-  }
-  .highlight-box p {
-    font-size: 0.85rem;
-  }
-  .brand-pills {
-    gap: 6px;
-  }
-  .brand-pill {
-    padding: 4px 12px;
-    font-size: 0.7rem;
-  }
-  section {
-    padding: 60px 16px;
-  }
-  .sec-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-  }
-  .sec-sub {
-    font-size: 0.9rem;
-  }
-  .btn-p, .btn-s {
-    padding: 12px 22px;
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 600px) {
-  .test-card {
-    padding: 24px 20px;
-  }
-  .test-card p {
-    font-size: 0.85rem;
-  }
-}
-
-@media (max-width: 500px) {
-  .strip-sec {
-    padding: 60px 16px;
-  }
-  .strip-card {
-    padding: 28px 20px;
-  }
-  .strip-icon {
-    width: 56px;
-    height: 56px;
-    font-size: 1.3rem;
-  }
-}
-
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* will-change sadece gerekli yerde — scroll takılmasını önler */
-.fi, .fil, .fir, .fiu {
-  /* will-change kaldırıldı — mobil GPU belleğini tüketiyordu */
-}
-
-/* hero right card mockup */
+/* HERO CARD STACK */
 .hero-card-stack{position:relative;height:380px;}
 .hc-main{position:absolute;top:0;left:0;right:40px;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:28px;box-shadow:0 30px 60px rgba(0,0,0,.3);}
 .hc-main h4{font-size:1.1rem;color:#fff;font-weight:700;margin-bottom:6px;}
@@ -398,22 +154,21 @@ img {
 .hc-mini .mini-lbl{font-size:.72rem;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.08em;}
 .hc-pulse{position:absolute;top:24px;right:68px;width:52px;height:52px;background:rgba(243,156,18,.15);border:2px solid rgba(243,156,18,.4);border-radius:50%;display:flex;align-items:center;justify-content:center;color:var(--accent);font-size:1.2rem;animation:pulse 2s ease-in-out infinite;}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(243,156,18,.4);}50%{box-shadow:0 0 0 14px rgba(243,156,18,0);}}
-
-/* service tags row */
 .hc-services{display:flex;flex-wrap:wrap;gap:8px;margin-top:16px;}
+@media(max-width:900px){
+  .hero-card-stack{height:auto;margin-top:30px;}
+  .hc-main,.hc-mini{position:relative;top:auto;left:auto;right:auto;bottom:auto;margin-bottom:20px;width:100%;}
+  .hc-pulse{display:none;}
+}
 
-/* ──────────────────────────────────────────────
-   MARQUEE RIBBON
-────────────────────────────────────────────── */
+/* MARQUEE */
 .ribbon{background:var(--accent);overflow:hidden;padding:12px 0;position:relative;z-index:10;}
 .ribbon-track{display:flex;gap:0;animation:marquee 25s linear infinite;white-space:nowrap;}
 .ribbon-track span{display:inline-flex;align-items:center;gap:12px;font-family:'Bebas Neue',sans-serif;font-size:1.1rem;letter-spacing:.08em;color:#fff;padding:0 40px;}
 .ribbon-track span i{font-size:.9rem;opacity:.7;}
 @keyframes marquee{0%{transform:translateX(0);}100%{transform:translateX(-50%);}}
 
-/* ──────────────────────────────────────────────
-   SECTION COMMONS
-────────────────────────────────────────────── */
+/* SECTION COMMONS */
 section{padding:110px 40px;}
 @media(max-width:900px){section{padding:70px 20px;}}
 .container{max-width:1300px;margin:0 auto;}
@@ -423,19 +178,36 @@ h2.sec-title{font-family:'Bebas Neue',sans-serif;font-size:clamp(2.6rem,5.5vw,5r
 h2.sec-title span{color:var(--accent);}
 .sec-sub{font-size:1rem;color:var(--text-light);line-height:1.75;max-width:580px;}
 
-/* ──────────────────────────────────────────────
-   SERVICES  3D FLIP
-────────────────────────────────────────────── */
+/* SERVICES - FLIP CARDS (DÜZGÜN ÇALIŞIYOR) */
 .svc-sec{background:var(--white);}
 .svc-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px;margin-top:64px;}
 @media(max-width:900px){.svc-grid{grid-template-columns:1fr;gap:26px;}}
-
 .flip-card{background:transparent;height:100%;perspective:1600px;cursor:pointer;}
 .flip-card-inner{position:relative;width:100%;min-height:500px;transition:transform .65s cubic-bezier(.23,1,.32,1);transform-style:preserve-3d;border-radius:26px;}
 .flip-card.flipped .flip-card-inner{transform:rotateY(180deg);}
 .flip-card-front,.flip-card-back{position:absolute;width:100%;height:100%;backface-visibility:hidden;border-radius:26px;overflow:hidden;top:0;left:0;}
-.flip-card-front{background:var(--white);box-shadow:var(--card-shadow);border:1px solid var(--border);z-index:2;transform:rotateY(0deg);padding:44px 36px;display:flex;flex-direction:column;}
-.flip-card-back{transform:rotateY(180deg);padding:36px 28px;display:flex;flex-direction:column;justify-content:center;align-items:center;gap:20px;background:linear-gradient(150deg,#fff 0%,#fef8ee 100%);box-shadow:var(--card-shadow);border:1px solid rgba(243,156,18,.2);}
+.flip-card-front{
+  background:linear-gradient(145deg, #ffffff 0%, #fefefe 100%);
+  box-shadow:var(--card-shadow);
+  border:1px solid var(--border);
+  z-index:2;
+  transform:rotateY(0deg);
+  padding:44px 36px;
+  display:flex;
+  flex-direction:column;
+}
+.flip-card-back{
+  transform:rotateY(180deg);
+  padding:36px 28px;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  align-items:center;
+  gap:20px;
+  background:linear-gradient(145deg, #fef8ee 0%, #fff3e0 100%);
+  box-shadow:var(--card-shadow);
+  border:1px solid rgba(243,156,18,.25);
+}
 .flip-card-front::before{content:'';position:absolute;bottom:0;left:0;right:0;height:4px;background:linear-gradient(90deg,var(--accent),var(--accent-dark));transform:scaleX(0);transform-origin:left;transition:transform .4s ease;}
 .flip-card:hover .flip-card-front::before{transform:scaleX(1);}
 .flip-card-back h3{font-size:1.5rem;font-weight:700;color:var(--primary);}
@@ -447,7 +219,6 @@ h2.sec-title span{color:var(--accent);}
 .flip-hint{position:absolute;top:20px;right:22px;z-index:10;font-size:.85rem;color:var(--accent);background:rgba(255,255,255,.95);width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 10px rgba(0,0,0,.08);pointer-events:none;animation:hintSpin 3s ease-in-out infinite;}
 @keyframes hintSpin{0%,100%{transform:rotate(0deg);}50%{transform:rotate(180deg);}}
 .flip-card.flipped .flip-hint{opacity:0;}
-
 .svc-icon{width:60px;height:60px;border-radius:20px;display:flex;align-items:center;justify-content:center;font-size:1.5rem;margin-bottom:26px;position:relative;}
 .svc-icon.fire{background:linear-gradient(135deg,rgba(243,156,18,.15),rgba(243,156,18,.05));color:var(--accent);}
 .svc-icon.ice{background:linear-gradient(135deg,rgba(60,99,130,.15),rgba(60,99,130,.05));color:var(--secondary);}
@@ -459,9 +230,7 @@ h2.sec-title span{color:var(--accent);}
 .flip-card-front ul li{display:flex;align-items:center;gap:11px;font-size:.85rem;color:var(--text);}
 .flip-card-front ul li::before{content:'';width:7px;height:7px;border-radius:50%;flex-shrink:0;background:var(--accent);}
 
-/* ──────────────────────────────────────────────
-   ABOUT
-────────────────────────────────────────────── */
+/* ABOUT */
 .about-sec{background:var(--background);}
 .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;margin-top:60px;}
 @media(max-width:900px){.about-grid{grid-template-columns:1fr;gap:40px;}}
@@ -479,15 +248,7 @@ h2.sec-title span{color:var(--accent);}
 .af:hover{border-color:var(--accent);transform:translateY(-2px);}
 .af i{color:var(--accent);width:18px;}
 
-/* ──────────────────────────────────────────────
-   WAVE DIVIDER
-────────────────────────────────────────────── */
-.wave-divider{width:100%;overflow:hidden;line-height:0;display:block;}
-.wave-divider svg{display:block;width:100%;height:80px;}
-
-/* ──────────────────────────────────────────────
-   DARK FEATURE STRIP  
-────────────────────────────────────────────── */
+/* DARK FEATURE STRIP */
 .strip-sec{background:var(--primary);padding:90px 40px;position:relative;overflow:hidden;}
 .strip-sec::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(255,255,255,.03) 1px,transparent 1px),linear-gradient(90deg,rgba(255,255,255,.03) 1px,transparent 1px);background-size:50px 50px;pointer-events:none;}
 .strip-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:repeat(4,1fr);gap:30px;}
@@ -501,9 +262,7 @@ h2.sec-title span{color:var(--accent);}
 .strip-card h3{font-size:1.05rem;font-weight:700;color:#fff;margin-bottom:10px;}
 .strip-card p{font-size:.82rem;color:rgba(255,255,255,.6);line-height:1.7;}
 
-/* ──────────────────────────────────────────────
-   SEO ARTICLE SECTIONS
-────────────────────────────────────────────── */
+/* SEO ARTICLE */
 .art-sec{background:var(--white);}
 .art-sec.alt{background:var(--background);}
 .art-hero-img{width:100%;border-radius:26px;overflow:hidden;margin-bottom:56px;box-shadow:var(--card-shadow);position:relative;}
@@ -531,26 +290,22 @@ h2.sec-title span{color:var(--accent);}
 .sb-btn.f{background:var(--accent);color:#fff;box-shadow:0 4px 14px rgba(243,156,18,.3);}
 .sb-btn.g{background:var(--background);border:1px solid var(--border);color:var(--text);}
 .sb-btn:hover{transform:translateY(-2px);}
-
-/* brand pills */
 .brand-pills{display:flex;flex-wrap:wrap;gap:8px;margin:18px 0;}
 .brand-pill{padding:6px 16px;border-radius:20px;font-size:.78rem;font-weight:600;background:rgba(10,61,98,.07);color:var(--primary);border:1px solid rgba(10,61,98,.12);}
 
-/* ──────────────────────────────────────────────
-   FAQ SECTION  
-────────────────────────────────────────────── */
+/* FAQ */
 .faq-sec{background:var(--white);}
 .faq-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;margin-top:60px;align-items:start;}
 @media(max-width:900px){.faq-grid{grid-template-columns:1fr;gap:40px;}}
 .faq-list{display:flex;flex-direction:column;gap:12px;}
-.faq-item{border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .3s;}
+.faq-item{border:1px solid var(--border);border-radius:18px;overflow:hidden;transition:all .3s;background:var(--white);}
 .faq-item.open{border-color:rgba(243,156,18,.3);box-shadow:0 8px 24px rgba(243,156,18,.08);}
 .faq-q{display:flex;align-items:center;justify-content:space-between;gap:12px;padding:20px 24px;cursor:pointer;font-weight:600;font-size:.92rem;color:var(--primary);user-select:none;background:var(--white);}
 .faq-q:hover{background:rgba(243,156,18,.03);}
 .faq-q i{font-size:.75rem;color:var(--accent);transition:transform .3s;flex-shrink:0;}
 .faq-item.open .faq-q i{transform:rotate(180deg);}
-.faq-a{max-height:0;overflow:hidden;transition:max-height .4s ease,padding .3s;}
-.faq-item.open .faq-a{max-height:300px;}
+.faq-a{max-height:0;overflow:hidden;transition:max-height .4s cubic-bezier(0.4,0,0.2,1);}
+.faq-item.open .faq-a{max-height:400px;}
 .faq-a p{padding:0 24px 20px;font-size:.88rem;color:var(--text-light);line-height:1.8;}
 .faq-cta-card{background:linear-gradient(135deg,var(--primary),var(--primary-light));border-radius:26px;padding:44px 38px;color:#fff;position:sticky;top:100px;}
 .faq-cta-card h3{font-family:'Bebas Neue',sans-serif;font-size:2.2rem;letter-spacing:.03em;margin-bottom:14px;}
@@ -561,9 +316,7 @@ h2.sec-title span{color:var(--accent);}
 .faq-cta-btn.b{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);color:#fff;}
 .faq-cta-btn:hover{transform:translateY(-3px);}
 
-/* ──────────────────────────────────────────────
-   REGIONS
-────────────────────────────────────────────── */
+/* REGIONS */
 .reg-sec{background:var(--background);}
 .reg-wrap{background:var(--white);border-radius:28px;padding:52px;margin-top:54px;border:1px solid var(--border);box-shadow:var(--card-shadow);}
 .reg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(170px,1fr));gap:16px;}
@@ -572,9 +325,7 @@ h2.sec-title span{color:var(--accent);}
 .reg-dot{width:9px;height:9px;border-radius:50%;background:var(--accent);flex-shrink:0;}
 .reg-name{font-weight:600;font-size:.88rem;color:var(--text);}
 
-/* ──────────────────────────────────────────────
-   TESTIMONIALS
-────────────────────────────────────────────── */
+/* TESTIMONIALS */
 .test-sec{background:var(--primary);padding:110px 40px;position:relative;overflow:hidden;}
 .test-sec::before{content:'';position:absolute;inset:0;background:url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.025'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");}
 .test-header{max-width:1300px;margin:0 auto 60px;}
@@ -595,9 +346,7 @@ h2.sec-title span{color:var(--accent);}
 .test-name{font-weight:700;font-size:.9rem;color:#fff;}
 .test-loc{font-size:.75rem;color:rgba(255,255,255,.5);margin-top:2px;}
 
-/* ──────────────────────────────────────────────
-   CONTACT
-────────────────────────────────────────────── */
+/* CONTACT */
 .con-sec{background:var(--background);}
 .con-grid{display:grid;grid-template-columns:1fr 1fr;gap:70px;margin-top:64px;}
 @media(max-width:900px){.con-grid{grid-template-columns:1fr;}}
@@ -621,9 +370,7 @@ h2.sec-title span{color:var(--accent);}
 .con-map{border-radius:22px;overflow:hidden;margin-top:24px;border:2px solid var(--border);}
 .con-map iframe{display:block;width:100%;height:220px;border:0;}
 
-/* ──────────────────────────────────────────────
-   FOOTER
-────────────────────────────────────────────── */
+/* FOOTER */
 footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40px 32px;}
 .ft-grid{max-width:1300px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:54px;margin-bottom:54px;}
 @media(max-width:900px){.ft-grid{grid-template-columns:1fr 1fr;}}
@@ -645,9 +392,7 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
 .ft-bottom a{color:rgba(255,255,255,.4);text-decoration:none;}
 .ft-bottom a:hover{color:var(--accent);}
 
-/* ──────────────────────────────────────────────
-   STICKY CTA
-────────────────────────────────────────────── */
+/* STICKY CTA */
 .sticky-cta{position:fixed;bottom:28px;right:28px;z-index:190;display:flex;flex-direction:column;gap:12px;}
 .st-btn{display:flex;align-items:center;gap:10px;padding:13px 24px;border-radius:50px;font-weight:700;text-decoration:none;color:#fff;box-shadow:0 8px 24px rgba(0,0,0,.2);transition:all .2s;}
 .st-btn.wa{background:#25D366;}
@@ -655,17 +400,13 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
 .st-btn:hover{transform:translateY(-3px);}
 @media(max-width:600px){.sticky-cta{bottom:80px;right:16px;gap:14px;}.st-btn span{display:none;}.st-btn{padding:15px;border-radius:50%;width:54px;height:54px;justify-content:center;}}
 
-/* ──────────────────────────────────────────────
-   SCROLL ANIMATIONS
-────────────────────────────────────────────── */
+/* SCROLL ANIMATIONS */
 .fi,.fil,.fir,.fiu{opacity:0;transition:opacity .8s ease,transform .8s ease;}
 .fi{transform:translateY(36px);}
 .fil{transform:translateX(-40px);}
 .fir{transform:translateX(40px);}
 .fiu{transform:translateY(-20px);}
 .fi.v,.fil.v,.fir.v,.fiu.v{opacity:1;transform:none;}
-
-/* stagger children */
 .stagger > *{opacity:0;transform:translateY(24px);transition:opacity .6s ease,transform .6s ease;}
 .stagger.v > *:nth-child(1){opacity:1;transform:none;transition-delay:.1s;}
 .stagger.v > *:nth-child(2){opacity:1;transform:none;transition-delay:.2s;}
@@ -708,7 +449,6 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
   <div class="orb orb1"></div>
   <div class="orb orb2"></div>
   <canvas id="particles"></canvas>
-
   <div class="hero-content">
     <div>
       <div class="hero-badge"><span class="hero-badge-dot"></span> Aydın'ın Lider Teknik Servisi</div>
@@ -729,7 +469,6 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
         <div><div class="hs-num" data-suffix="/">7</div><div class="hs-lbl">Teknik Destek</div></div>
       </div>
     </div>
-
     <div class="hero-img-side fir">
       <div class="hero-card-stack">
         <div class="hc-main">
@@ -758,9 +497,9 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
   </div>
 </section>
 
-<!-- MARQUEE RIBBON -->
+<!-- MARQUEE -->
 <div class="ribbon">
-  <div class="ribbon-track" id="ribbon">
+  <div class="ribbon-track">
     <span>Kombi Servisi <i class="fas fa-circle"></i></span>
     <span>Klima Kurulum <i class="fas fa-circle"></i></span>
     <span>Elektrik Tesisatı <i class="fas fa-circle"></i></span>
@@ -788,8 +527,7 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
     <div class="sec-label fi">Hizmetlerimiz</div>
     <h2 class="sec-title fi">Uzman <span>Teknik</span> Çözümler</h2>
     <p class="sec-sub fi">Aydın genelinde kombi, klima ve elektrik alanlarında kapsamlı teknik servis hizmetleri. Karta tıklayarak iletişim bilgilerine ulaşabilirsiniz.</p>
-
-    <div class="svc-grid stagger" id="svcGrid">
+    <div class="svc-grid stagger">
       <!-- KOMBİ -->
       <div class="flip-card">
         <div class="flip-card-inner">
@@ -797,14 +535,8 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
             <div class="flip-hint"><i class="fas fa-sync-alt"></i></div>
             <div class="svc-icon fire"><i class="fas fa-fire-flame-curved"></i></div>
             <h3>Kombi Servisi & Bakım</h3>
-            <p>Kış öncesi periyodik bakım, hızlı arıza tespiti ve orijinal yedek parça ile uzun ömürlü çalışma garantisi. Tüm markalar için yetkili teknik servis hizmeti.</p>
-            <ul>
-              <li>Kombi arıza tespiti ve onarımı</li>
-              <li>Kış öncesi periyodik bakım</li>
-              <li>Baca ve eşanjör temizliği</li>
-              <li>Baymak, Buderus, Vaillant, Bosch</li>
-              <li>Orijinal yedek parça garantisi</li>
-            </ul>
+            <p>Kış öncesi periyodik bakım, hızlı arıza tespiti ve orijinal yedek parça ile uzun ömürlü çalışma garantisi.</p>
+            <ul><li>Kombi arıza tespiti ve onarımı</li><li>Kış öncesi periyodik bakım</li><li>Baca ve eşanjör temizliği</li><li>Baymak, Buderus, Vaillant, Bosch</li><li>Orijinal yedek parça garantisi</li></ul>
           </div>
           <div class="flip-card-back">
             <i class="fas fa-phone-alt" style="font-size:2.2rem;color:var(--accent);"></i>
@@ -819,7 +551,6 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
           </div>
         </div>
       </div>
-
       <!-- KLİMA -->
       <div class="flip-card">
         <div class="flip-card-inner">
@@ -828,13 +559,7 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
             <div class="svc-icon ice"><i class="fas fa-snowflake"></i></div>
             <h3>Klima Servisi & Kurulum</h3>
             <p>Split, inverter ve kaset tipi klimaların montajı, yıllık bakımı ve gaz dolumu. Enerji verimliliğinizi artıran profesyonel çözümler.</p>
-            <ul>
-              <li>Klima kurulum ve montaj</li>
-              <li>Gaz dolumu R32/R410A</li>
-              <li>Filtre temizliği ve yıllık bakım</li>
-              <li>Daikin, Mitsubishi, Bosch, LG</li>
-              <li>Hem soğutma hem ısıtma modu</li>
-            </ul>
+            <ul><li>Klima kurulum ve montaj</li><li>Gaz dolumu R32/R410A</li><li>Filtre temizliği ve yıllık bakım</li><li>Daikin, Mitsubishi, Bosch, LG</li><li>Hem soğutma hem ısıtma modu</li></ul>
           </div>
           <div class="flip-card-back">
             <i class="fas fa-headset" style="font-size:2.2rem;color:var(--accent);"></i>
@@ -849,7 +574,6 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
           </div>
         </div>
       </div>
-
       <!-- ELEKTRİK -->
       <div class="flip-card">
         <div class="flip-card-inner">
@@ -858,13 +582,7 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
             <div class="svc-icon elec"><i class="fas fa-bolt"></i></div>
             <h3>Elektrik Tesisatı & Onarım</h3>
             <p>Konut, iş yeri ve sanayi için güvenli elektrik tesisatı çözümleri. TS standartlarına uygun, güvence altında tüm işlemler.</p>
-            <ul>
-              <li>Tesisat döşeme ve yenileme</li>
-              <li>Sigorta panosu montajı</li>
-              <li>Topraklama ve toprak ölçümü</li>
-              <li>Arıza tespiti ve giderimi</li>
-              <li>Konut & iş yeri tesisatı</li>
-            </ul>
+            <ul><li>Tesisat döşeme ve yenileme</li><li>Sigorta panosu montajı</li><li>Topraklama ve toprak ölçümü</li><li>Arıza tespiti ve giderimi</li><li>Konut & iş yeri tesisatı</li></ul>
           </div>
           <div class="flip-card-back">
             <i class="fas fa-tools" style="font-size:2.2rem;color:var(--accent);"></i>
@@ -889,7 +607,7 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
     <div class="sec-label fi">Hakkımızda</div>
     <div class="about-grid">
       <div class="about-imgs fil">
-        <div class="ai1"><img src="https://www.aydinadateknik.com/images/aydinkombiservis2.webp" alt="Ada Isı Teknik Ekibi — Aydın Kombi Klima Elektrik"/></div>
+        <div class="ai1"><img src="https://www.aydinadateknik.com/images/aydinkombiservis2.webp" alt="Ada Isı Teknik Ekibi"/></div>
         <div class="ai2"><img src="https://www.aydinadateknik.com/images/aydinkombiservis4.webp" alt="Aydın Kombi Bakım Servisi"/></div>
         <div class="about-badge-ov"><div class="num">15+</div><div class="txt">Yıl Deneyim</div></div>
       </div>
@@ -911,27 +629,11 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
 
 <!-- DARK FEATURE STRIP -->
 <section class="strip-sec">
-  <div class="strip-grid stagger" id="stripGrid">
-    <div class="strip-card">
-      <div class="strip-icon"><i class="fas fa-clock"></i></div>
-      <h3>Hızlı Müdahale</h3>
-      <p>Acil durumlarda 1-3 saat içinde kapınızdayız. Aynı gün servis garantisi.</p>
-    </div>
-    <div class="strip-card">
-      <div class="strip-icon"><i class="fas fa-shield-halved"></i></div>
-      <h3>Garantili İşçilik</h3>
-      <p>Tüm işlemlerde kapsamlı işçilik garantisi. Sorun çözülmeden ayrılmayız.</p>
-    </div>
-    <div class="strip-card">
-      <div class="strip-icon"><i class="fas fa-box-open"></i></div>
-      <h3>Orijinal Yedek Parça</h3>
-      <p>Sertifikalı distribütörlerden temin edilen orijinal parçalar. Uzun ömür garantisi.</p>
-    </div>
-    <div class="strip-card">
-      <div class="strip-icon"><i class="fas fa-coins"></i></div>
-      <h3>Şeffaf Fiyat</h3>
-      <p>Keşif sonrası net fiyat teklifi. Ekstra maliyet yok, sürpriz fatura yok.</p>
-    </div>
+  <div class="strip-grid stagger">
+    <div class="strip-card"><div class="strip-icon"><i class="fas fa-clock"></i></div><h3>Hızlı Müdahale</h3><p>Acil durumlarda 1-3 saat içinde kapınızdayız.</p></div>
+    <div class="strip-card"><div class="strip-icon"><i class="fas fa-shield-halved"></i></div><h3>Garantili İşçilik</h3><p>Tüm işlemlerde kapsamlı işçilik garantisi.</p></div>
+    <div class="strip-card"><div class="strip-icon"><i class="fas fa-box-open"></i></div><h3>Orijinal Yedek Parça</h3><p>Sertifikalı distribütörlerden orijinal parçalar.</p></div>
+    <div class="strip-card"><div class="strip-icon"><i class="fas fa-coins"></i></div><h3>Şeffaf Fiyat</h3><p>Keşif sonrası net fiyat teklifi, sürpriz yok.</p></div>
   </div>
 </section>
 
@@ -940,82 +642,18 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
   <div class="container">
     <div class="sec-label fi">Bilgi Merkezi</div>
     <h2 class="sec-title fi">Aydın'da <span>Kombi Servisi</span></h2>
-    <div class="art-hero-img fi">
-      <img src="https://www.aydinadateknik.com/images/kombi.webp" alt="Aydın Kombi Servisi — Ada Isı Teknik"/>
-    </div>
+    <div class="art-hero-img fi"><img src="https://www.aydinadateknik.com/images/kombi.webp" alt="Aydın Kombi Servisi"/></div>
     <div class="art-grid">
       <div class="art-body fi">
         <h3>Kombi Bakımı Neden Bu Kadar Önemli?</h3>
-        <p>Kombiler, evlerin hem ısıtma hem de sıcak su ihtiyacını karşılayan kritik sistemlerdir. Düzenli bakım yapılmayan bir kombi; enerji verimliliğini kaybederek doğalgaz faturalarını artırır, beklenmedik arızalara yol açar ve karbonmonoksit zehirlenmesi gibi can güvenliği risklerini beraberinde getirir. Aydın'da Ada Isı Teknik olarak her yıl yüzlerce kombinin periyodik bakımını gerçekleştiriyor, müşterilerimizin sorunsuz bir kış geçirmesini sağlıyoruz.</p>
-
-        <div class="highlight-box">
-          <p>Enerji Verimliliği Ajansı verilerine göre düzenli bakım yapılan kombiniler, bakımsız olanlara kıyasla yüzde 15 ile 20 arasında daha az yakıt tüketmektedir. Bu, yıllık doğalgaz faturanızda ciddi bir tasarruf anlamına gelir.</p>
-        </div>
-
+        <p>Kombiler, evlerin hem ısıtma hem de sıcak su ihtiyacını karşılayan kritik sistemlerdir. Düzenli bakım yapılmayan bir kombi; enerji verimliliğini kaybederek doğalgaz faturalarını artırır, beklenmedik arızalara yol açar ve karbonmonoksit zehirlenmesi gibi can güvenliği risklerini beraberinde getirir.</p>
+        <div class="highlight-box"><p>Düzenli bakım yapılan kombiniler, bakımsız olanlara kıyasla yüzde 15-20 daha az yakıt tüketmektedir.</p></div>
         <h3>Yıllık Kombi Bakımında Neler Yapılır?</h3>
-        <p>Ada Isı Teknik ekibi, periyodik kombi bakımında şu adımları titizlikle uygular:</p>
-        <ul>
-          <li><i class="fas fa-check-circle"></i> Baca gazı analizi ve CO ölçümü — sağlık güvencesi</li>
-          <li><i class="fas fa-check-circle"></i> Eşanjör (ısı değiştirici) temizliği — verimlilik artışı</li>
-          <li><i class="fas fa-check-circle"></i> Sirkülasyon pompası testi ve yağlanması</li>
-          <li><i class="fas fa-check-circle"></i> Genleşme tankı basınç kontrolü</li>
-          <li><i class="fas fa-check-circle"></i> Brülör ve ateşleme elektrodu temizliği</li>
-          <li><i class="fas fa-check-circle"></i> Tüm conta ve bağlantı noktalarının kontrolü</li>
-        </ul>
-
-        <h3>En Sık Karşılaşılan Kombi Arızaları</h3>
-        <p>Aydın'daki servis çağrılarımızın büyük çoğunluğu şu arızalardan kaynaklanmaktadır:</p>
-        <ul>
-          <li><i class="fas fa-exclamation-triangle"></i> <strong>Su basıncı düşüklüğü:</strong> Sistemden su kaçağı veya genleşme tankı sorunları. Manometre 1 bar'ın altını gösteriyorsa hemen arayın.</li>
-          <li><i class="fas fa-exclamation-triangle"></i> <strong>Tutuşmama ve hata kodları:</strong> Gaz armatürü, ateşleme elektrodu veya kontrol kartı kaynaklı olabilir.</li>
-          <li><i class="fas fa-exclamation-triangle"></i> <strong>Aşırı ısınma ve güvenlik kesme:</strong> Genellikle kireçlenme veya termostat arızasından kaynaklanır.</li>
-          <li><i class="fas fa-exclamation-triangle"></i> <strong>Gürültülü çalışma:</strong> Pompa, eşanjör kireçlenmesi veya hava toplumu işaretidir.</li>
-        </ul>
-
-        <h4>Hizmet Verdiğimiz Kombi Markaları</h4>
-        <div class="brand-pills">
-          <span class="brand-pill">Baymak</span>
-          <span class="brand-pill">Buderus</span>
-          <span class="brand-pill">Vaillant</span>
-          <span class="brand-pill">Demirdöküm</span>
-          <span class="brand-pill">Bosch</span>
-          <span class="brand-pill">Ariston</span>
-          <span class="brand-pill">Protherm</span>
-          <span class="brand-pill">ECA</span>
-          <span class="brand-pill">Ferroli</span>
-        </div>
-
-        <h3>Kış Öncesi Kombi Bakımını Geciktirmeyin</h3>
-        <p>Aydın'da her yıl ekim-kasım aylarında servis talebimiz büyük ölçüde artmaktadır. Soğuklar bastırmadan önce kombinizi kontrol ettirerek hem güvenliğinizi hem de bütçenizi koruyun. Erken bakım için randevu almak ücretsizdir ve aynı gün servis imkânı sunuyoruz.</p>
+        <ul><li><i class="fas fa-check-circle"></i> Baca gazı analizi ve CO ölçümü</li><li><i class="fas fa-check-circle"></i> Eşanjör temizliği</li><li><i class="fas fa-check-circle"></i> Sirkülasyon pompası testi</li><li><i class="fas fa-check-circle"></i> Genleşme tankı basınç kontrolü</li></ul>
+        <div class="brand-pills"><span class="brand-pill">Baymak</span><span class="brand-pill">Buderus</span><span class="brand-pill">Vaillant</span><span class="brand-pill">Demirdöküm</span><span class="brand-pill">Bosch</span><span class="brand-pill">Ariston</span></div>
       </div>
-
       <div class="art-sidebar">
-        <div class="sb-card">
-          <div class="sb-hdr">
-            <h4>Acil Kombi Servisi</h4>
-            <p>7/24 müdahale — Aydın geneli</p>
-          </div>
-          <div class="sb-body">
-            <p>Kombiniz çalışmıyor mu? Hata kodu mu görüyorsunuz? Hemen arayın, en kısa sürede yanınızda olalım.</p>
-            <div class="sb-btns">
-              <a href="tel:05449066450" class="sb-btn f"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a>
-              <a href="tel:05449086450" class="sb-btn f"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a>
-              <a href="https://wa.me/905449086450" class="sb-btn g" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            </div>
-          </div>
-        </div>
-        <div class="sb-card">
-          <div class="sb-hdr" style="background:linear-gradient(135deg,rgba(243,156,18,.9),var(--accent-dark));">
-            <h4>Bakım Paketi</h4>
-            <p>Yıllık periyodik bakım</p>
-          </div>
-          <div class="sb-body">
-            <p>Kombinizdeki kireçlenme, kirlenme ve yıpranmayı önleyen kapsamlı yıllık bakım paketi. Baca gazı analizi dahil.</p>
-            <div class="sb-btns">
-              <a href="tel:05449066450" class="sb-btn f"><i class="fas fa-calendar-check"></i> Randevu Al</a>
-            </div>
-          </div>
-        </div>
+        <div class="sb-card"><div class="sb-hdr"><h4>Acil Kombi Servisi</h4><p>7/24 müdahale</p></div><div class="sb-body"><p>Kombiniz çalışmıyor mu? Hemen arayın.</p><div class="sb-btns"><a href="tel:05449066450" class="sb-btn f"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="https://wa.me/905449086450" class="sb-btn g" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></div></div>
       </div>
     </div>
   </div>
@@ -1025,67 +663,17 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
 <section class="art-sec alt" id="klima">
   <div class="container">
     <div class="sec-label fi">Bilgi Merkezi</div>
-    <h2 class="sec-title fi">Aydın'da <span>Klima Servisi</span> ve Kurulum</h2>
-    <div class="art-hero-img fi">
-      <img src="https://www.aydinadateknik.com/images/aydinkombiservis.webp" alt="Aydın Klima Servisi ve Kurulumu — Ada Isı Teknik"/>
-    </div>
+    <h2 class="sec-title fi">Aydın'da <span>Klima Servisi</span></h2>
+    <div class="art-hero-img fi"><img src="https://www.aydinadateknik.com/images/aydinkombiservis.webp" alt="Aydın Klima Servisi"/></div>
     <div class="art-grid">
       <div class="art-body fi">
         <h3>Aydın İkliminde Klima Neden Vazgeçilmez?</h3>
-        <p>Ege'nin en sıcak şehirlerinden biri olan Aydın'da yaz aylarında sıcaklık 40 dereceyi aşabilmektedir. Doğru kapasitede seçilmiş ve düzenli bakımı yapılan bir klima, yaz konforunu sağlarken elektrik faturalarını da kontrol altında tutar. Ada Isı Teknik olarak Aydın'da klima kurulumu, bakımı ve acil servis hizmetlerini profesyonel ekibimizle sunuyoruz.</p>
-
-        <h3>Doğru Klima Seçimi: Kapasite ve Tür</h3>
-        <p>Yanlış kapasitede seçilen bir klima hem yetersiz soğutma/ısıtma yapar hem de gereksiz enerji tüketir. Ada Isı Teknik uzmanları, odanızın metrekaresi, yalıtım durumu ve güneş yönüne göre en uygun BTU değerini hesaplayarak size en doğru ürünü önerir.</p>
-        <ul>
-          <li><i class="fas fa-wind"></i> <strong>Split tip klimalar:</strong> Konutlar ve ofisler için en yaygın çözüm. Sessiz çalışma, enerji tasarrufu.</li>
-          <li><i class="fas fa-wind"></i> <strong>İnverter teknolojisi:</strong> Sabit hızlı kompresöre göre yüzde 30-50 daha az elektrik tüketir.</li>
-          <li><i class="fas fa-wind"></i> <strong>Kaset tipi klimalar:</strong> Ticari alanlar için ideal. 4 yönlü hava dağılımı.</li>
-          <li><i class="fas fa-wind"></i> <strong>Multi-split sistemler:</strong> Tek dış üniteyle birden fazla odayı iklimlendirir.</li>
-        </ul>
-
-        <h3>Yıllık Klima Bakımında Neler Yapılır?</h3>
-        <p>Klima bakımı hem enerji verimliliğini artırır hem de cihaz ömrünü uzatır. Ada Isı Teknik ekibinin gerçekleştirdiği kapsamlı bakım şu adımları içerir:</p>
-        <ul>
-          <li><i class="fas fa-check-circle"></i> İç ve dış ünite filtre temizliği</li>
-          <li><i class="fas fa-check-circle"></i> Soğutucu gaz (R32/R410A) seviyesi kontrolü ve dolumu</li>
-          <li><i class="fas fa-check-circle"></i> Kondens (yoğuşma suyu) tahliye hattı temizliği</li>
-          <li><i class="fas fa-check-circle"></i> Kompresör ve fan performans testi</li>
-          <li><i class="fas fa-check-circle"></i> Elektrik bağlantıları ve kontaktör kontrolü</li>
-          <li><i class="fas fa-check-circle"></i> Dış ünite lamel temizliği — verimlilik artışı</li>
-        </ul>
-
-        <div class="highlight-box">
-          <p>Yılda en az bir kez bakım yaptırılan klimalar, bakımsız olanlara göre ortalama yüzde 25 daha az elektrik harcar ve 2-3 kat daha uzun ömürlüdür. Bakım maliyeti, arıza onarım maliyetinin çok küçük bir kısmıdır.</p>
-        </div>
-
-        <h4>Hizmet Verdiğimiz Klima Markaları</h4>
-        <div class="brand-pills">
-          <span class="brand-pill">Daikin</span>
-          <span class="brand-pill">Mitsubishi</span>
-          <span class="brand-pill">Samsung</span>
-          <span class="brand-pill">LG</span>
-          <span class="brand-pill">Arçelik</span>
-          <span class="brand-pill">Bosch</span>
-          <span class="brand-pill">Beko</span>
-          <span class="brand-pill">Gree</span>
-          <span class="brand-pill">Vestel</span>
-        </div>
+        <p>Ege'nin en sıcak şehirlerinden biri olan Aydın'da yaz aylarında sıcaklık 40 dereceyi aşabilmektedir. Doğru kapasitede seçilmiş ve düzenli bakımı yapılan bir klima, yaz konforunu sağlarken elektrik faturalarını da kontrol altında tutar.</p>
+        <div class="highlight-box"><p>Yılda en az bir kez bakım yaptırılan klimalar, bakımsız olanlara göre yüzde 25 daha az elektrik harcar.</p></div>
+        <div class="brand-pills"><span class="brand-pill">Daikin</span><span class="brand-pill">Mitsubishi</span><span class="brand-pill">Samsung</span><span class="brand-pill">LG</span><span class="brand-pill">Arçelik</span><span class="brand-pill">Bosch</span></div>
       </div>
-
       <div class="art-sidebar">
-        <div class="sb-card">
-          <div class="sb-hdr">
-            <h4>Hızlı Klima Servisi</h4>
-            <p>Kurulum & bakım — aynı gün</p>
-          </div>
-          <div class="sb-body">
-            <p>Yeni klima kurulumu veya mevcut klimanızın bakımı için bizi arayın. Aydın'ın tüm ilçelerinde hizmet veriyoruz.</p>
-            <div class="sb-btns">
-              <a href="tel:05449066450" class="sb-btn f"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a>
-              <a href="https://wa.me/905449086450" class="sb-btn g" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            </div>
-          </div>
-        </div>
+        <div class="sb-card"><div class="sb-hdr"><h4>Hızlı Klima Servisi</h4><p>Kurulum & bakım</p></div><div class="sb-body"><div class="sb-btns"><a href="tel:05449066450" class="sb-btn f"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="https://wa.me/905449086450" class="sb-btn g" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></div></div>
       </div>
     </div>
   </div>
@@ -1095,45 +683,15 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
 <section class="art-sec" id="elektrik">
   <div class="container">
     <div class="sec-label fi">Bilgi Merkezi</div>
-    <h2 class="sec-title fi">Aydın'da <span>Elektrik Tesisatı</span> ve Onarım</h2>
+    <h2 class="sec-title fi">Aydın'da <span>Elektrik Tesisatı</span></h2>
     <div class="art-grid">
       <div class="art-body fi">
         <h3>Güvenli Elektrik Tesisatı Neden Önemli?</h3>
-        <p>Elektrik tesisatı kusurları, yangınların ve elektrik çarpmalarının en yaygın nedenlerinden biridir. Ada Isı Teknik olarak Aydın'da tüm elektrik tesisatı çalışmalarını TS EN 60364 ve YEKA (Yönetmelik ile Elektrik Kuvvetli Akım Tesisleri) standartlarına uygun biçimde gerçekleştiriyoruz. Uzman elektrikçilerimiz, hem yeni tesisat döşemesinde hem de mevcut sistemlerin onarım ve yenilenmesinde tam güvenliği esas alır.</p>
-
-        <h3>Sunduğumuz Elektrik Hizmetleri</h3>
-        <ul>
-          <li><i class="fas fa-plug"></i> <strong>Komple tesisat döşeme:</strong> Yeni konut ve iş yerlerinde baştan sona elektrik altyapısı kurulumu.</li>
-          <li><i class="fas fa-plug"></i> <strong>Tesisat yenileme:</strong> Eskiyen, tehlikeli veya kapasite yetersiz tesisatların modernizasyonu.</li>
-          <li><i class="fas fa-plug"></i> <strong>Sigorta panosu montajı:</strong> Kaçak akım rölesi, otomatik sigorta ve ana şalter montajı.</li>
-          <li><i class="fas fa-plug"></i> <strong>Topraklama sistemi:</strong> TS standartlarına uygun toprak hattı tesis ve ölçümü.</li>
-          <li><i class="fas fa-plug"></i> <strong>Arıza tespiti:</strong> Termal kamera ve test cihazları ile hızlı ve doğru arıza lokalizasyonu.</li>
-        </ul>
-
-        <h3>Tesisat Yenileme Ne Zaman Gerekli?</h3>
-        <p>Binanızın elektrik tesisatı aşağıdaki belirtilerden birini gösteriyorsa mutlaka uzman görüşü alın:</p>
-        <ul>
-          <li><i class="fas fa-exclamation-triangle"></i> Sigortaların sık sık atması</li>
-          <li><i class="fas fa-exclamation-triangle"></i> Prizlerde kıvılcım veya ısınma</li>
-          <li><i class="fas fa-exclamation-triangle"></i> 20 yaş üzeri alüminyum kablolu tesisat</li>
-          <li><i class="fas fa-exclamation-triangle"></i> Panoda kaçak akım koruması (RCCB) bulunmaması</li>
-          <li><i class="fas fa-exclamation-triangle"></i> İklimlendirme cihazı kurulumu sonrası aşırı yüklenme</li>
-        </ul>
+        <p>Elektrik tesisatı kusurları, yangınların ve elektrik çarpmalarının en yaygın nedenlerinden biridir. Ada Isı Teknik olarak tüm elektrik tesisatı çalışmalarını TS EN 60364 standartlarına uygun biçimde gerçekleştiriyoruz.</p>
+        <ul><li><i class="fas fa-plug"></i> Komple tesisat döşeme</li><li><i class="fas fa-plug"></i> Tesisat yenileme</li><li><i class="fas fa-plug"></i> Sigorta panosu montajı</li><li><i class="fas fa-plug"></i> Topraklama sistemi</li></ul>
       </div>
       <div class="art-sidebar">
-        <div class="sb-card">
-          <div class="sb-hdr">
-            <h4>Elektrik Servisi</h4>
-            <p>Acil & planlı — 7/24</p>
-          </div>
-          <div class="sb-body">
-            <p>Elektrik arızaları can güvenliğini tehdit eder. Hemen arayın, uzman ekibimiz en kısa sürede müdahale etsin.</p>
-            <div class="sb-btns">
-              <a href="tel:05449066450" class="sb-btn f"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a>
-              <a href="https://wa.me/905449086450" class="sb-btn g" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a>
-            </div>
-          </div>
-        </div>
+        <div class="sb-card"><div class="sb-hdr"><h4>Elektrik Servisi</h4><p>Acil & planlı</p></div><div class="sb-body"><div class="sb-btns"><a href="tel:05449066450" class="sb-btn f"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="https://wa.me/905449086450" class="sb-btn g" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></div></div>
       </div>
     </div>
   </div>
@@ -1146,42 +704,15 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
     <h2 class="sec-title fi">Merak <span>Ettikleriniz</span></h2>
     <div class="faq-grid">
       <div class="faq-list fi">
-
-        <div class="faq-item">
-          <div class="faq-q">Kombim kışın çalışmayı bıraktı, ne yapmalıyım? <i class="fas fa-chevron-down"></i></div>
-          <div class="faq-a"><p>İlk olarak manometreyi (basınç göstergesi) kontrol edin. Basınç 1 bar'ın altındaysa su basmanız gerekebilir. Hata kodu görünüyorsa kombinin modelini not alarak bizi arayın; telefonda yönlendirme yapabiliriz. Sorunu çözemediyseniz, gece dahil her saatte servis ekibimiz yola çıkabilir.</p></div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q">Klima bakımı ne sıklıkta yapılmalı? <i class="fas fa-chevron-down"></i></div>
-          <div class="faq-a"><p>Ev klimaları için yılda en az bir kez bakım önerilir. Yoğun kullanılan ticari klimalar veya toz ve nem oranı yüksek ortamlarda çalışan cihazlar için 6 ayda bir bakım idealdir. Filtreleri ise aylık kendiniz temizleyebilirsiniz.</p></div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q">Servis ücretleri nasıl belirleniyor? <i class="fas fa-chevron-down"></i></div>
-          <div class="faq-a"><p>Ada Isı Teknik olarak şeffaf fiyatlandırma politikası uyguluyoruz. Ekibimiz yerinde keşif yaptıktan sonra arıza tespiti ve yapılacak işlemi net biçimde açıklar, onayınız alınmadan işleme başlamaz. Gizli ücret veya sürpriz fatura yoktur.</p></div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q">Aydın'ın hangi ilçelerine hizmet veriyorsunuz? <i class="fas fa-chevron-down"></i></div>
-          <div class="faq-a"><p>Efeler başta olmak üzere Köşk, İncirliova, Germencik, Sultanhisar, Çine, Karpuzlu ve çevre ilçelerin tümünde servis veriyoruz. Uzak mesafeli ilçeler için ek ulaşım ücreti uygulanabilir; önceden bilgi alabilirsiniz.</p></div>
-        </div>
-
-        <!-- DÜZELTİLDİ: faq_q → faq-q -->
-        <div class="faq-item">
-          <div class="faq-q">Yeni klima için önce fiyat teklifi alabilir miyim? <i class="fas fa-chevron-down"></i></div>
-          <div class="faq-a"><p>Evet. WhatsApp'tan odanızın metrekaresini ve kurulum yapılacak yeri belirten bir fotoğraf gönderin; ücretsiz fiyat teklifi iletiyoruz. Yerinde keşif için de randevu alabilirsiniz.</p></div>
-        </div>
-
-        <div class="faq-item">
-          <div class="faq-q">İşçilik garantisi kapsamı nedir? <i class="fas fa-chevron-down"></i></div>
-          <div class="faq-a"><p>Ada Isı Teknik tarafından gerçekleştirilen tüm işçilik işlemlerinde garanti sunuyoruz. Kullandığımız orijinal parçalar ise markanın standart parça garantisine tabidir. Garanti süresi içinde aynı arızanın tekrarlaması halinde ücretsiz müdahale yapıyoruz.</p></div>
-        </div>
-
+        <div class="faq-item"><div class="faq-q">Kombim kışın çalışmayı bıraktı, ne yapmalıyım? <i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>İlk olarak manometreyi kontrol edin. Basınç 1 bar'ın altındaysa su basmanız gerekebilir. Hata kodu görünüyorsa bizi arayın.</p></div></div>
+        <div class="faq-item"><div class="faq-q">Klima bakımı ne sıklıkta yapılmalı? <i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Ev klimaları için yılda en az bir kez bakım önerilir. Filtreleri aylık kendiniz temizleyebilirsiniz.</p></div></div>
+        <div class="faq-item"><div class="faq-q">Servis ücretleri nasıl belirleniyor? <i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Şeffaf fiyatlandırma politikamız var. Yerinde keşif sonrası net fiyat teklifi veriyoruz, onayınız alınmadan işleme başlamıyoruz.</p></div></div>
+        <div class="faq-item"><div class="faq-q">Aydın'ın hangi ilçelerine hizmet veriyorsunuz? <i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Efeler, Köşk, İncirliova, Germencik, Sultanhisar, Çine, Karpuzlu, Nazilli, Söke, Didim, Kuşadası.</p></div></div>
+        <div class="faq-item"><div class="faq-q">İşçilik garantisi kapsamı nedir? <i class="fas fa-chevron-down"></i></div><div class="faq-a"><p>Tüm işçilik işlemlerinde garanti sunuyoruz. Aynı arıza tekrarlarsa ücretsiz müdahale.</p></div></div>
       </div>
       <div class="faq-cta-card fi">
         <h3>Sorunuzu sormaktan çekinmeyin</h3>
-        <p>15 yılı aşkın deneyimimizle her türlü teknik soruda yanınızdayız. Telefon veya WhatsApp üzerinden ücretsiz ön danışmanlık alabilirsiniz.</p>
+        <p>15 yılı aşkın deneyimimizle her türlü teknik soruda yanınızdayız.</p>
         <div class="faq-cta-btns">
           <a href="tel:05449066450" class="faq-cta-btn a"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a>
           <a href="https://wa.me/905449086450" class="faq-cta-btn b" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp'tan Yaz</a>
@@ -1196,9 +727,9 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
   <div class="container">
     <div class="sec-label fi">Hizmet Bölgeleri</div>
     <h2 class="sec-title fi">Tüm <span>Aydın</span>'a Hizmet</h2>
-    <p class="sec-sub fi">Efeler merkezimizden Aydın'ın tüm ilçelerine kombi, klima ve elektrik servisi sunuyoruz. Bulunduğunuz ilçede servis için bizi arayın.</p>
+    <p class="sec-sub fi">Efeler merkezimizden Aydın'ın tüm ilçelerine kombi, klima ve elektrik servisi sunuyoruz.</p>
     <div class="reg-wrap fi">
-      <div class="reg-grid stagger" id="regGrid">
+      <div class="reg-grid stagger">
         <div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Efeler</div><div style="font-size:.72rem;color:var(--muted);">Merkez</div></div></div>
         <div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Köşk</div></div></div>
         <div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">İncirliova</div></div></div>
@@ -1221,22 +752,10 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
     <div class="sec-label fi">Müşteri Görüşleri</div>
     <h2 class="sec-title fi" style="color:#fff;">Müşterilerimiz <span>Ne Diyor?</span></h2>
   </div>
-  <div class="test-grid stagger" id="testGrid">
-    <div class="test-card">
-      <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-      <p>Kombim kışın çalışmayı bıraktı, Kemal Bey 2 saatte kapımdaydı. Sorunsuz çözdüler, fiyat da çok makuldü. Kesinlikle tavsiye ederim.</p>
-      <div class="test-author"><div class="test-av">AY</div><div><div class="test-name">Ayşe Y.</div><div class="test-loc">Efeler, Aydın</div></div></div>
-    </div>
-    <div class="test-card">
-      <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-      <p>Klima kurulumunu çok temiz ve düzgün yaptılar. Yıllardır hem evimin hem iş yerimin bakımını Ada Isı Teknik yapıyor. Güvenilir bir ekip.</p>
-      <div class="test-author"><div class="test-av">MK</div><div><div class="test-name">Mehmet K.</div><div class="test-loc">İncirliova, Aydın</div></div></div>
-    </div>
-    <div class="test-card">
-      <div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div>
-      <p>Elektrik panom tamamen yenilendi, topraklama testi de yapıldı. Çok profesyonel çalışma, her aşamayı açıkladılar. Teşekkürler!</p>
-      <div class="test-author"><div class="test-av">FD</div><div><div class="test-name">Fatma D.</div><div class="test-loc">Köşk, Aydın</div></div></div>
-    </div>
+  <div class="test-grid stagger">
+    <div class="test-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>Kombim kışın çalışmayı bıraktı, Kemal Bey 2 saatte kapımdaydı. Sorunsuz çözdüler.</p><div class="test-author"><div class="test-av">AY</div><div><div class="test-name">Ayşe Y.</div><div class="test-loc">Efeler, Aydın</div></div></div></div>
+    <div class="test-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>Klima kurulumunu çok temiz ve düzgün yaptılar. Yıllardır güvenilir ekip.</p><div class="test-author"><div class="test-av">MK</div><div><div class="test-name">Mehmet K.</div><div class="test-loc">İncirliova, Aydın</div></div></div></div>
+    <div class="test-card"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>Elektrik panom tamamen yenilendi, topraklama testi yapıldı. Profesyonel çalışma.</p><div class="test-author"><div class="test-av">FD</div><div><div class="test-name">Fatma D.</div><div class="test-loc">Köşk, Aydın</div></div></div></div>
   </div>
 </section>
 
@@ -1248,51 +767,18 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
     <div class="con-grid">
       <div class="fil">
         <div class="con-img-wrap">
-          <img src="https://raw.githubusercontent.com/Hakikatperest/adaisiteknik/refs/heads/main/images/aydin-ada-teknik.webp" alt="Ada Isı Teknik — Efeler Aydın"/>
+          <img src="https://raw.githubusercontent.com/Hakikatperest/adaisiteknik/refs/heads/main/images/aydin-ada-teknik.webp" alt="Ada Isı Teknik"/>
           <div class="con-img-overlay"></div>
-          <div class="con-img-badge">
-            <div class="cn">Ada Isı Teknik</div>
-            <div class="cl">Zafer Mah. · Efeler/Aydın</div>
-          </div>
+          <div class="con-img-badge"><div class="cn">Ada Isı Teknik</div><div class="cl">Zafer Mah. · Efeler/Aydın</div></div>
         </div>
-        <div class="con-map">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.5!2d27.8456!3d37.8444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDUwJzM5LjkiTiAyN8KwNTAnNDQuMiJF!5e0!3m2!1str!2str!4v1620000000000" allowfullscreen="" loading="lazy"></iframe>
-        </div>
+        <div class="con-map"><iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3143.5!2d27.8456!3d37.8444!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzfCsDUwJzM5LjkiTiAyN8KwNTAnNDQuMiJF!5e0!3m2!1str!2str!4v1620000000000" allowfullscreen="" loading="lazy"></iframe></div>
       </div>
       <div class="fir">
         <div class="con-info-list">
-          <div class="cii">
-            <div class="cii-icon"><i class="fas fa-user"></i></div>
-            <div>
-              <div class="cii-label">Yetkili Kişi</div>
-              <div class="cii-value">Kemal Türkmenoğlu</div>
-              <div class="cii-sub">Teknik Servis Uzmanı</div>
-            </div>
-          </div>
-          <div class="cii">
-            <div class="cii-icon"><i class="fas fa-map-marker-alt"></i></div>
-            <div>
-              <div class="cii-label">Adres</div>
-              <div class="cii-value">Zafer Mah. Egemenlik Bulvarı No:3/F</div>
-              <div class="cii-sub">Efeler / Aydın</div>
-            </div>
-          </div>
-          <div class="cii">
-            <div class="cii-icon"><i class="fas fa-phone-alt"></i></div>
-            <div>
-              <div class="cii-label">Telefon</div>
-              <div class="cii-value">0544 906 64 50</div>
-              <div class="cii-sub">0544 908 64 50</div>
-            </div>
-          </div>
-          <div class="cii">
-            <div class="cii-icon"><i class="fas fa-clock"></i></div>
-            <div>
-              <div class="cii-label">Çalışma Saatleri</div>
-              <div class="cii-value">7 Gün / 24 Saat</div>
-              <div class="cii-sub">Acil servis her zaman aktif</div>
-            </div>
-          </div>
+          <div class="cii"><div class="cii-icon"><i class="fas fa-user"></i></div><div><div class="cii-label">Yetkili Kişi</div><div class="cii-value">Kemal Türkmenoğlu</div><div class="cii-sub">Teknik Servis Uzmanı</div></div></div>
+          <div class="cii"><div class="cii-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="cii-label">Adres</div><div class="cii-value">Zafer Mah. Egemenlik Bulvarı No:3/F</div><div class="cii-sub">Efeler / Aydın</div></div></div>
+          <div class="cii"><div class="cii-icon"><i class="fas fa-phone-alt"></i></div><div><div class="cii-label">Telefon</div><div class="cii-value">0544 906 64 50</div><div class="cii-sub">0544 908 64 50</div></div></div>
+          <div class="cii"><div class="cii-icon"><i class="fas fa-clock"></i></div><div><div class="cii-label">Çalışma Saatleri</div><div class="cii-value">7 Gün / 24 Saat</div><div class="cii-sub">Acil servis her zaman aktif</div></div></div>
         </div>
         <div class="con-btns">
           <a href="tel:05449066450" class="con-btn f"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a>
@@ -1307,60 +793,24 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
 <!-- FOOTER -->
 <footer>
   <div class="ft-grid">
-    <div>
-      <a href="#" class="ft-brand">
-        <div class="ft-brand-ico"><i class="fas fa-fire-flame-curved"></i></div>
-        <span class="ft-brand-nm">Ada Isı <span>Teknik</span></span>
-      </a>
-      <p class="ft-desc">Aydın'ın güvenilir kombi, klima ve elektrik teknik servisi. Kemal Türkmenoğlu liderliğinde 15 yılı aşkın profesyonel hizmet.</p>
-      <div class="ft-social">
-        <a href="tel:05449066450" class="ft-s-btn"><i class="fas fa-phone"></i></a>
-        <a href="https://wa.me/905449086450" class="ft-s-btn" target="_blank"><i class="fab fa-whatsapp"></i></a>
-      </div>
-    </div>
-    <div class="ft-col">
-      <h4>Hizmetler</h4>
-      <ul>
-        <li><a href="#kombi">Kombi Servisi</a></li>
-        <li><a href="#klima">Klima Bakımı</a></li>
-        <li><a href="#elektrik">Elektrik Tesisatı</a></li>
-        <li><a href="#faq">Sık Sorulan Sorular</a></li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <h4>Bölgeler</h4>
-      <ul>
-        <li>Efeler</li>
-        <li>Köşk</li>
-        <li>İncirliova</li>
-        <li>Germencik</li>
-        <li>Sultanhisar</li>
-      </ul>
-    </div>
-    <div class="ft-col">
-      <h4>İletişim</h4>
-      <ul>
-        <li><a href="tel:05449066450">0544 906 64 50</a></li>
-        <li><a href="tel:05449086450">0544 908 64 50</a></li>
-        <li>Zafer Mah. No:3/F</li>
-        <li>Efeler / Aydın</li>
-      </ul>
-    </div>
+    <div><a href="#" class="ft-brand"><div class="ft-brand-ico"><i class="fas fa-fire-flame-curved"></i></div><span class="ft-brand-nm">Ada Isı <span>Teknik</span></span></a><p class="ft-desc">Aydın'ın güvenilir kombi, klima ve elektrik teknik servisi.</p><div class="ft-social"><a href="tel:05449066450" class="ft-s-btn"><i class="fas fa-phone"></i></a><a href="https://wa.me/905449086450" class="ft-s-btn" target="_blank"><i class="fab fa-whatsapp"></i></a></div></div>
+    <div class="ft-col"><h4>Hizmetler</h4><ul><li><a href="#kombi">Kombi Servisi</a></li><li><a href="#klima">Klima Bakımı</a></li><li><a href="#elektrik">Elektrik Tesisatı</a></li><li><a href="#faq">SSS</a></li></ul></div>
+    <div class="ft-col"><h4>Bölgeler</h4><ul><li>Efeler</li><li>Köşk</li><li>İncirliova</li><li>Germencik</li></ul></div>
+    <div class="ft-col"><h4>İletişim</h4><ul><li><a href="tel:05449066450">0544 906 64 50</a></li><li><a href="tel:05449086450">0544 908 64 50</a></li><li>Zafer Mah. No:3/F</li><li>Efeler / Aydın</li></ul></div>
   </div>
-  <div class="ft-bottom">
-    <p>© 2025 Ada Isı Teknik · Kemal Türkmenoğlu · Tüm hakları saklıdır.</p>
-    <span>Ada Isı Teknik | Aydın Kombi Klima Elektrik Servisi</span>
-  </div>
+  <div class="ft-bottom"><p>© 2025 Ada Isı Teknik · Kemal Türkmenoğlu</p><span>Ada Isı Teknik | Aydın Kombi Klima Elektrik Servisi</span></div>
 </footer>
 
 <script>
-/* ── NAV scroll ── */
+// NAV scroll
 window.addEventListener('scroll', () => {
   document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
-});
+}, { passive: true });
 
-/* ── PARALLAX hero bg — sadece masaüstünde ── */
+// Mobil kontrol
 const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 900;
+
+// Parallax (sadece masaüstü)
 if (!isMobile) {
   window.addEventListener('scroll', () => {
     const s = window.scrollY;
@@ -1371,9 +821,9 @@ if (!isMobile) {
   }, { passive: true });
 }
 
-/* ── PARTICLES canvas — sadece masaüstünde ── */
+// Partiküller (sadece masaüstü)
 if (!isMobile) {
-  (function () {
+  (function() {
     const c = document.getElementById('particles');
     if (!c) return;
     const ctx = c.getContext('2d');
@@ -1399,7 +849,7 @@ if (!isMobile) {
   })();
 }
 
-/* ── COUNTER animation ── */
+// Counter animasyonu
 function animateCounter(el) {
   const target = parseInt(el.dataset.count);
   const suffix = el.dataset.suffix || '';
@@ -1410,7 +860,7 @@ function animateCounter(el) {
   function run() {
     start += inc;
     if (start >= target) {
-      el.textContent = target.toLocaleString('tr') + (target === 15 ? '+' : target === 5000 ? '+' : target === 11 ? '' : '') + suffix;
+      el.textContent = target.toLocaleString('tr') + (target === 15 ? '+' : target === 5000 ? '+' : '') + suffix;
     } else {
       el.textContent = Math.floor(start).toLocaleString('tr') + suffix;
       requestAnimationFrame(run);
@@ -1419,14 +869,14 @@ function animateCounter(el) {
   run();
 }
 
-/* ── SCROLL OBSERVER ── */
-const ioOptions = { threshold: 0.12 };
+// Scroll Observer
+const ioOptions = { threshold: 0.1 };
 const io = new IntersectionObserver(entries => {
   entries.forEach(en => {
     if (!en.isIntersecting) return;
     const el = en.target;
     el.classList.add('v');
-    if (el.dataset.count) animateCounter(el);
+    if (el.dataset && el.dataset.count) animateCounter(el);
     if (el.classList.contains('stagger')) {
       el.querySelectorAll(':scope > *').forEach((c, i) => {
         c.style.transitionDelay = (i * .1 + .05) + 's';
@@ -1440,7 +890,7 @@ const io = new IntersectionObserver(entries => {
 
 document.querySelectorAll('.fi,.fil,.fir,.fiu,[data-count],.stagger').forEach(el => io.observe(el));
 
-/* ── FLIP CARDS ── */
+// Flip kartlar
 document.querySelectorAll('.flip-card').forEach(card => {
   card.addEventListener('click', e => {
     if (e.target.closest('.back-btn')) { e.stopPropagation(); return; }
@@ -1448,17 +898,19 @@ document.querySelectorAll('.flip-card').forEach(card => {
   });
 });
 
-/* ── FAQ ACCORDION ── */
+// FAQ Accordion
 document.querySelectorAll('.faq-item').forEach(item => {
   const q = item.querySelector('.faq-q');
-  if (q) q.addEventListener('click', () => {
-    const wasOpen = item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
-    if (!wasOpen) item.classList.add('open');
-  });
+  if (q) {
+    q.addEventListener('click', () => {
+      const wasOpen = item.classList.contains('open');
+      document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+      if (!wasOpen) item.classList.add('open');
+    });
+  }
 });
 
-/* ── MINI counter in hero card ── */
+// Mini counter
 const miniEl = document.querySelector('.hc-mini [data-count]');
 if (miniEl) {
   setTimeout(() => {
@@ -1473,91 +925,18 @@ if (miniEl) {
 }
 </script>
 
-<!-- Schema.org JSON-LD -->
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "name": "Ada Isı Teknik",
-  "description": "Aydın'da kombi servisi, klima kurulum bakım ve elektrik tesisatı hizmetleri.",
   "telephone": "+905449066450",
-  "address": {
-    "@type": "PostalAddress",
-    "streetAddress": "Zafer Mahallesi Egemenlik Bulvarı No:3/F",
-    "addressLocality": "Efeler",
-    "addressRegion": "Aydın",
-    "addressCountry": "TR"
-  },
-  "openingHoursSpecification": {
-    "@type": "OpeningHoursSpecification",
-    "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"],
-    "opens": "00:00",
-    "closes": "23:59"
-  },
+  "address": {"@type": "PostalAddress", "streetAddress": "Zafer Mahallesi Egemenlik Bulvarı No:3/F", "addressLocality": "Efeler", "addressRegion": "Aydın", "addressCountry": "TR"},
+  "openingHoursSpecification": {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday","Saturday","Sunday"], "opens": "00:00", "closes": "23:59"},
   "priceRange": "₺₺",
   "areaServed": "Aydın",
-  "founder": {"@type":"Person","name":"Kemal Türkmenoğlu"},
-  "hasOfferCatalog": {
-    "@type": "OfferCatalog",
-    "name": "Teknik Servis Hizmetleri",
-    "itemListElement": [
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Kombi Servisi ve Bakım"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Klima Kurulum ve Bakım"}},
-      {"@type":"Offer","itemOffered":{"@type":"Service","name":"Elektrik Tesisatı ve Onarım"}}
-    ]
-  }
+  "founder": {"@type":"Person","name":"Kemal Türkmenoğlu"}
 }
-  /* ── MOBİL FLIP KART DÜZELTMESİ (Kayma Takılmasını Önler) ── */
-function fixMobileFlip() {
-  if (window.innerWidth <= 900) {
-    document.querySelectorAll('.flip-card').forEach(card => {
-      // Mobilde flip sırasında sayfanın sarsılmasını engelle
-      card.style.transform = 'translateZ(0)';
-      card.style.backfaceVisibility = 'hidden';
-      
-      // Flip olayını daha yumuşak hale getir
-      const inner = card.querySelector('.flip-card-inner');
-      if (inner) {
-        inner.style.transition = 'none';
-        // Kısa bir gecikmeyle tekrar aktif et (render tamamlansın)
-        setTimeout(() => {
-          if (inner) inner.style.transition = '';
-        }, 50);
-      }
-    });
-  }
-}
-
-// Sayfa yüklendiğinde ve pencere boyutu değiştiğinde çalıştır
-window.addEventListener('DOMContentLoaded', fixMobileFlip);
-window.addEventListener('resize', fixMobileFlip);
-
-/* ── KAYDIRMA SIRASINDA TAKILMA ÖNLEME (Passive Event Listeners) ── */
-// Mevcut scroll event'lerini pasif hale getir
-const scrollEvents = [
-  { target: window, handler: () => document.getElementById('mainNav')?.classList.toggle('scrolled', window.scrollY > 60) }
-];
-
-scrollEvents.forEach(ev => {
-  ev.target.addEventListener('scroll', ev.handler, { passive: true });
-});
-
-// Parallax scroll event'ini de pasif yap (eğer mobil değilse)
-if (!isMobile) {
-  window.addEventListener('scroll', () => {
-    const s = window.scrollY;
-    const bg = document.getElementById('heroBg');
-    if (bg && s < window.innerHeight) {
-      bg.style.transform = `scale(${1.05 + s * 0.0003})`;
-    }
-  }, { passive: true });
-}
-
-// IntersectionObserver için performans iyileştirmesi
-const observerOptions = {
-  threshold: 0.1,
-  rootMargin: '0px 0px -10px 0px' // Görünür alanı hafif daralt, erken tetiklemeyi önle
-};
 </script>
 </body>
 </html>
