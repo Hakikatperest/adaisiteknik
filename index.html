@@ -102,6 +102,258 @@ h1.hero-title .lw{color:#fff;display:block;}
 .hs-num{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;line-height:1;color:var(--accent);}
 .hs-lbl{font-size:.72rem;color:rgba(255,255,255,.65);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;}
 
+  /* ──────────────────────────────────────────────
+   MOBILE FIXES - Taşma Sorunları Çözümü
+────────────────────────────────────────────── */
+
+/* Tüm elementlerin taşmasını engelle */
+body {
+  overflow-x: hidden;
+  width: 100%;
+  max-width: 100%;
+}
+
+.container, 
+.hero-content, 
+.ft-grid,
+.strip-grid,
+.svc-grid,
+.test-grid,
+.reg-wrap,
+.con-grid {
+  overflow-x: hidden;
+}
+
+/* Hero section mobil düzeltmeleri */
+@media (max-width: 900px) {
+  .hero-content {
+    padding: 100px 16px 70px;
+    gap: 30px;
+  }
+  
+  .hero-stats {
+    gap: 20px;
+    justify-content: space-between;
+  }
+  
+  .hs-num {
+    font-size: 1.8rem;
+  }
+  
+  /* Hero card stack - tamamen gizle veya yeniden düzenle */
+  .hero-img-side {
+    display: none; /* Card stack mobilde taşma yapıyor, gizliyoruz */
+  }
+  
+  /* Alternatif mobil için basit bir bilgi kartı göster */
+  .hero-content::after {
+    display: none;
+  }
+}
+
+/* Flip card mobil düzeltmeleri */
+@media (max-width: 900px) {
+  .flip-card-front,
+  .flip-card-back {
+    padding: 30px 20px;
+    min-height: 480px;
+  }
+  
+  .flip-card-front ul li {
+    font-size: 0.8rem;
+    gap: 8px;
+  }
+  
+  .flip-card-front h3 {
+    font-size: 1.2rem;
+  }
+  
+  .flip-hint {
+    top: 12px;
+    right: 12px;
+    width: 26px;
+    height: 26px;
+    font-size: 0.7rem;
+  }
+}
+
+/* FAQ mobil düzeltmeleri */
+@media (max-width: 900px) {
+  .faq-cta-card {
+    padding: 30px 24px;
+  }
+  
+  .faq-cta-card h3 {
+    font-size: 1.8rem;
+  }
+  
+  .faq-q {
+    padding: 16px 18px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Testimonial mobil düzeltmeleri */
+@media (max-width: 600px) {
+  .test-card {
+    padding: 24px 20px;
+  }
+  
+  .test-card p {
+    font-size: 0.85rem;
+  }
+}
+
+/* Regions grid mobil düzeltmeleri */
+@media (max-width: 900px) {
+  .reg-wrap {
+    padding: 30px 20px;
+  }
+  
+  .reg-grid {
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+  
+  .reg-item {
+    padding: 14px 16px;
+  }
+  
+  .reg-name {
+    font-size: 0.82rem;
+  }
+}
+
+/* Contact mobil düzeltmeleri */
+@media (max-width: 900px) {
+  .con-img-wrap img {
+    height: 300px;
+  }
+  
+  .con-img-badge {
+    bottom: 16px;
+    left: 16px;
+    padding: 12px 16px;
+  }
+  
+  .con-img-badge .cn {
+    font-size: 1.2rem;
+  }
+  
+  .cii {
+    gap: 14px;
+  }
+  
+  .cii-icon {
+    width: 44px;
+    height: 44px;
+    font-size: 0.9rem;
+  }
+  
+  .cii-value {
+    font-size: 0.9rem;
+  }
+}
+
+/* Footer mobil düzeltmeleri */
+@media (max-width: 900px) {
+  footer {
+    padding: 50px 20px 32px;
+  }
+  
+  .ft-grid {
+    gap: 32px;
+  }
+  
+  .ft-bottom {
+    flex-direction: column;
+    text-align: center;
+    gap: 8px;
+  }
+}
+
+/* Article section mobil düzeltmeleri */
+@media (max-width: 900px) {
+  .art-hero-img img {
+    max-height: 250px;
+  }
+  
+  .art-body h3 {
+    font-size: 1.3rem;
+    margin-top: 24px;
+  }
+  
+  .highlight-box {
+    padding: 16px 20px;
+  }
+  
+  .highlight-box p {
+    font-size: 0.85rem;
+  }
+  
+  .brand-pills {
+    gap: 6px;
+  }
+  
+  .brand-pill {
+    padding: 4px 12px;
+    font-size: 0.7rem;
+  }
+}
+
+/* Strip section mobil düzeltmeleri */
+@media (max-width: 500px) {
+  .strip-sec {
+    padding: 60px 16px;
+  }
+  
+  .strip-card {
+    padding: 28px 20px;
+  }
+  
+  .strip-icon {
+    width: 56px;
+    height: 56px;
+    font-size: 1.3rem;
+  }
+}
+
+/* Genel margin/padding sıfırlamaları */
+@media (max-width: 900px) {
+  section {
+    padding: 60px 16px;
+  }
+  
+  .sec-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+  
+  .sec-sub {
+    font-size: 0.9rem;
+  }
+  
+  .btn-p, .btn-s {
+    padding: 12px 22px;
+    font-size: 0.85rem;
+  }
+}
+
+/* Tüm resimlerin taşmasını engelle */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Buton ve interaktif elementlerin taşmasını engelle */
+a, button, .flip-card, .faq-q {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Scroll animasyonlarının mobilde sorun çıkarmasını engelle */
+.fi, .fil, .fir, .fiu {
+  will-change: transform, opacity;
+}
+
 /* hero right card mockup */
 .hero-card-stack{position:relative;height:380px;}
 .hc-main{position:absolute;top:0;left:0;right:40px;background:rgba(255,255,255,.06);backdrop-filter:blur(12px);border:1px solid rgba(255,255,255,.12);border-radius:24px;padding:28px;box-shadow:0 30px 60px rgba(0,0,0,.3);}
@@ -1149,257 +1401,6 @@ document.querySelectorAll('.flip-card').forEach(card=>{
     card.classList.toggle('flipped');
   });
 });
-  /* ──────────────────────────────────────────────
-   MOBILE FIXES - Taşma Sorunları Çözümü
-────────────────────────────────────────────── */
-
-/* Tüm elementlerin taşmasını engelle */
-body {
-  overflow-x: hidden;
-  width: 100%;
-  max-width: 100%;
-}
-
-.container, 
-.hero-content, 
-.ft-grid,
-.strip-grid,
-.svc-grid,
-.test-grid,
-.reg-wrap,
-.con-grid {
-  overflow-x: hidden;
-}
-
-/* Hero section mobil düzeltmeleri */
-@media (max-width: 900px) {
-  .hero-content {
-    padding: 100px 16px 70px;
-    gap: 30px;
-  }
-  
-  .hero-stats {
-    gap: 20px;
-    justify-content: space-between;
-  }
-  
-  .hs-num {
-    font-size: 1.8rem;
-  }
-  
-  /* Hero card stack - tamamen gizle veya yeniden düzenle */
-  .hero-img-side {
-    display: none; /* Card stack mobilde taşma yapıyor, gizliyoruz */
-  }
-  
-  /* Alternatif mobil için basit bir bilgi kartı göster */
-  .hero-content::after {
-    display: none;
-  }
-}
-
-/* Flip card mobil düzeltmeleri */
-@media (max-width: 900px) {
-  .flip-card-front,
-  .flip-card-back {
-    padding: 30px 20px;
-    min-height: 480px;
-  }
-  
-  .flip-card-front ul li {
-    font-size: 0.8rem;
-    gap: 8px;
-  }
-  
-  .flip-card-front h3 {
-    font-size: 1.2rem;
-  }
-  
-  .flip-hint {
-    top: 12px;
-    right: 12px;
-    width: 26px;
-    height: 26px;
-    font-size: 0.7rem;
-  }
-}
-
-/* FAQ mobil düzeltmeleri */
-@media (max-width: 900px) {
-  .faq-cta-card {
-    padding: 30px 24px;
-  }
-  
-  .faq-cta-card h3 {
-    font-size: 1.8rem;
-  }
-  
-  .faq-q {
-    padding: 16px 18px;
-    font-size: 0.85rem;
-  }
-}
-
-/* Testimonial mobil düzeltmeleri */
-@media (max-width: 600px) {
-  .test-card {
-    padding: 24px 20px;
-  }
-  
-  .test-card p {
-    font-size: 0.85rem;
-  }
-}
-
-/* Regions grid mobil düzeltmeleri */
-@media (max-width: 900px) {
-  .reg-wrap {
-    padding: 30px 20px;
-  }
-  
-  .reg-grid {
-    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-    gap: 12px;
-  }
-  
-  .reg-item {
-    padding: 14px 16px;
-  }
-  
-  .reg-name {
-    font-size: 0.82rem;
-  }
-}
-
-/* Contact mobil düzeltmeleri */
-@media (max-width: 900px) {
-  .con-img-wrap img {
-    height: 300px;
-  }
-  
-  .con-img-badge {
-    bottom: 16px;
-    left: 16px;
-    padding: 12px 16px;
-  }
-  
-  .con-img-badge .cn {
-    font-size: 1.2rem;
-  }
-  
-  .cii {
-    gap: 14px;
-  }
-  
-  .cii-icon {
-    width: 44px;
-    height: 44px;
-    font-size: 0.9rem;
-  }
-  
-  .cii-value {
-    font-size: 0.9rem;
-  }
-}
-
-/* Footer mobil düzeltmeleri */
-@media (max-width: 900px) {
-  footer {
-    padding: 50px 20px 32px;
-  }
-  
-  .ft-grid {
-    gap: 32px;
-  }
-  
-  .ft-bottom {
-    flex-direction: column;
-    text-align: center;
-    gap: 8px;
-  }
-}
-
-/* Article section mobil düzeltmeleri */
-@media (max-width: 900px) {
-  .art-hero-img img {
-    max-height: 250px;
-  }
-  
-  .art-body h3 {
-    font-size: 1.3rem;
-    margin-top: 24px;
-  }
-  
-  .highlight-box {
-    padding: 16px 20px;
-  }
-  
-  .highlight-box p {
-    font-size: 0.85rem;
-  }
-  
-  .brand-pills {
-    gap: 6px;
-  }
-  
-  .brand-pill {
-    padding: 4px 12px;
-    font-size: 0.7rem;
-  }
-}
-
-/* Strip section mobil düzeltmeleri */
-@media (max-width: 500px) {
-  .strip-sec {
-    padding: 60px 16px;
-  }
-  
-  .strip-card {
-    padding: 28px 20px;
-  }
-  
-  .strip-icon {
-    width: 56px;
-    height: 56px;
-    font-size: 1.3rem;
-  }
-}
-
-/* Genel margin/padding sıfırlamaları */
-@media (max-width: 900px) {
-  section {
-    padding: 60px 16px;
-  }
-  
-  .sec-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-  }
-  
-  .sec-sub {
-    font-size: 0.9rem;
-  }
-  
-  .btn-p, .btn-s {
-    padding: 12px 22px;
-    font-size: 0.85rem;
-  }
-}
-
-/* Tüm resimlerin taşmasını engelle */
-img {
-  max-width: 100%;
-  height: auto;
-}
-
-/* Buton ve interaktif elementlerin taşmasını engelle */
-a, button, .flip-card, .faq-q {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Scroll animasyonlarının mobilde sorun çıkarmasını engelle */
-.fi, .fil, .fir, .fiu {
-  will-change: transform, opacity;
-}
 
 /* ── FAQ ACCORDION ── */
 document.querySelectorAll('.faq-item').forEach(item=>{
