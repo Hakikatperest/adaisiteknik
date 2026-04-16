@@ -35,7 +35,7 @@
 }
 *{margin:0;padding:0;box-sizing:border-box;}
 html{scroll-behavior:smooth;}
-body{background:var(--background);color:var(--text);font-family:'Outfit',sans-serif;overflow-x:hidden;}
+body{background:var(--background);color:var(--text);font-family:'Outfit',sans-serif;overflow-x:hidden;width:100%;max-width:100%;}
 ::-webkit-scrollbar{width:3px;}
 ::-webkit-scrollbar-track{background:#e2e8f0;}
 ::-webkit-scrollbar-thumb{background:var(--accent);border-radius:2px;}
@@ -60,7 +60,7 @@ nav.scrolled{background:rgba(10,61,98,0.97);backdrop-filter:blur(14px);border-bo
    HERO  
 ────────────────────────────────────────────── */
 .hero{position:relative;min-height:100vh;display:flex;align-items:center;background:var(--primary);overflow:hidden;}
-.hero-bg{position:absolute;inset:0;background-image:url('https://www.aydinadateknik.com/images/hero.webp');background-size:cover;background-position:center 30%;filter:brightness(.42) contrast(1.1) saturate(1.1);transform:scale(1.05);will-change:transform;z-index:1;}
+.hero-bg{position:absolute;inset:0;background-image:url('https://www.aydinadateknik.com/images/hero.webp');background-size:cover;background-position:center 30%;filter:brightness(.42) contrast(1.1) saturate(1.1);transform:scale(1.05);z-index:1;}
 .hero-overlay{position:absolute;inset:0;background:linear-gradient(115deg,rgba(5,36,59,.92) 0%,rgba(10,61,98,.65) 45%,rgba(0,0,0,.25) 100%);z-index:2;}
 
 /* animated grid */
@@ -75,6 +75,12 @@ nav.scrolled{background:rgba(10,61,98,0.97);backdrop-filter:blur(14px);border-bo
 
 /* particles */
 #particles{position:absolute;inset:0;z-index:4;pointer-events:none;}
+
+/* Mobilde particles ve parallax kapalı */
+@media(max-width:900px){
+  #particles{display:none;}
+  .hero-bg{transform:scale(1.05) !important; /* parallax JS mobilde devrede dışı */}
+}
 
 .hero-content{position:relative;z-index:15;max-width:1300px;margin:0 auto;padding:130px 40px 90px;display:grid;grid-template-columns:1fr 1fr;gap:80px;align-items:center;width:100%;}
 @media(max-width:900px){.hero-content{grid-template-columns:1fr;gap:40px;padding:100px 20px 70px;}.hero-img-side{display:none;}}
@@ -102,17 +108,9 @@ h1.hero-title .lw{color:#fff;display:block;}
 .hs-num{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;line-height:1;color:var(--accent);}
 .hs-lbl{font-size:.72rem;color:rgba(255,255,255,.65);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;}
 
-  /* ──────────────────────────────────────────────
-   MOBILE FIXES - Taşma Sorunları Çözümü
+/* ──────────────────────────────────────────────
+   MOBILE FIXES
 ────────────────────────────────────────────── */
-
-/* Tüm elementlerin taşmasını engelle */
-body {
-  overflow-x: hidden;
-  width: 100%;
-  max-width: 100%;
-}
-
 .container, 
 .hero-content, 
 .ft-grid,
@@ -124,50 +122,33 @@ body {
   overflow-x: hidden;
 }
 
-/* Hero section mobil düzeltmeleri */
 @media (max-width: 900px) {
   .hero-content {
     padding: 100px 16px 70px;
     gap: 30px;
   }
-  
   .hero-stats {
     gap: 20px;
     justify-content: space-between;
   }
-  
   .hs-num {
     font-size: 1.8rem;
   }
-  
-  /* Hero card stack - tamamen gizle veya yeniden düzenle */
   .hero-img-side {
-    display: none; /* Card stack mobilde taşma yapıyor, gizliyoruz */
-  }
-  
-  /* Alternatif mobil için basit bir bilgi kartı göster */
-  .hero-content::after {
     display: none;
   }
-}
-
-/* Flip card mobil düzeltmeleri */
-@media (max-width: 900px) {
   .flip-card-front,
   .flip-card-back {
     padding: 30px 20px;
     min-height: 480px;
   }
-  
   .flip-card-front ul li {
     font-size: 0.8rem;
     gap: 8px;
   }
-  
   .flip-card-front h3 {
     font-size: 1.2rem;
   }
-  
   .flip-hint {
     top: 12px;
     right: 12px;
@@ -175,142 +156,113 @@ body {
     height: 26px;
     font-size: 0.7rem;
   }
-}
-
-/* FAQ mobil düzeltmeleri */
-@media (max-width: 900px) {
   .faq-cta-card {
     padding: 30px 24px;
   }
-  
   .faq-cta-card h3 {
     font-size: 1.8rem;
   }
-  
   .faq-q {
     padding: 16px 18px;
     font-size: 0.85rem;
   }
-}
-
-/* Testimonial mobil düzeltmeleri */
-@media (max-width: 600px) {
-  .test-card {
-    padding: 24px 20px;
-  }
-  
-  .test-card p {
-    font-size: 0.85rem;
-  }
-}
-
-/* Regions grid mobil düzeltmeleri */
-@media (max-width: 900px) {
   .reg-wrap {
     padding: 30px 20px;
   }
-  
   .reg-grid {
     grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
     gap: 12px;
   }
-  
   .reg-item {
     padding: 14px 16px;
   }
-  
   .reg-name {
     font-size: 0.82rem;
   }
-}
-
-/* Contact mobil düzeltmeleri */
-@media (max-width: 900px) {
   .con-img-wrap img {
     height: 300px;
   }
-  
   .con-img-badge {
     bottom: 16px;
     left: 16px;
     padding: 12px 16px;
   }
-  
   .con-img-badge .cn {
     font-size: 1.2rem;
   }
-  
   .cii {
     gap: 14px;
   }
-  
   .cii-icon {
     width: 44px;
     height: 44px;
     font-size: 0.9rem;
   }
-  
   .cii-value {
     font-size: 0.9rem;
   }
-}
-
-/* Footer mobil düzeltmeleri */
-@media (max-width: 900px) {
   footer {
     padding: 50px 20px 32px;
   }
-  
   .ft-grid {
     gap: 32px;
   }
-  
   .ft-bottom {
     flex-direction: column;
     text-align: center;
     gap: 8px;
   }
-}
-
-/* Article section mobil düzeltmeleri */
-@media (max-width: 900px) {
   .art-hero-img img {
     max-height: 250px;
   }
-  
   .art-body h3 {
     font-size: 1.3rem;
     margin-top: 24px;
   }
-  
   .highlight-box {
     padding: 16px 20px;
   }
-  
   .highlight-box p {
     font-size: 0.85rem;
   }
-  
   .brand-pills {
     gap: 6px;
   }
-  
   .brand-pill {
     padding: 4px 12px;
     font-size: 0.7rem;
   }
+  section {
+    padding: 60px 16px;
+  }
+  .sec-title {
+    font-size: clamp(2rem, 5vw, 3.5rem);
+  }
+  .sec-sub {
+    font-size: 0.9rem;
+  }
+  .btn-p, .btn-s {
+    padding: 12px 22px;
+    font-size: 0.85rem;
+  }
 }
 
-/* Strip section mobil düzeltmeleri */
+@media (max-width: 600px) {
+  .test-card {
+    padding: 24px 20px;
+  }
+  .test-card p {
+    font-size: 0.85rem;
+  }
+}
+
 @media (max-width: 500px) {
   .strip-sec {
     padding: 60px 16px;
   }
-  
   .strip-card {
     padding: 28px 20px;
   }
-  
   .strip-icon {
     width: 56px;
     height: 56px;
@@ -318,40 +270,14 @@ body {
   }
 }
 
-/* Genel margin/padding sıfırlamaları */
-@media (max-width: 900px) {
-  section {
-    padding: 60px 16px;
-  }
-  
-  .sec-title {
-    font-size: clamp(2rem, 5vw, 3.5rem);
-  }
-  
-  .sec-sub {
-    font-size: 0.9rem;
-  }
-  
-  .btn-p, .btn-s {
-    padding: 12px 22px;
-    font-size: 0.85rem;
-  }
-}
-
-/* Tüm resimlerin taşmasını engelle */
 img {
   max-width: 100%;
   height: auto;
 }
 
-/* Buton ve interaktif elementlerin taşmasını engelle */
-a, button, .flip-card, .faq-q {
-  -webkit-tap-highlight-color: transparent;
-}
-
-/* Scroll animasyonlarının mobilde sorun çıkarmasını engelle */
+/* will-change sadece gerekli yerde — scroll takılmasını önler */
 .fi, .fil, .fir, .fiu {
-  will-change: transform, opacity;
+  /* will-change kaldırıldı — mobil GPU belleğini tüketiyordu */
 }
 
 /* hero right card mockup */
@@ -1137,8 +1063,9 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
           <div class="faq-a"><p>Efeler başta olmak üzere Köşk, İncirliova, Germencik, Sultanhisar, Çine, Karpuzlu ve çevre ilçelerin tümünde servis veriyoruz. Uzak mesafeli ilçeler için ek ulaşım ücreti uygulanabilir; önceden bilgi alabilirsiniz.</p></div>
         </div>
 
+        <!-- DÜZELTİLDİ: faq_q → faq-q -->
         <div class="faq-item">
-          <div class="faq_q">Yeni klima için önce fiyat teklifi alabilir miyim? <i class="fas fa-chevron-down"></i></div>
+          <div class="faq-q">Yeni klima için önce fiyat teklifi alabilir miyim? <i class="fas fa-chevron-down"></i></div>
           <div class="faq-a"><p>Evet. WhatsApp'tan odanızın metrekaresini ve kurulum yapılacak yeri belirten bir fotoğraf gönderin; ücretsiz fiyat teklifi iletiyoruz. Yerinde keşif için de randevu alabilirsiniz.</p></div>
         </div>
 
@@ -1324,103 +1251,121 @@ footer{background:var(--primary-dark);color:rgba(255,255,255,.8);padding:70px 40
 
 <script>
 /* ── NAV scroll ── */
-window.addEventListener('scroll',()=>{
-  document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);
+window.addEventListener('scroll', () => {
+  document.getElementById('mainNav').classList.toggle('scrolled', window.scrollY > 60);
 });
 
-/* ── PARALLAX hero bg ── */
-window.addEventListener('scroll',()=>{
-  const s=window.scrollY;
-  const bg=document.getElementById('heroBg');
-  if(bg&&s<window.innerHeight){bg.style.transform=`scale(${1.05+s*.0003})`;}
-});
+/* ── PARALLAX hero bg — sadece masaüstünde ── */
+const isMobile = /Mobi|Android|iPhone|iPad/i.test(navigator.userAgent) || window.innerWidth < 900;
+if (!isMobile) {
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY;
+    const bg = document.getElementById('heroBg');
+    if (bg && s < window.innerHeight) {
+      bg.style.transform = `scale(${1.05 + s * 0.0003})`;
+    }
+  }, { passive: true });
+}
 
-/* ── PARTICLES canvas ── */
-(function(){
-  const c=document.getElementById('particles');
-  if(!c)return;
-  const ctx=c.getContext('2d');
-  let W,H,pts=[];
-  function resize(){W=c.width=window.innerWidth;H=c.height=window.innerHeight;}
-  resize();window.addEventListener('resize',resize);
-  for(let i=0;i<60;i++){
-    pts.push({x:Math.random()*W,y:Math.random()*H,vx:(Math.random()-.5)*.3,vy:(Math.random()-.5)*.3,r:Math.random()*2+.5,a:Math.random()*.5+.1});
-  }
-  function draw(){
-    ctx.clearRect(0,0,W,H);
-    pts.forEach(p=>{
-      ctx.beginPath();ctx.arc(p.x,p.y,p.r,0,Math.PI*2);
-      ctx.fillStyle=`rgba(243,156,18,${p.a})`;ctx.fill();
-      p.x+=p.vx;p.y+=p.vy;
-      if(p.x<0||p.x>W)p.vx*=-1;
-      if(p.y<0||p.y>H)p.vy*=-1;
-    });
-    requestAnimationFrame(draw);
-  }
-  draw();
-})();
+/* ── PARTICLES canvas — sadece masaüstünde ── */
+if (!isMobile) {
+  (function () {
+    const c = document.getElementById('particles');
+    if (!c) return;
+    const ctx = c.getContext('2d');
+    let W, H, pts = [];
+    function resize() { W = c.width = window.innerWidth; H = c.height = window.innerHeight; }
+    resize();
+    window.addEventListener('resize', resize, { passive: true });
+    for (let i = 0; i < 60; i++) {
+      pts.push({ x: Math.random() * W, y: Math.random() * H, vx: (Math.random() - .5) * .3, vy: (Math.random() - .5) * .3, r: Math.random() * 2 + .5, a: Math.random() * .5 + .1 });
+    }
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      pts.forEach(p => {
+        ctx.beginPath(); ctx.arc(p.x, p.y, p.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(243,156,18,${p.a})`; ctx.fill();
+        p.x += p.vx; p.y += p.vy;
+        if (p.x < 0 || p.x > W) p.vx *= -1;
+        if (p.y < 0 || p.y > H) p.vy *= -1;
+      });
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+}
 
 /* ── COUNTER animation ── */
-function animateCounter(el){
-  const target=parseInt(el.dataset.count);
-  const suffix=el.dataset.suffix||'';
-  let start=0;const dur=2000;const step=16;
-  const inc=target/(dur/step);
-  function run(){
-    start+=inc;
-    if(start>=target){el.textContent=target.toLocaleString('tr')+(target===15?'+':target===5000?'+':target===11?'':'')+suffix;}
-    else{el.textContent=Math.floor(start).toLocaleString('tr')+suffix;requestAnimationFrame(run);}
+function animateCounter(el) {
+  const target = parseInt(el.dataset.count);
+  const suffix = el.dataset.suffix || '';
+  let start = 0;
+  const dur = 2000;
+  const step = 16;
+  const inc = target / (dur / step);
+  function run() {
+    start += inc;
+    if (start >= target) {
+      el.textContent = target.toLocaleString('tr') + (target === 15 ? '+' : target === 5000 ? '+' : target === 11 ? '' : '') + suffix;
+    } else {
+      el.textContent = Math.floor(start).toLocaleString('tr') + suffix;
+      requestAnimationFrame(run);
+    }
   }
   run();
 }
 
 /* ── SCROLL OBSERVER ── */
-const ioOptions={threshold:0.12};
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(en=>{
-    if(!en.isIntersecting)return;
-    const el=en.target;
+const ioOptions = { threshold: 0.12 };
+const io = new IntersectionObserver(entries => {
+  entries.forEach(en => {
+    if (!en.isIntersecting) return;
+    const el = en.target;
     el.classList.add('v');
-    if(el.dataset.count)animateCounter(el);
-    // stagger children
-    if(el.classList.contains('stagger')){
-      el.querySelectorAll(':scope > *').forEach((c,i)=>{
-        c.style.transitionDelay=(i*.1+.05)+'s';c.style.opacity='1';c.style.transform='none';
+    if (el.dataset.count) animateCounter(el);
+    if (el.classList.contains('stagger')) {
+      el.querySelectorAll(':scope > *').forEach((c, i) => {
+        c.style.transitionDelay = (i * .1 + .05) + 's';
+        c.style.opacity = '1';
+        c.style.transform = 'none';
       });
     }
     io.unobserve(el);
   });
-},ioOptions);
+}, ioOptions);
 
-document.querySelectorAll('.fi,.fil,.fir,.fiu,[data-count],.stagger').forEach(el=>io.observe(el));
+document.querySelectorAll('.fi,.fil,.fir,.fiu,[data-count],.stagger').forEach(el => io.observe(el));
 
 /* ── FLIP CARDS ── */
-document.querySelectorAll('.flip-card').forEach(card=>{
-  card.addEventListener('click',e=>{
-    if(e.target.closest('.back-btn')){e.stopPropagation();return;}
+document.querySelectorAll('.flip-card').forEach(card => {
+  card.addEventListener('click', e => {
+    if (e.target.closest('.back-btn')) { e.stopPropagation(); return; }
     card.classList.toggle('flipped');
   });
 });
 
 /* ── FAQ ACCORDION ── */
-document.querySelectorAll('.faq-item').forEach(item=>{
-  const q=item.querySelector('.faq-q');
-  if(q) q.addEventListener('click',()=>{
-    const wasOpen=item.classList.contains('open');
-    document.querySelectorAll('.faq-item').forEach(i=>i.classList.remove('open'));
-    if(!wasOpen)item.classList.add('open');
+document.querySelectorAll('.faq-item').forEach(item => {
+  const q = item.querySelector('.faq-q');
+  if (q) q.addEventListener('click', () => {
+    const wasOpen = item.classList.contains('open');
+    document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+    if (!wasOpen) item.classList.add('open');
   });
 });
 
 /* ── MINI counter in hero card ── */
-const miniEl=document.querySelector('.hc-mini [data-count]');
-if(miniEl){
-  setTimeout(()=>{
-    let s=0;const t=parseInt(miniEl.dataset.count);
-    const interval=setInterval(()=>{
-      s+=8;miniEl.textContent=s+'+';if(s>=t){miniEl.textContent=t+'+';clearInterval(interval);}
-    },20);
-  },1200);
+const miniEl = document.querySelector('.hc-mini [data-count]');
+if (miniEl) {
+  setTimeout(() => {
+    let s = 0;
+    const t = parseInt(miniEl.dataset.count);
+    const interval = setInterval(() => {
+      s += 8;
+      miniEl.textContent = s + '+';
+      if (s >= t) { miniEl.textContent = t + '+'; clearInterval(interval); }
+    }, 20);
+  }, 1200);
 }
 </script>
 
