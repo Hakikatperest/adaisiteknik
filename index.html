@@ -108,6 +108,110 @@ h1.hero-title .lw{color:#fff;display:block;}
 .hs-num{font-family:'Bebas Neue',sans-serif;font-size:2.4rem;line-height:1;color:var(--accent);}
 .hs-lbl{font-size:.72rem;color:rgba(255,255,255,.65);letter-spacing:.06em;text-transform:uppercase;margin-top:4px;}
 
+  /* TÜM SAYFA İÇİN SORUNSUZ KAYDIRMA */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+  scroll-behavior: smooth; /* Zaten varsa sorun değil */
+}
+
+/* Tüm section'ların temel kuralları */
+section {
+  position: relative;
+  overflow-x: hidden;
+  /* 'transform: translateZ(0)' GPU hızlandırmasını açar, kayma performansını artırır */
+  transform: translateZ(0);
+  /* 'backface-visibility' olası titreşimleri engeller */
+  backface-visibility: hidden;
+}
+
+/* Flip kartlar için kayma iyileştirmesi */
+.flip-card {
+  /* perspective özelliği kaydırmayı etkilemesin diye */
+  perspective: 1200px;
+  /* GPU katmanı oluştur, kayma sırasında yeniden çizimi azalt */
+  will-change: transform;
+}
+
+.flip-card-inner {
+  /* Kayma sırasında yumuşak geçiş */
+  transition: transform 0.65s cubic-bezier(0.23, 1, 0.32, 1);
+  will-change: transform;
+}
+
+/* Mobil cihazlarda flip kartların minimum yüksekliğini esnek yap */
+@media (max-width: 900px) {
+  .flip-card-inner {
+    min-height: auto;
+  }
+  .flip-card-front, .flip-card-back {
+    position: relative;
+    height: auto;
+    transform: none !important; /* Mobilde flip'i devre dışı bırak, sadece tıklama ile göster/gizle yap */
+    backface-visibility: visible;
+  }
+  .flip-card-back {
+    display: none;
+    transform: none !important;
+  }
+  .flip-card.flipped .flip-card-back {
+    display: flex;
+  }
+  .flip-card.flipped .flip-card-front {
+    display: none;
+  }
+  .flip-hint {
+    display: none;
+  }
+}
+
+/* FAQ Bölümü için kayma iyileştirmesi */
+.faq-item {
+  transform: translateZ(0);
+  transition: all 0.3s ease;
+}
+
+.faq-a {
+  transform: translateZ(0);
+  transition: max-height 0.4s cubic-bezier(0.4, 0, 0.2, 1), padding 0.3s ease;
+}
+
+/* Hizmet Bölgeleri (Regions) kayma düzeltmesi */
+.reg-wrap {
+  transform: translateZ(0);
+  overflow-x: auto; /* Yatay kayma ihtimaline karşı */
+  -webkit-overflow-scrolling: touch;
+}
+
+.reg-grid {
+  transform: translateZ(0);
+}
+
+/* Hero kart yığını (hero-card-stack) mobilde taşma yapmasın */
+@media (max-width: 900px) {
+  .hero-card-stack {
+    height: auto;
+    margin-top: 30px;
+  }
+  .hc-main, .hc-mini {
+    position: relative;
+    top: auto;
+    left: auto;
+    right: auto;
+    bottom: auto;
+    margin-bottom: 20px;
+    width: 100%;
+  }
+  .hc-pulse {
+    display: none;
+  }
+}
+
+/* Tüm arka plan efektlerinin (blur, gradient) kayma performansını iyileştir */
+.hero-bg, .hero-overlay, .orb, .test-sec::before, .strip-sec::before {
+  transform: translateZ(0);
+  backface-visibility: hidden;
+}
 /* ──────────────────────────────────────────────
    MOBILE FIXES
 ────────────────────────────────────────────── */
@@ -1403,6 +1507,57 @@ if (miniEl) {
     ]
   }
 }
+  /* ── MOBİL FLIP KART DÜZELTMESİ (Kayma Takılmasını Önler) ── */
+function fixMobileFlip() {
+  if (window.innerWidth <= 900) {
+    document.querySelectorAll('.flip-card').forEach(card => {
+      // Mobilde flip sırasında sayfanın sarsılmasını engelle
+      card.style.transform = 'translateZ(0)';
+      card.style.backfaceVisibility = 'hidden';
+      
+      // Flip olayını daha yumuşak hale getir
+      const inner = card.querySelector('.flip-card-inner');
+      if (inner) {
+        inner.style.transition = 'none';
+        // Kısa bir gecikmeyle tekrar aktif et (render tamamlansın)
+        setTimeout(() => {
+          if (inner) inner.style.transition = '';
+        }, 50);
+      }
+    });
+  }
+}
+
+// Sayfa yüklendiğinde ve pencere boyutu değiştiğinde çalıştır
+window.addEventListener('DOMContentLoaded', fixMobileFlip);
+window.addEventListener('resize', fixMobileFlip);
+
+/* ── KAYDIRMA SIRASINDA TAKILMA ÖNLEME (Passive Event Listeners) ── */
+// Mevcut scroll event'lerini pasif hale getir
+const scrollEvents = [
+  { target: window, handler: () => document.getElementById('mainNav')?.classList.toggle('scrolled', window.scrollY > 60) }
+];
+
+scrollEvents.forEach(ev => {
+  ev.target.addEventListener('scroll', ev.handler, { passive: true });
+});
+
+// Parallax scroll event'ini de pasif yap (eğer mobil değilse)
+if (!isMobile) {
+  window.addEventListener('scroll', () => {
+    const s = window.scrollY;
+    const bg = document.getElementById('heroBg');
+    if (bg && s < window.innerHeight) {
+      bg.style.transform = `scale(${1.05 + s * 0.0003})`;
+    }
+  }, { passive: true });
+}
+
+// IntersectionObserver için performans iyileştirmesi
+const observerOptions = {
+  threshold: 0.1,
+  rootMargin: '0px 0px -10px 0px' // Görünür alanı hafif daralt, erken tetiklemeyi önle
+};
 </script>
 </body>
 </html>
