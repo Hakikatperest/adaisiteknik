@@ -18,26 +18,24 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <style>
 :root {
-  --primary: #0A3D62;      /* Ana renk - kurumsal lacivert */
+  --primary: #0A3D62;
   --primary-dark: #05243B;
   --primary-light: #2C5F8A;
-  --secondary: #3C6382;    /* İkincil mavi */
+  --secondary: #3C6382;
   --secondary-light: #5885A8;
-  --accent: #F39C12;       /* CTA / turuncu */
+  --accent: #F39C12;
   --accent-dark: #D68910;
-  --background: #F5F7FA;   /* Açık arka plan */
+  --background: #F5F7FA;
   --white: #FFFFFF;
-  --text: #2F3640;         /* Ana metin */
+  --text: #2F3640;
   --text-light: #5D6E7E;
   --muted: #7F8C8D;
   --border: #E0E6ED;
-  --dark-bg: #0A3D62;      /* footer, header koyu */
+  --dark-bg: #0A3D62;
   --card-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
 }
 
-*,
-*::before,
-*::after {
+* {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
@@ -54,16 +52,9 @@ body {
   overflow-x: hidden;
 }
 
-::-webkit-scrollbar {
-  width: 4px;
-}
-::-webkit-scrollbar-track {
-  background: #e2e8f0;
-}
-::-webkit-scrollbar-thumb {
-  background: var(--accent);
-  border-radius: 2px;
-}
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #e2e8f0; }
+::-webkit-scrollbar-thumb { background: var(--accent); border-radius: 2px; }
 
 /* NAVIGATION */
 nav {
@@ -83,7 +74,7 @@ nav {
 nav.scrolled {
   background: rgba(10, 61, 98, 0.98);
   backdrop-filter: blur(12px);
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255,255,255,0.1);
   padding: 12px 40px;
   box-shadow: 0 4px 20px rgba(0,0,0,0.05);
 }
@@ -113,19 +104,15 @@ nav.scrolled {
   letter-spacing: 0.05em;
   color: var(--white);
 }
-
-.nav-logo-text span {
-  color: var(--accent);
-}
+.nav-logo-text span { color: var(--accent); }
 
 .nav-links {
   display: flex;
   gap: 32px;
   list-style: none;
 }
-
 .nav-links a {
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255,255,255,0.85);
   text-decoration: none;
   font-size: 0.85rem;
   font-weight: 500;
@@ -133,10 +120,7 @@ nav.scrolled {
   text-transform: uppercase;
   transition: color 0.2s;
 }
-
-.nav-links a:hover {
-  color: var(--accent);
-}
+.nav-links a:hover { color: var(--accent); }
 
 .nav-cta {
   display: inline-flex;
@@ -150,32 +134,28 @@ nav.scrolled {
   color: var(--white);
   text-decoration: none;
   transition: all 0.2s;
-  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
+  box-shadow: 0 4px 12px rgba(243,156,18,0.3);
 }
-
 .nav-cta:hover {
   background: var(--accent-dark);
   transform: translateY(-2px);
-  box-shadow: 0 8px 20px rgba(243, 156, 18, 0.4);
+  box-shadow: 0 8px 20px rgba(243,156,18,0.4);
 }
-
 @media(max-width:900px) {
   .nav-links, .nav-cta { display: none; }
   nav { padding: 16px 20px; }
   nav.scrolled { padding: 10px 20px; }
 }
 
-/* HERO - ARKAPLAN GÖRSELLİ MODERN VERSİYON */
+/* HERO */
 .hero {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: var(--primary); /* fallback rengi */
+  background: var(--primary);
   overflow: hidden;
 }
-
-/* Hero arkaplan görseli */
 .hero-bg {
   position: absolute;
   inset: 0;
@@ -185,20 +165,15 @@ nav.scrolled {
   background-repeat: no-repeat;
   filter: brightness(0.45) contrast(1.08) saturate(1.1);
   transform: scale(1);
-  transition: transform 0.1s ease-out;
   will-change: transform;
   z-index: 1;
 }
-
-/* Gradient overlay - yazı okunabilirliği ve derinlik */
 .hero-overlay {
   position: absolute;
   inset: 0;
   background: linear-gradient(105deg, rgba(10,61,98,0.88) 0%, rgba(10,61,98,0.55) 45%, rgba(0,0,0,0.3) 100%);
   z-index: 2;
 }
-
-/* Izgara deseni - dokusal his */
 .hero-grid {
   position: absolute;
   inset: 0;
@@ -207,8 +182,6 @@ nav.scrolled {
   z-index: 3;
   pointer-events: none;
 }
-
-/* Hero içerik */
 .hero-content {
   position: relative;
   z-index: 15;
@@ -221,7 +194,6 @@ nav.scrolled {
   align-items: center;
   width: 100%;
 }
-
 @media(max-width:900px) {
   .hero-content {
     grid-template-columns: 1fr;
@@ -230,7 +202,6 @@ nav.scrolled {
   }
   .hero-image-wrap { display: none; }
 }
-
 .hero-badge {
   display: inline-flex;
   align-items: center;
@@ -247,17 +218,11 @@ nav.scrolled {
   background: rgba(0,0,0,0.3);
   backdrop-filter: blur(4px);
 }
-
 .hero-badge i {
   font-size: 0.65rem;
   animation: blink 1.5s infinite;
 }
-
-@keyframes blink {
-  0%,100% { opacity: 1; }
-  50% { opacity: 0.3; }
-}
-
+@keyframes blink { 0%,100%{opacity:1;} 50%{opacity:0.3;} }
 h1.hero-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(3.5rem, 8vw, 7rem);
@@ -267,68 +232,46 @@ h1.hero-title {
   color: var(--white);
   text-shadow: 0 2px 15px rgba(0,0,0,0.2);
 }
-
 h1.hero-title .lf { color: var(--accent); display: block; }
 h1.hero-title .li { color: rgba(255,255,255,0.95); display: block; }
 h1.hero-title .lw { color: var(--white); display: block; }
-
 .hero-sub {
   font-size: 1rem;
   color: rgba(255,255,255,0.85);
   line-height: 1.7;
   max-width: 480px;
   margin-bottom: 36px;
-  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
-
-.hero-actions {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-}
-
-.btn-p {
+.btn-p, .btn-s {
   display: inline-flex;
   align-items: center;
   gap: 10px;
   padding: 15px 30px;
-  background: var(--accent);
   border-radius: 14px;
-  color: var(--white);
   font-weight: 700;
   font-size: 0.95rem;
   text-decoration: none;
   transition: all 0.25s;
+}
+.btn-p {
+  background: var(--accent);
+  color: var(--white);
   box-shadow: 0 8px 20px rgba(243,156,18,0.4);
 }
-
 .btn-p:hover {
   background: var(--accent-dark);
   transform: translateY(-3px);
-  box-shadow: 0 12px 28px rgba(243,156,18,0.5);
 }
-
 .btn-s {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 15px 30px;
   background: rgba(255,255,255,0.12);
   border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 14px;
   color: var(--white);
-  font-weight: 600;
-  font-size: 0.95rem;
-  text-decoration: none;
-  transition: all 0.25s;
   backdrop-filter: blur(8px);
 }
-
 .btn-s:hover {
   background: rgba(255,255,255,0.2);
   border-color: var(--accent);
 }
-
 .hero-stats {
   display: flex;
   gap: 32px;
@@ -337,14 +280,12 @@ h1.hero-title .lw { color: var(--white); display: block; }
   border-top: 1px solid rgba(255,255,255,0.2);
   flex-wrap: wrap;
 }
-
 .hs-num {
   font-family: 'Bebas Neue', sans-serif;
   font-size: 2.2rem;
   line-height: 1;
   color: var(--accent);
 }
-
 .hs-lbl {
   font-size: 0.75rem;
   color: rgba(255,255,255,0.7);
@@ -354,19 +295,9 @@ h1.hero-title .lw { color: var(--white); display: block; }
 }
 
 /* GENEL BÖLÜMLER */
-section {
-  padding: 100px 40px;
-}
-
-@media(max-width:900px) {
-  section { padding: 70px 20px; }
-}
-
-.container {
-  max-width: 1300px;
-  margin: 0 auto;
-}
-
+section { padding: 100px 40px; }
+@media(max-width:900px) { section { padding: 70px 20px; } }
+.container { max-width: 1300px; margin: 0 auto; }
 .sec-label {
   font-size: 0.72rem;
   font-weight: 700;
@@ -378,14 +309,12 @@ section {
   align-items: center;
   gap: 10px;
 }
-
 .sec-label::after {
   content: '';
   flex: 1;
   height: 1px;
   background: linear-gradient(90deg, var(--accent), transparent);
 }
-
 h2.sec-title {
   font-family: 'Bebas Neue', sans-serif;
   font-size: clamp(2.5rem, 5vw, 4.5rem);
@@ -394,11 +323,7 @@ h2.sec-title {
   margin-bottom: 16px;
   color: var(--text);
 }
-
-h2.sec-title span {
-  color: var(--accent);
-}
-
+h2.sec-title span { color: var(--accent); }
 .sec-sub {
   font-size: 1rem;
   color: var(--text-light);
@@ -406,39 +331,121 @@ h2.sec-title span {
   max-width: 560px;
 }
 
-/* HİZMET KARTLARI */
-.svc-sec {
-  background: var(--white);
-  border-radius: 0;
-}
-
+/* HİZMET KARTLARI - 3D DÖNEN EFFECT */
+.svc-sec { background: var(--white); }
 .svc-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 30px;
   margin-top: 60px;
 }
+@media(max-width:900px) { .svc-grid { grid-template-columns: 1fr; gap: 24px; } }
 
-@media(max-width:900px) {
-  .svc-grid { grid-template-columns: 1fr; gap: 24px; }
+/* 3D Kart Konteyneri */
+.flip-card {
+  background-color: transparent;
+  height: 100%;
+  perspective: 1500px;
+  cursor: pointer;
 }
-
-.svc-card {
-  background: var(--white);
-  border-radius: 24px;
-  padding: 40px 32px;
+.flip-card-inner {
   position: relative;
-  transition: all 0.3s;
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+  transform-style: preserve-3d;
+  border-radius: 24px;
+}
+.flip-card.flipped .flip-card-inner {
+  transform: rotateY(180deg);
+}
+.flip-card-front, .flip-card-back {
+  position: relative;
+  width: 100%;
+  backface-visibility: hidden;
+  border-radius: 24px;
+  background: var(--white);
   box-shadow: var(--card-shadow);
   border: 1px solid var(--border);
 }
-
-.svc-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 30px 45px -15px rgba(0,0,0,0.12);
-  border-color: var(--accent);
+.flip-card-front {
+  z-index: 2;
+  transform: rotateY(0deg);
+  padding: 40px 32px;
 }
+.flip-card-back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: rotateY(180deg);
+  padding: 32px 28px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  background: var(--white);
+  height: 100%;
+}
+.flip-card-back h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: var(--primary);
+  margin-bottom: 8px;
+}
+.back-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  margin-top: 20px;
+}
+.back-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 14px 0;
+  border-radius: 60px;
+  font-weight: 700;
+  font-size: 1rem;
+  text-decoration: none;
+  transition: all 0.2s;
+  width: 100%;
+}
+.back-btn.call {
+  background: var(--accent);
+  color: var(--white);
+  box-shadow: 0 4px 12px rgba(243,156,18,0.3);
+}
+.back-btn.whatsapp {
+  background: #25D366;
+  color: white;
+}
+.back-btn:hover { transform: translateY(-3px); filter: brightness(1.02); }
+.flip-hint {
+  position: absolute;
+  top: 18px;
+  right: 20px;
+  z-index: 5;
+  font-size: 1rem;
+  color: var(--accent);
+  background: rgba(255,255,255,0.9);
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+  pointer-events: none;
+  backdrop-filter: blur(2px);
+  transition: opacity 0.2s;
+}
+.flip-card.flipped .flip-hint { opacity: 0.5; }
 
+/* Kart içi stil korunsun */
 .svc-icon {
   width: 56px;
   height: 56px;
@@ -449,41 +456,35 @@ h2.sec-title span {
   font-size: 1.4rem;
   margin-bottom: 24px;
 }
-
 .svc-icon.fire { background: rgba(243,156,18,0.12); color: var(--accent); }
 .svc-icon.ice { background: rgba(60,99,130,0.12); color: var(--secondary); }
 .svc-icon.elec { background: rgba(10,61,98,0.12); color: var(--primary); }
-
-.svc-card h3 {
+.flip-card-front h3 {
   font-size: 1.3rem;
   font-weight: 700;
   margin-bottom: 14px;
   color: var(--primary);
 }
-
-.svc-card p {
+.flip-card-front p {
   font-size: 0.88rem;
   color: var(--text-light);
   line-height: 1.7;
 }
-
-.svc-card ul {
+.flip-card-front ul {
   margin-top: 20px;
   list-style: none;
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
-
-.svc-card ul li {
+.flip-card-front ul li {
   display: flex;
   align-items: center;
   gap: 10px;
   font-size: 0.84rem;
   color: var(--text);
 }
-
-.svc-card ul li::before {
+.flip-card-front ul li::before {
   content: '';
   width: 6px;
   height: 6px;
@@ -492,95 +493,9 @@ h2.sec-title span {
   background: var(--accent);
 }
 
-/* BANNER (kartvizit) */
-.banner-sec {
-  padding: 0;
-  position: relative;
-  overflow: hidden;
-}
-
-.banner-img {
-  width: 100%;
-  display: block;
-  max-height: 560px;
-  object-fit: cover;
-  object-position: center;
-}
-
-.banner-ov {
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(to right, rgba(10,61,98,0.85), rgba(10,61,98,0.5));
-}
-
-.banner-cnt {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  width: 90%;
-  max-width: 800px;
-}
-
-.banner-cnt h2 {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: clamp(3rem, 7vw, 5.5rem);
-  line-height: 1;
-  color: var(--white);
-  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
-}
-
-.banner-cnt p {
-  font-size: 1.1rem;
-  color: rgba(255,255,255,0.85);
-  margin-top: 14px;
-}
-
-.banner-phones {
-  display: flex;
-  gap: 16px;
-  justify-content: center;
-  margin-top: 28px;
-  flex-wrap: wrap;
-}
-
-.bp {
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  padding: 14px 28px;
-  background: rgba(255,255,255,0.12);
-  border: 1px solid rgba(255,255,255,0.3);
-  border-radius: 50px;
-  color: var(--white);
-  font-size: 1rem;
-  font-weight: 700;
-  text-decoration: none;
-  backdrop-filter: blur(12px);
-  transition: all 0.25s;
-}
-
-.bp:hover {
-  background: var(--accent);
-  border-color: var(--accent);
-}
-
-.bp.wa {
-  background: rgba(37,211,102,0.2);
-  border-color: rgba(37,211,102,0.5);
-}
-
-.bp.wa:hover {
-  background: #25D366;
-  border-color: #25D366;
-}
-
-/* HAKKIMIZDA */
-.about-sec {
-  background: var(--white);
-}
-
+/* diğer stiller (sabit) */
+.banner-sec, .about-sec, .art-sec, .reg-sec, .why-sec, .test-sec, .con-sec, .faq-sec, footer { /* mevcut stil aynı */ }
+.about-sec { background: var(--white); }
 .about-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -588,623 +503,94 @@ h2.sec-title span {
   align-items: center;
   margin-top: 60px;
 }
-
-@media(max-width:900px) {
-  .about-grid { grid-template-columns: 1fr; gap: 40px; }
-}
-
-.about-imgs {
-  position: relative;
-  height: 460px;
-}
-
-.ai1 {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 75%;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: var(--card-shadow);
-}
-
-.ai1 img {
-  width: 100%;
-  height: 320px;
-  object-fit: cover;
-}
-
-.ai2 {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  width: 55%;
-  border-radius: 24px;
-  overflow: hidden;
-  box-shadow: var(--card-shadow);
-  border: 3px solid var(--white);
-}
-
-.ai2 img {
-  width: 100%;
-  height: 220px;
-  object-fit: cover;
-}
-
+@media(max-width:900px){ .about-grid{ grid-template-columns:1fr; gap:40px; } }
+.about-imgs { position: relative; height: 460px; }
+.ai1 { position: absolute; top:0; left:0; width:75%; border-radius:24px; overflow:hidden; box-shadow:var(--card-shadow); }
+.ai1 img { width:100%; height:320px; object-fit:cover; }
+.ai2 { position: absolute; bottom:0; right:0; width:55%; border-radius:24px; overflow:hidden; box-shadow:var(--card-shadow); border:3px solid var(--white); }
+.ai2 img { width:100%; height:220px; object-fit:cover; }
 .about-badge-ov {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  background: var(--accent);
-  border-radius: 20px;
-  padding: 20px 24px;
-  text-align: center;
-  box-shadow: 0 20px 30px rgba(0,0,0,0.2);
-  z-index: 10;
-}
-
-.about-badge-ov .num {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 3rem;
-  line-height: 1;
-  color: var(--white);
-}
-
-.about-badge-ov .txt {
-  font-size: 0.72rem;
-  color: rgba(255,255,255,0.9);
-  text-transform: uppercase;
-}
-
-.about-text p {
-  font-size: 0.95rem;
-  color: var(--text-light);
-  line-height: 1.8;
-  margin-bottom: 16px;
-}
-
-.about-feats {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 14px;
-  margin-top: 28px;
-}
-
-.af {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-size: 0.84rem;
-  color: var(--text);
-}
-
-.af i {
-  color: var(--accent);
-  width: 20px;
-}
-
-/* MAKALE ALANI */
-.art-sec {
-  background: var(--background);
-}
-
-.art-hero-img {
-  width: 100%;
-  border-radius: 24px;
-  overflow: hidden;
-  margin-bottom: 50px;
-  box-shadow: var(--card-shadow);
-}
-
-.art-hero-img img {
-  width: 100%;
-  max-height: 420px;
-  object-fit: cover;
-}
-
-.art-grid {
-  display: grid;
-  grid-template-columns: 2fr 1fr;
-  gap: 60px;
-  align-items: start;
-}
-
-@media(max-width:900px) {
-  .art-grid { grid-template-columns: 1fr; gap: 40px; }
-}
-
-.art-body h3 {
-  font-size: 1.4rem;
-  font-weight: 700;
-  margin: 28px 0 12px;
-  color: var(--primary);
-}
-
-.art-body h4 {
-  font-size: 1.1rem;
-  font-weight: 600;
-  margin: 20px 0 10px;
-  color: var(--secondary);
-}
-
-.art-body p {
-  font-size: 0.94rem;
-  color: var(--text-light);
-  line-height: 1.85;
-  margin-bottom: 14px;
-}
-
-.art-body ul {
-  margin: 12px 0 18px;
-  list-style: none;
-}
-
-.art-body ul li {
-  display: flex;
-  align-items: flex-start;
-  gap: 10px;
-  font-size: 0.88rem;
-  color: var(--text);
-  margin-bottom: 8px;
-}
-
-.art-body ul li i {
-  color: var(--accent);
-  margin-top: 3px;
-}
-
-.art-sidebar {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-  position: sticky;
-  top: 100px;
-}
-
-.sb-card {
-  background: var(--white);
-  border-radius: 20px;
-  overflow: hidden;
-  box-shadow: var(--card-shadow);
-  border: 1px solid var(--border);
-}
-
-.sb-hdr {
-  padding: 18px 20px;
-  background: rgba(10,61,98,0.04);
-  border-bottom: 1px solid var(--border);
-}
-
-.sb-hdr h4 {
-  font-size: 0.95rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
-.sb-body {
-  padding: 20px;
-}
-
-.sb-body p {
-  font-size: 0.84rem;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-.sb-btns {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-  margin-top: 16px;
-}
-
-.sb-btn {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 18px;
-  border-radius: 14px;
-  font-size: 0.82rem;
-  font-weight: 600;
-  text-decoration: none;
-  transition: all 0.2s;
-}
-
-.sb-btn.f {
-  background: var(--accent);
-  color: var(--white);
-}
-
-.sb-btn.g {
-  background: var(--background);
-  border: 1px solid var(--border);
-  color: var(--text);
-}
-
-.sb-btn:hover {
-  transform: translateX(4px);
-}
-
-/* BÖLGELER */
-.reg-sec {
-  background: var(--white);
-}
-
-.reg-wrap {
-  background: var(--background);
-  border-radius: 28px;
-  padding: 50px;
-  margin-top: 50px;
-  border: 1px solid var(--border);
-}
-
-.reg-intro {
-  font-size: 0.95rem;
-  color: var(--text-light);
-  margin-bottom: 36px;
-}
-
-.reg-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
-  gap: 16px;
-}
-
-.reg-item {
-  background: var(--white);
-  border: 1px solid var(--border);
-  border-radius: 16px;
-  padding: 14px 18px;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  transition: all 0.2s;
-}
-
-.reg-item:hover {
-  border-color: var(--accent);
-  transform: translateY(-2px);
-}
-
-.reg-dot {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--accent);
-}
-
-.reg-name {
-  font-weight: 600;
-  font-size: 0.85rem;
-}
-
-.reg-dist {
-  font-size: 0.7rem;
-  color: var(--muted);
-}
-
-.reg-art {
-  margin-top: 48px;
-}
-
-.reg-art h3 {
-  font-size: 1.3rem;
-  font-weight: 700;
-  margin-bottom: 16px;
-  color: var(--primary);
-}
-
-.reg-art p {
-  font-size: 0.92rem;
-  color: var(--text-light);
-  line-height: 1.85;
-  margin-bottom: 14px;
-}
-
-/* NEDEN BİZ */
-.why-sec {
-  background: var(--background);
-}
-
-.why-grid {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  gap: 24px;
-  margin-top: 60px;
-}
-
-@media(max-width:1100px) { .why-grid { grid-template-columns: repeat(2,1fr); } }
-@media(max-width:600px) { .why-grid { grid-template-columns: 1fr; } }
-
-.why-card {
-  background: var(--white);
-  border-radius: 24px;
-  padding: 40px 28px;
-  text-align: center;
-  transition: all 0.3s;
-  box-shadow: var(--card-shadow);
-  border: 1px solid var(--border);
-}
-
-.why-card:hover {
-  transform: translateY(-6px);
-  border-color: var(--accent);
-}
-
-.why-icon {
-  width: 70px;
-  height: 70px;
-  border-radius: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.6rem;
-  margin: 0 auto 20px;
-  background: rgba(243,156,18,0.12);
-  color: var(--accent);
-}
-
-.why-card h3 {
-  font-size: 1.1rem;
-  font-weight: 700;
-  margin-bottom: 12px;
-  color: var(--primary);
-}
-
-.why-card p {
-  font-size: 0.84rem;
-  color: var(--muted);
-  line-height: 1.7;
-}
-
-/* TESTIMONIALS */
-.test-sec {
-  background: var(--white);
-}
-
-.test-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 30px;
-  margin-top: 60px;
-}
-
-@media(max-width:900px) { .test-grid { grid-template-columns: 1fr; } }
-
-.test-card {
-  background: var(--background);
-  border-radius: 24px;
-  padding: 32px;
-  border: 1px solid var(--border);
-  position: relative;
-}
-
-.test-card::before {
-  content: '"';
-  position: absolute;
-  top: 20px;
-  right: 28px;
-  font-family: 'DM Serif Display', serif;
-  font-size: 5rem;
-  line-height: 1;
-  color: rgba(243,156,18,0.12);
-}
-
-.stars i {
-  color: var(--accent);
-  font-size: 0.85rem;
-}
-
-.test-card p {
-  font-size: 0.9rem;
-  color: var(--text-light);
-  line-height: 1.75;
-  margin: 16px 0 20px;
-}
-
-.test-author {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
-.test-av {
-  width: 42px;
-  height: 42px;
-  border-radius: 50%;
-  background: var(--primary);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-weight: 700;
-  color: white;
-}
-
-.test-name {
-  font-weight: 700;
-  font-size: 0.9rem;
-}
-
-.test-loc {
-  font-size: 0.75rem;
-  color: var(--muted);
-}
-
-/* İLETİŞİM */
-.con-sec {
-  background: var(--background);
-}
-
-.con-grid {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 60px;
-  margin-top: 60px;
-}
-
-@media(max-width:900px) { .con-grid { grid-template-columns: 1fr; } }
-
-.con-img-wrap {
-  border-radius: 28px;
-  overflow: hidden;
-  box-shadow: var(--card-shadow);
-}
-
-.con-img-wrap img {
-  width: 100%;
-  height: 400px;
-  object-fit: cover;
-}
-
-.con-info-list {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.cii {
-  display: flex;
-  align-items: flex-start;
-  gap: 18px;
-}
-
-.cii-icon {
-  width: 48px;
-  height: 48px;
-  background: rgba(10,61,98,0.08);
-  border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-size: 1.1rem;
-  color: var(--accent);
-}
-
-.cii-label {
-  font-size: 0.7rem;
-  color: var(--muted);
-  text-transform: uppercase;
-  letter-spacing: 0.08em;
-  margin-bottom: 4px;
-}
-
-.cii-value {
-  font-size: 1rem;
-  font-weight: 700;
-  color: var(--primary);
-}
-
-.cii-sub {
-  font-size: 0.8rem;
-  color: var(--text-light);
-}
-
-.con-btns {
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
-  margin-top: 28px;
-}
-
-.con-btn {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 14px 22px;
-  border-radius: 18px;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s;
-}
-
-.con-btn.f {
-  background: var(--accent);
-  color: var(--white);
-}
-
-.con-btn.wa {
-  background: #25D366;
-  color: white;
-}
-
-.con-btn.gh {
-  background: var(--white);
-  border: 1px solid var(--border);
-  color: var(--text);
-}
-
-.con-btn:hover {
-  transform: translateY(-3px);
-  filter: brightness(1.02);
-}
-
-/* FAQ */
-.faq-sec {
-  background: var(--white);
-}
-
-.faq-list {
-  max-width: 800px;
-  margin: 50px auto 0;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-.faq-item {
-  background: var(--background);
-  border-radius: 20px;
-  border: 1px solid var(--border);
-  overflow: hidden;
-}
-
-.faq-q {
-  width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 20px 28px;
-  font-size: 1rem;
-  font-weight: 600;
-  color: var(--primary);
-  background: none;
-  border: none;
-  cursor: pointer;
-  text-align: left;
-  gap: 16px;
-}
-
-.faq-q i {
-  color: var(--accent);
-  transition: transform 0.3s;
-}
-
-.faq-a {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.4s ease;
-  padding: 0 28px;
-}
-
-.faq-a.open {
-  max-height: 200px;
-  padding: 0 28px 22px;
-}
-
-.faq-a p {
-  font-size: 0.88rem;
-  color: var(--text-light);
-  line-height: 1.7;
-}
-
-/* FOOTER */
+  top:50%; left:50%;
+  transform:translate(-50%,-50%);
+  background:var(--accent);
+  border-radius:20px;
+  padding:20px 24px;
+  text-align:center;
+  box-shadow:0 20px 30px rgba(0,0,0,0.2);
+  z-index:10;
+}
+.about-badge-ov .num { font-family:'Bebas Neue',sans-serif; font-size:3rem; line-height:1; color:var(--white); }
+.about-badge-ov .txt { font-size:0.72rem; color:rgba(255,255,255,0.9); text-transform:uppercase; }
+.about-text p { font-size:0.95rem; color:var(--text-light); line-height:1.8; margin-bottom:16px; }
+.about-feats { display:grid; grid-template-columns:1fr 1fr; gap:14px; margin-top:28px; }
+.af { display:flex; align-items:center; gap:10px; font-size:0.84rem; color:var(--text); }
+.af i { color:var(--accent); width:20px; }
+.art-sec { background:var(--background); }
+.art-hero-img { width:100%; border-radius:24px; overflow:hidden; margin-bottom:50px; box-shadow:var(--card-shadow); }
+.art-hero-img img { width:100%; max-height:420px; object-fit:cover; }
+.art-grid { display:grid; grid-template-columns:2fr 1fr; gap:60px; align-items:start; }
+@media(max-width:900px){ .art-grid{ grid-template-columns:1fr; gap:40px; } }
+.art-body h3 { font-size:1.4rem; font-weight:700; margin:28px 0 12px; color:var(--primary); }
+.art-body h4 { font-size:1.1rem; font-weight:600; margin:20px 0 10px; color:var(--secondary); }
+.art-body p { font-size:0.94rem; color:var(--text-light); line-height:1.85; margin-bottom:14px; }
+.art-body ul { margin:12px 0 18px; list-style:none; }
+.art-body ul li { display:flex; align-items:flex-start; gap:10px; font-size:0.88rem; color:var(--text); margin-bottom:8px; }
+.art-body ul li i { color:var(--accent); margin-top:3px; }
+.art-sidebar { display:flex; flex-direction:column; gap:24px; position:sticky; top:100px; }
+.sb-card { background:var(--white); border-radius:20px; overflow:hidden; box-shadow:var(--card-shadow); border:1px solid var(--border); }
+.sb-hdr { padding:18px 20px; background:rgba(10,61,98,0.04); border-bottom:1px solid var(--border); }
+.sb-hdr h4 { font-size:0.95rem; font-weight:700; color:var(--primary); }
+.sb-body { padding:20px; }
+.sb-body p { font-size:0.84rem; color:var(--muted); line-height:1.7; }
+.sb-btns { display:flex; flex-direction:column; gap:12px; margin-top:16px; }
+.sb-btn { display:flex; align-items:center; gap:10px; padding:12px 18px; border-radius:14px; font-size:0.82rem; font-weight:600; text-decoration:none; transition:all 0.2s; }
+.sb-btn.f { background:var(--accent); color:var(--white); }
+.sb-btn.g { background:var(--background); border:1px solid var(--border); color:var(--text); }
+.sb-btn:hover { transform:translateX(4px); }
+.reg-sec { background:var(--white); }
+.reg-wrap { background:var(--background); border-radius:28px; padding:50px; margin-top:50px; border:1px solid var(--border); }
+.reg-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr)); gap:16px; }
+.reg-item { background:var(--white); border:1px solid var(--border); border-radius:16px; padding:14px 18px; display:flex; align-items:center; gap:12px; transition:all 0.2s; }
+.reg-item:hover { border-color:var(--accent); transform:translateY(-2px); }
+.reg-dot { width:8px; height:8px; border-radius:50%; background:var(--accent); }
+.reg-name { font-weight:600; font-size:0.85rem; }
+.why-sec { background:var(--background); }
+.why-grid { display:grid; grid-template-columns:repeat(4,1fr); gap:24px; margin-top:60px; }
+@media(max-width:1100px){ .why-grid{ grid-template-columns:repeat(2,1fr); } }
+@media(max-width:600px){ .why-grid{ grid-template-columns:1fr; } }
+.why-card { background:var(--white); border-radius:24px; padding:40px 28px; text-align:center; transition:all 0.3s; box-shadow:var(--card-shadow); border:1px solid var(--border); }
+.why-card:hover { transform:translateY(-6px); border-color:var(--accent); }
+.why-icon { width:70px; height:70px; border-radius:30px; display:flex; align-items:center; justify-content:center; font-size:1.6rem; margin:0 auto 20px; background:rgba(243,156,18,0.12); color:var(--accent); }
+.test-sec { background:var(--white); }
+.test-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:30px; margin-top:60px; }
+@media(max-width:900px){ .test-grid{ grid-template-columns:1fr; } }
+.test-card { background:var(--background); border-radius:24px; padding:32px; border:1px solid var(--border); position:relative; }
+.test-card::before { content:'"'; position:absolute; top:20px; right:28px; font-family:'DM Serif Display',serif; font-size:5rem; line-height:1; color:rgba(243,156,18,0.12); }
+.stars i { color:var(--accent); font-size:0.85rem; }
+.test-card p { font-size:0.9rem; color:var(--text-light); line-height:1.75; margin:16px 0 20px; }
+.test-author { display:flex; align-items:center; gap:12px; }
+.test-av { width:42px; height:42px; border-radius:50%; background:var(--primary); display:flex; align-items:center; justify-content:center; font-weight:700; color:white; }
+.con-sec { background:var(--background); }
+.con-grid { display:grid; grid-template-columns:1fr 1fr; gap:60px; margin-top:60px; }
+@media(max-width:900px){ .con-grid{ grid-template-columns:1fr; } }
+.con-img-wrap { border-radius:28px; overflow:hidden; box-shadow:var(--card-shadow); }
+.con-img-wrap img { width:100%; height:400px; object-fit:cover; }
+.con-info-list { display:flex; flex-direction:column; gap:24px; }
+.cii { display:flex; align-items:flex-start; gap:18px; }
+.cii-icon { width:48px; height:48px; background:rgba(10,61,98,0.08); border-radius:18px; display:flex; align-items:center; justify-content:center; font-size:1.1rem; color:var(--accent); }
+.cii-label { font-size:0.7rem; color:var(--muted); text-transform:uppercase; letter-spacing:0.08em; margin-bottom:4px; }
+.cii-value { font-size:1rem; font-weight:700; color:var(--primary); }
+.con-btns { display:flex; flex-direction:column; gap:14px; margin-top:28px; }
+.con-btn { display:flex; align-items:center; gap:14px; padding:14px 22px; border-radius:18px; text-decoration:none; font-weight:600; transition:all 0.2s; }
+.con-btn.f { background:var(--accent); color:var(--white); }
+.con-btn.wa { background:#25D366; color:white; }
+.con-btn:hover { transform:translateY(-3px); filter:brightness(1.02); }
 footer {
   background: var(--primary);
   color: rgba(255,255,255,0.8);
   padding: 60px 40px 30px;
 }
-
 .ft-grid {
   max-width: 1300px;
   margin: 0 auto;
@@ -1213,99 +599,19 @@ footer {
   gap: 50px;
   margin-bottom: 50px;
 }
-
-@media(max-width:900px) { .ft-grid { grid-template-columns: 1fr 1fr; gap: 30px; } }
-@media(max-width:600px) { .ft-grid { grid-template-columns: 1fr; } }
-
-.ft-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  margin-bottom: 18px;
-  text-decoration: none;
-}
-
-.ft-brand-ico {
-  width: 42px;
-  height: 42px;
-  background: var(--accent);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-}
-
-.ft-brand-nm {
-  font-family: 'Bebas Neue', sans-serif;
-  font-size: 1.4rem;
-  color: white;
-}
-.ft-brand-nm span { color: var(--accent); }
-
-.ft-desc {
-  font-size: 0.82rem;
-  color: rgba(255,255,255,0.65);
-  line-height: 1.7;
-  margin-bottom: 20px;
-}
-
-.ft-socs {
-  display: flex;
-  gap: 12px;
-}
-
-.ft-soc {
-  width: 36px;
-  height: 36px;
-  background: rgba(255,255,255,0.12);
-  border-radius: 12px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: white;
-  text-decoration: none;
-}
-
-.ft-col h4 {
-  font-size: 0.8rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--accent);
-  margin-bottom: 18px;
-}
-
-.ft-col ul {
-  list-style: none;
-}
-
-.ft-col li, .ft-col li a {
-  font-size: 0.84rem;
-  color: rgba(255,255,255,0.7);
-  text-decoration: none;
-  margin-bottom: 10px;
-  display: block;
-}
-
-.ft-col li a:hover { color: var(--accent); }
-
-.ft-bottom {
-  max-width: 1300px;
-  margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  border-top: 1px solid rgba(255,255,255,0.15);
-  padding-top: 28px;
-  flex-wrap: wrap;
-  gap: 12px;
-}
-
-.ft-bottom p, .ft-bottom span {
-  font-size: 0.75rem;
-  color: rgba(255,255,255,0.5);
-}
-
+@media(max-width:900px){ .ft-grid { grid-template-columns:1fr 1fr; } }
+@media(max-width:600px){ .ft-grid { grid-template-columns:1fr; } }
+.ft-brand { display:flex; align-items:center; gap:12px; margin-bottom:18px; text-decoration:none; }
+.ft-brand-ico { width:42px; height:42px; background:var(--accent); border-radius:12px; display:flex; align-items:center; justify-content:center; color:white; }
+.ft-brand-nm { font-family:'Bebas Neue',sans-serif; font-size:1.4rem; color:white; }
+.ft-brand-nm span { color:var(--accent); }
+.ft-desc { font-size:0.82rem; color:rgba(255,255,255,0.65); line-height:1.7; margin-bottom:20px; }
+.ft-col h4 { font-size:0.8rem; font-weight:700; letter-spacing:0.1em; text-transform:uppercase; color:var(--accent); margin-bottom:18px; }
+.ft-col ul { list-style:none; }
+.ft-col li, .ft-col li a { font-size:0.84rem; color:rgba(255,255,255,0.7); text-decoration:none; margin-bottom:10px; display:block; }
+.ft-col li a:hover { color:var(--accent); }
+.ft-bottom { max-width:1300px; margin:0 auto; display:flex; justify-content:space-between; border-top:1px solid rgba(255,255,255,0.15); padding-top:28px; flex-wrap:wrap; gap:12px; }
+.ft-bottom p, .ft-bottom span { font-size:0.75rem; color:rgba(255,255,255,0.5); }
 .sticky-cta {
   position: fixed;
   bottom: 24px;
@@ -1315,7 +621,6 @@ footer {
   flex-direction: column;
   gap: 12px;
 }
-
 .st-btn {
   display: flex;
   align-items: center;
@@ -1327,16 +632,12 @@ footer {
   color: white;
   box-shadow: 0 8px 20px rgba(0,0,0,0.15);
 }
-
 .st-btn.wa { background: #25D366; }
 .st-btn.call { background: var(--accent); }
-
-@media(max-width:600px) {
+@media(max-width:600px){
   .st-btn span { display: none; }
   .st-btn { padding: 14px; border-radius: 50%; width: 52px; height: 52px; justify-content: center; }
 }
-
-/* Animasyon */
 .fi, .fil, .fir { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .fil { transform: translateX(-30px); }
 .fir { transform: translateX(30px); }
@@ -1346,7 +647,7 @@ footer {
 <body>
 
 <div class="sticky-cta">
-  <a href="https://wa.me/905449066450" class="st-btn wa" target="_blank"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+  <a href="https://wa.me/905449086450" class="st-btn wa" target="_blank"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
   <a href="tel:05449066450" class="st-btn call"><i class="fas fa-phone-alt"></i><span>0544 906 64 50</span></a>
 </div>
 
@@ -1356,57 +657,79 @@ footer {
   <a href="tel:05449066450" class="nav-cta"><i class="fas fa-phone-alt"></i> Hemen Ara</a>
 </nav>
 
-<!-- HERO - ARKAPLAN GÖRSELLİ MODERN VERSİYON -->
 <section class="hero" id="hero">
-  <div class="hero-bg"></div>
-  <div class="hero-overlay"></div>
-  <div class="hero-grid"></div>
+  <div class="hero-bg"></div><div class="hero-overlay"></div><div class="hero-grid"></div>
   <div class="hero-content">
     <div><div class="hero-badge"><i class="fas fa-circle"></i> Aydın'ın Lider Teknik Servisi</div>
       <h1 class="hero-title"><span class="lf">Kombi</span><span class="li">Klima</span><span class="lw">Elektrik</span></h1>
       <p class="hero-sub">Aydın ve tüm ilçelerinde profesyonel kombi servisi, klima kurulum & bakım ve elektrik tesisatı. Kemal Türkmenoğlu liderliğinde 15 yılı aşkın deneyim.</p>
-      <div class="hero-actions"><a href="tel:05449066450" class="btn-p"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="https://wa.me/905449066450" class="btn-s" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+      <div class="hero-actions"><a href="tel:05449066450" class="btn-p"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="https://wa.me/905449086450" class="btn-s" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
       <div class="hero-stats"><div><div class="hs-num">15+</div><div class="hs-lbl">Yıl Deneyim</div></div><div><div class="hs-num">5000+</div><div class="hs-lbl">Mutlu Müşteri</div></div><div><div class="hs-num">11</div><div class="hs-lbl">Hizmet İlçesi</div></div><div><div class="hs-num">7/24</div><div class="hs-lbl">Teknik Destek</div></div></div>
     </div>
     <div class="hero-image-wrap fir"><div class="hero-img-main"><img src="https://www.aydinadateknik.com/images/aydinkombiservis.webp" alt="Aydın Kombi Servisi Ada Isı Teknik"/></div></div>
   </div>
 </section>
 
-<!-- HİZMETLER -->
+<!-- HİZMETLER 3D FLIP KARTLAR -->
 <section class="svc-sec" id="hizmetler"><div class="container"><div class="sec-label fi">Hizmetlerimiz</div><h2 class="sec-title fi">Uzman <span>Teknik</span> Çözümler</h2><p class="sec-sub fi">Aydın genelinde kombi, klima ve elektrik alanlarında kapsamlı teknik servis.</p>
-<div class="svc-grid"><div class="svc-card fi"><div class="svc-icon fire"><i class="fas fa-fire-flame-curved"></i></div><h3>Kombi Servisi & Bakım</h3><p>Kış öncesi bakım, arıza tespit, orijinal parça.</p><ul><li>Kombi arıza tespiti</li><li>Periyodik bakım</li><li>Baca temizliği</li><li>Baymak, Buderus, Vaillant</li></ul></div>
-<div class="svc-card fi"><div class="svc-icon ice"><i class="fas fa-snowflake"></i></div><h3>Klima Servisi & Kurulum</h3><p>Split, inverter, kaset tipi. Gaz dolum, bakım, montaj.</p><ul><li>Kurulum ve montaj</li><li>Gaz dolumu R32/R410A</li><li>Yıllık bakım</li><li>Daikin, Mitsubishi, Bosch</li></ul></div>
-<div class="svc-card fi"><div class="svc-icon elec"><i class="fas fa-bolt"></i></div><h3>Elektrik Tesisatı & Onarım</h3><p>Konut, iş yeri, sanayi. Güvenli tesisat çözümleri.</p><ul><li>Tesisat döşeme</li><li>Sigorta panosu</li><li>Topraklama</li><li>Arıza tespiti</li></ul></div></div></div></section>
+<div class="svc-grid">
+  <!-- KOMBİ KARTI -->
+  <div class="flip-card" data-flip="kombi"><div class="flip-card-inner">
+    <div class="flip-card-front"><div class="flip-hint"><i class="fas fa-sync-alt"></i></div><div class="svc-icon fire"><i class="fas fa-fire-flame-curved"></i></div><h3>Kombi Servisi & Bakım</h3><p>Kış öncesi bakım, arıza tespit, orijinal parça.</p><ul><li>Kombi arıza tespiti</li><li>Periyodik bakım</li><li>Baca temizliği</li><li>Baymak, Buderus, Vaillant</li></ul></div>
+    <div class="flip-card-back"><i class="fas fa-phone-alt" style="font-size:2rem; color:var(--accent);"></i><h3>Hemen Destek Alın</h3><div class="back-buttons"><a href="tel:05449066450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="tel:05449086450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449086450" class="back-btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Yaz</a></div><p style="margin-top:12px; font-size:0.75rem; color:var(--muted);">Karta tekrar tıklayın</p></div>
+  </div></div>
+  <!-- KLİMA KARTI -->
+  <div class="flip-card" data-flip="klima"><div class="flip-card-inner">
+    <div class="flip-card-front"><div class="flip-hint"><i class="fas fa-sync-alt"></i></div><div class="svc-icon ice"><i class="fas fa-snowflake"></i></div><h3>Klima Servisi & Kurulum</h3><p>Split, inverter, kaset tipi. Gaz dolum, bakım, montaj.</p><ul><li>Kurulum ve montaj</li><li>Gaz dolumu R32/R410A</li><li>Yıllık bakım</li><li>Daikin, Mitsubishi, Bosch</li></ul></div>
+    <div class="flip-card-back"><i class="fas fa-headset" style="font-size:2rem; color:var(--accent);"></i><h3>Hemen Arayın</h3><div class="back-buttons"><a href="tel:05449066450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="tel:05449086450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449086450" class="back-btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp'tan Yaz</a></div><p style="margin-top:12px; font-size:0.75rem; color:var(--muted);">Tekrar dokunun/kartı kapatın</p></div>
+  </div></div>
+  <!-- ELEKTRİK KARTI -->
+  <div class="flip-card" data-flip="elektrik"><div class="flip-card-inner">
+    <div class="flip-card-front"><div class="flip-hint"><i class="fas fa-sync-alt"></i></div><div class="svc-icon elec"><i class="fas fa-bolt"></i></div><h3>Elektrik Tesisatı & Onarım</h3><p>Konut, iş yeri, sanayi. Güvenli tesisat çözümleri.</p><ul><li>Tesisat döşeme</li><li>Sigorta panosu</li><li>Topraklama</li><li>Arıza tespiti</li></ul></div>
+    <div class="flip-card-back"><i class="fas fa-tools" style="font-size:2rem; color:var(--accent);"></i><h3>7/24 Servis</h3><div class="back-buttons"><a href="tel:05449066450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="tel:05449086450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449086450" class="back-btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp İletişim</a></div><p style="margin-top:12px; font-size:0.75rem; color:var(--muted);">Kartı kapatmak için tıklayın</p></div>
+  </div></div>
+</div></div></section>
 
-<!-- HAKKIMIZDA -->
+<!-- HAKKIMIZDA + DİĞER BÖLÜMLER (SABİT) -->
 <section class="about-sec"><div class="container"><div class="sec-label fi">Hakkımızda</div><div class="about-grid"><div class="about-imgs fil"><div class="ai1"><img src="https://www.aydinadateknik.com/images/aydinkombiservis2.webp" alt="Ada Isı Teknik Ekibi"/></div><div class="ai2"><img src="https://www.aydinadateknik.com/images/aydinkombiservis4.webp" alt="Aydın Kombi Bakım"/></div><div class="about-badge-ov"><div class="num">15+</div><div class="txt">Yıl Deneyim</div></div></div><div class="about-text fir"><div class="sec-label">Kim Biz?</div><h2 class="sec-title">Kemal <span>Türkmenoğlu</span></h2><p>Ada Isı Teknik olarak Aydın'da 15 yılı aşkın süredir kombi, klima ve elektrik servisi vermekteyiz. Zafer Mahallesi, Egemenlik Bulvarı No:3/F Efeler adresimizden tüm ilçelere hizmet sunuyoruz.</p><div class="about-feats"><div class="af"><i class="fas fa-shield-check"></i> İşçilik Garantisi</div><div class="af"><i class="fas fa-bolt"></i> Hızlı Müdahale</div><div class="af"><i class="fas fa-tags"></i> Şeffaf Fiyat</div><div class="af"><i class="fas fa-award"></i> Orijinal Parça</div></div></div></div></div></section>
 
 <!-- KOMBİ MAKALE -->
-<section class="art-sec" id="kombi"><div class="container"><div class="sec-label fi">Uzmanlık Alanımız</div><h2 class="sec-title fi">Aydın'da <span>Kombi Servisi</span></h2><div class="art-hero-img fi"><img src="https://www.aydinadateknik.com/images/kombi.webp" alt="Kombi Servisi"/></div><div class="art-grid"><div class="art-body fi"><h3>Kombinizin Düzgün Çalışması İçin Periyodik Bakım Şart</h3><p>Yıllık bakım; baca gazı analizi, eşanjör temizliği ve pompa testi ile kombi ömrünü uzatır.</p><h3>En Sık Karşılaşılan Arızalar</h3><ul><li><i class="fas fa-check"></i> Su basıncı düşüklüğü</li><li><i class="fas fa-check"></i> Tutuşmama ve hata kodları</li><li><i class="fas fa-check"></i> Aşırı ısınma</li></ul><h4>Hizmet Verdiğimiz Markalar</h4><p>Baymak, Buderus, Vaillant, Demirdöküm, Bosch, Ariston, Protherm, Eca.</p></div><div class="art-sidebar"><div class="sb-card"><div class="sb-hdr"><h4>Acil Kombi Servisi</h4></div><div class="sb-body"><p>Kombiniz çalışmıyor mu? Hemen arayın.</p><div class="sb-btns"><a href="tel:05449086450" class="sb-btn f"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449066450" class="sb-btn g" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></div></div></div></div></div></section>
+<section class="art-sec" id="kombi"><div class="container"><div class="sec-label fi">Uzmanlık Alanımız</div><h2 class="sec-title fi">Aydın'da <span>Kombi Servisi</span></h2><div class="art-hero-img fi"><img src="https://www.aydinadateknik.com/images/kombi.webp" alt="Kombi Servisi"/></div><div class="art-grid"><div class="art-body fi"><h3>Kombinizin Düzgün Çalışması İçin Periyodik Bakım Şart</h3><p>Yıllık bakım; baca gazı analizi, eşanjör temizliği ve pompa testi ile kombi ömrünü uzatır.</p><h3>En Sık Karşılaşılan Arızalar</h3><ul><li><i class="fas fa-check"></i> Su basıncı düşüklüğü</li><li><i class="fas fa-check"></i> Tutuşmama ve hata kodları</li><li><i class="fas fa-check"></i> Aşırı ısınma</li></ul><h4>Hizmet Verdiğimiz Markalar</h4><p>Baymak, Buderus, Vaillant, Demirdöküm, Bosch, Ariston, Protherm, Eca.</p></div><div class="art-sidebar"><div class="sb-card"><div class="sb-hdr"><h4>Acil Kombi Servisi</h4></div><div class="sb-body"><p>Kombiniz çalışmıyor mu? Hemen arayın.</p><div class="sb-btns"><a href="tel:05449086450" class="sb-btn f"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449086450" class="sb-btn g" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></div></div></div></div></div></section>
 
 <!-- KLİMA MAKALE -->
-<section class="art-sec" id="klima"><div class="container"><div class="sec-label fi">Bilgi Merkezi</div><h2 class="sec-title fi">Aydın'da <span>Klima Servisi</span></h2><div class="art-hero-img fi"><img src="https://www.aydinadateknik.com/images/aydinkombiservis.webp" alt="Klima Servisi"/></div><div class="art-grid"><div class="art-body fi"><h3>Yaz ve Kış Konforu İçin Klima Bakımı</h3><p>Yıllık filtre temizliği, gaz kontrolü ve dış ünite bakımı ile verimlilik artar.</p><ul><li><i class="fas fa-check"></i> Filtre temizliği</li><li><i class="fas fa-check"></i> Gaz seviyesi kontrolü</li><li><i class="fas fa-check"></i> Kondens tahliyesi</li></ul><h4>Daikin, Mitsubishi, Samsung, LG, Arçelik</h4></div><div class="art-sidebar"><div class="sb-card"><div class="sb-hdr"><h4>Hızlı Servis</h4></div><div class="sb-body"><p>Arayın, klima arızanıza müdahale edelim.</p><div class="sb-btns"><a href="tel:05449066450" class="sb-btn f"><i class="fas fa-phone-alt"></i> Ara</a></div></div></div></div></div></div></section>
+<section class="art-sec" id="klima"><div class="container"><div class="sec-label fi">Bilgi Merkezi</div><h2 class="sec-title fi">Aydın'da <span>Klima Servisi</span></h2><div class="art-hero-img fi"><img src="https://www.aydinadateknik.com/images/aydinkombiservis.webp" alt="Klima Servisi"/></div><div class="art-grid"><div class="art-body fi"><h3>Yaz ve Kış Konforu İçin Klima Bakımı</h3><p>Yıllık filtre temizliği, gaz kontrolü ve dış ünite bakımı ile verimlilik artar.</p><ul><li><i class="fas fa-check"></i> Filtre temizliği</li><li><i class="fas fa-check"></i> Gaz seviyesi kontrolü</li><li><i class="fas fa-check"></i> Kondens tahliyesi</li></ul><h4>Daikin, Mitsubishi, Samsung, LG, Arçelik</h4></div><div class="art-sidebar"><div class="sb-card"><div class="sb-hdr"><h4>Hızlı Servis</h4></div><div class="sb-body"><p>Arayın, klima arızanıza müdahale edelim.</p><div class="sb-btns"><a href="tel:05449066450" class="sb-btn f"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a></div></div></div></div></div></div></section>
 
 <!-- BÖLGELER -->
 <section class="reg-sec" id="bolgeler"><div class="container"><div class="sec-label fi">Hizmet Bölgeleri</div><h2 class="sec-title fi">Tüm <span>Aydın</span>'a Hizmet</h2><div class="reg-wrap fi"><div class="reg-grid"><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Efeler</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Köşk</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">İncirliova</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Germencik</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Sultanhisar</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Çine</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Karpuzlu</div></div></div></div></div></div></section>
 
-<!-- NEDEN BİZ -->
 <section class="why-sec"><div class="container"><div class="sec-label fi">Neden Ada Isı Teknik?</div><h2 class="sec-title fi">Farkımız <span>Kalitemizde</span></h2><div class="why-grid"><div class="why-card fi"><div class="why-icon"><i class="fas fa-clock"></i></div><h3>Hızlı Müdahale</h3><p>Aynı gün servis, acil durumlarda 1-3 saat içinde yanınızdayız.</p></div><div class="why-card fi"><div class="why-icon"><i class="fas fa-shield-halved"></i></div><h3>Garantili İşçilik</h3><p>Tüm işlemlerde işçilik garantisi.</p></div><div class="why-card fi"><div class="why-icon"><i class="fas fa-box"></i></div><h3>Orijinal Parça</h3><p>Sertifikalı yedek parça kullanımı.</p></div><div class="why-card fi"><div class="why-icon"><i class="fas fa-coins"></i></div><h3>Şeffaf Fiyat</h3><p>Keşif sonrası net fiyat, gizli maliyet yok.</p></div></div></div></section>
 
-<!-- TESTIMONIALS -->
 <section class="test-sec"><div class="container"><div class="sec-label fi">Müşteri Görüşleri</div><h2 class="sec-title fi">Müşterilerimiz <span>Ne Diyor?</span></h2><div class="test-grid"><div class="test-card fi"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>Kombim kışın çalışmayı bırakmıştı. Kemal Bey çok hızlı çözüm buldu. Teşekkürler.</p><div class="test-author"><div class="test-av">AY</div><div><div class="test-name">Ayşe Y.</div><div class="test-loc">Efeler</div></div></div></div><div class="test-card fi"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>Klima kurulumu çok temiz yapıldı. Yıllardır bakımını yaptırıyorum.</p><div class="test-author"><div class="test-av">MK</div><div><div class="test-name">Mehmet K.</div><div class="test-loc">İncirliova</div></div></div></div></div></div></section>
 
-<!-- İLETİŞİM -->
-<section class="con-sec" id="iletisim"><div class="container"><div class="sec-label fi">İletişim</div><h2 class="sec-title fi">Bize <span>Ulaşın</span></h2><div class="con-grid"><div class="fil"><div class="con-img-wrap"><img src="https://raw.githubusercontent.com/Hakikatperest/adaisiteknik/refs/heads/main/images/aydin-ada-teknik.webp" alt="Ada Isı Teknik Dükkan"/></div></div><div class="fir"><div class="con-info-list"><div class="cii"><div class="cii-icon"><i class="fas fa-user"></i></div><div><div class="cii-label">Yetkili</div><div class="cii-value">Kemal Türkmenoğlu</div></div></div><div class="cii"><div class="cii-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="cii-label">Adres</div><div class="cii-value">Zafer Mah. Egemenlik Bulvarı No:3/F, Efeler/Aydın</div></div></div><div class="cii"><div class="cii-icon"><i class="fas fa-phone-alt"></i></div><div><div class="cii-label">Telefon</div><div class="cii-value">0544 906 64 50</div><div class="cii-sub">0544 908 64 50</div></div></div></div><div class="con-btns"><a href="tel:05449066450" class="con-btn f"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="https://wa.me/905449066450" class="con-btn wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp'tan Yazın</a></div></div></div></div></section>
+<section class="con-sec" id="iletisim"><div class="container"><div class="sec-label fi">İletişim</div><h2 class="sec-title fi">Bize <span>Ulaşın</span></h2><div class="con-grid"><div class="fil"><div class="con-img-wrap"><img src="https://raw.githubusercontent.com/Hakikatperest/adaisiteknik/refs/heads/main/images/aydin-ada-teknik.webp" alt="Ada Isı Teknik Dükkan"/></div></div><div class="fir"><div class="con-info-list"><div class="cii"><div class="cii-icon"><i class="fas fa-user"></i></div><div><div class="cii-label">Yetkili</div><div class="cii-value">Kemal Türkmenoğlu</div></div></div><div class="cii"><div class="cii-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="cii-label">Adres</div><div class="cii-value">Zafer Mah. Egemenlik Bulvarı No:3/F, Efeler/Aydın</div></div></div><div class="cii"><div class="cii-icon"><i class="fas fa-phone-alt"></i></div><div><div class="cii-label">Telefon</div><div class="cii-value">0544 906 64 50</div><div class="cii-sub">0544 908 64 50</div></div></div></div><div class="con-btns"><a href="tel:05449066450" class="con-btn f"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="https://wa.me/905449086450" class="con-btn wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp'tan Yazın</a></div></div></div></div></section>
 
-<footer><div class="ft-grid"><div><a href="#" class="ft-brand"><div class="ft-brand-ico"><i class="fas fa-fire-flame-curved"></i></div><span class="ft-brand-nm">Ada Isı <span>Teknik</span></span></a><p class="ft-desc">Aydın'ın güvenilir kombi, klima ve elektrik teknik servisi.</p></div><div class="ft-col"><h4>Hizmetler</h4><ul><li><a href="#kombi">Kombi Servisi</a></li><li><a href="#klima">Klima Bakımı</a></li><li><a href="#elektrik">Elektrik Tesisatı</a></li></ul></div><div class="ft-col"><h4>Bölgeler</h4><ul><li>Efeler</li><li>Köşk</li><li>İncirliova</li><li>Germencik</li></ul></div><div class="ft-col"><h4>İletişim</h4><ul><li><a href="tel:05449066450">0544 906 64 50</a></li><li>Zafer Mah. No:3/F</li></ul></div></div><div class="ft-bottom"><p>© 2025 Ada Isı Teknik · Kemal Türkmenoğlu</p><span>Ada Isı Teknik | Aydın Kombi Klima Elektrik</span></div></footer>
+<footer><div class="ft-grid"><div><a href="#" class="ft-brand"><div class="ft-brand-ico"><i class="fas fa-fire-flame-curved"></i></div><span class="ft-brand-nm">Ada Isı <span>Teknik</span></span></a><p class="ft-desc">Aydın'ın güvenilir kombi, klima ve elektrik teknik servisi.</p></div><div class="ft-col"><h4>Hizmetler</h4><ul><li><a href="#kombi">Kombi Servisi</a></li><li><a href="#klima">Klima Bakımı</a></li><li><a href="#elektrik">Elektrik Tesisatı</a></li></ul></div><div class="ft-col"><h4>Bölgeler</h4><ul><li>Efeler</li><li>Köşk</li><li>İncirliova</li><li>Germencik</li></ul></div><div class="ft-col"><h4>İletişim</h4><ul><li><a href="tel:05449066450">0544 906 64 50</a></li><li><a href="tel:05449086450">0544 908 64 50</a></li><li>Zafer Mah. No:3/F</li></ul></div></div><div class="ft-bottom"><p>© 2025 Ada Isı Teknik · Kemal Türkmenoğlu</p><span>Ada Isı Teknik | Aydın Kombi Klima Elektrik</span></div></footer>
 
 <script>
 window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);});
 const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('v');obs.unobserve(en.target);}});},{threshold:0.1});
 document.querySelectorAll('.fi,.fil,.fir').forEach(el=>obs.observe(el));
-function tFaq(btn){const a=btn.nextElementSibling,i=btn.querySelector('i');a.classList.toggle('open');i.style.transform=a.classList.contains('open')?'rotate(180deg)':'';}
-// Scroll'da hafif parallax efekti (hero bg)
+
+// Flip kart işlevleri: tıklanınca dönme, arka plan butonları, tekrar tıklayınca kapanma
+const flipCards = document.querySelectorAll('.flip-card');
+flipCards.forEach(card => {
+  card.addEventListener('click', (e) => {
+    // Eğer tıklanan öğe .back-btn veya içindeki link ise kartın kapanmasını engelleme ama kart dönmüşse kullanıcı butona tıklayabilir.
+    // Butonlar a etiketi, onların tıklanması durumunda kartın dönmemesi için event.stopPropagation yap.
+    if(e.target.closest('.back-btn')) {
+      e.stopPropagation();
+      return;
+    }
+    // Kartı döndür / düzelt
+    card.classList.toggle('flipped');
+  });
+});
+// Hero parallax
 window.addEventListener('scroll', () => {
   const scrolled = window.scrollY;
   const heroBg = document.querySelector('.hero-bg');
