@@ -2,291 +2,1388 @@
 <html lang="tr">
 <head>
 <meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=yes, viewport-fit=cover"/>
-<title>Ada Isı Teknik — Yenileniyoruz</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>Ada Isı Teknik | Aydın Kombi Servisi, Klima ve Elektrik - Kemal Türkmenoğlu</title>
+<meta name="description" content="Aydın'ın lider teknik servisi Ada Isı Teknik. Uzman kadro ile kombi servisi, klima kurulum ve bakım, elektrik tesisatı. Efeler, Köşk, İncirliova, Germencik ve tüm Aydın ilçelerinde 7/24 hizmet. 0544 906 64 50"/>
+<meta name="keywords" content="aydın kombi servisi, aydın klima servisi, aydın elektrik servisi, efeler kombi servisi, kombi bakım aydın, kemal türkmenoğlu, ada ısı teknik"/>
+<meta name="robots" content="index, follow"/>
+<meta name="author" content="Ada Isı Teknik - Kemal Türkmenoğlu"/>
+<meta property="og:title" content="Ada Isı Teknik | Aydın Kombi & Klima & Elektrik Servisi"/>
+<meta property="og:description" content="Aydın'da kombi, klima ve elektrik alanlarında profesyonel teknik servis. 0544 906 64 50"/>
+<meta property="og:url" content="https://www.aydinadateknik.com/"/>
+<meta property="og:type" content="website"/>
+<link rel="canonical" href="https://www.aydinadateknik.com/"/>
 <link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600;700;800&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet"/>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
 <style>
-*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
 :root {
-  --orange: #FF6B35;
-  --orange2: #FF8C42;
-  --blue: #1E88E5;
-  --dark: #0A0D14;
-  --surface: rgba(255,255,255,0.05);
-  --border: rgba(255,255,255,0.09);
-  --text: #F0F4FF;
-  --text2: rgba(240,244,255,0.55);
-  --text3: rgba(240,244,255,0.3);
+  --primary: #0A3D62;      /* Ana renk - kurumsal lacivert */
+  --primary-dark: #05243B;
+  --primary-light: #2C5F8A;
+  --secondary: #3C6382;    /* İkincil mavi */
+  --secondary-light: #5885A8;
+  --accent: #F39C12;       /* CTA / turuncu */
+  --accent-dark: #D68910;
+  --background: #F5F7FA;   /* Açık arka plan */
+  --white: #FFFFFF;
+  --text: #2F3640;         /* Ana metin */
+  --text-light: #5D6E7E;
+  --muted: #7F8C8D;
+  --border: #E0E6ED;
+  --dark-bg: #0A3D62;      /* footer, header koyu */
+  --card-shadow: 0 20px 35px -12px rgba(0,0,0,0.08);
 }
-html, body {
-  width: 100%; max-width: 100vw; overflow-x: hidden;
-  background: var(--dark);
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--background);
   color: var(--text);
-  font-family: 'DM Sans', sans-serif;
+  font-family: 'Outfit', sans-serif;
+  overflow-x: hidden;
 }
-canvas#bg {
-  position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-  display: block; z-index: 0; opacity: 0.5; pointer-events: none;
+
+::-webkit-scrollbar {
+  width: 4px;
 }
-.noise {
-  position: fixed; inset: 0; z-index: 1; pointer-events: none;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
-  background-size: 256px; opacity: 0.35; mix-blend-mode: overlay;
+::-webkit-scrollbar-track {
+  background: #e2e8f0;
 }
-.orb { position: fixed; border-radius: 50%; filter: blur(120px); pointer-events: none; z-index: 1; animation: orbFloat 12s ease-in-out infinite alternate; }
-.orb-1 { width: min(600px,80vw); height: min(600px,80vw); background: radial-gradient(circle, rgba(255,107,53,0.16), transparent 70%); top: -20%; left: -20%; animation-delay: 0s; }
-.orb-2 { width: min(500px,70vw); height: min(500px,70vw); background: radial-gradient(circle, rgba(30,136,229,0.12), transparent 70%); bottom: -15%; right: -15%; animation-delay: -4s; }
-.orb-3 { width: min(400px,65vw); height: min(400px,65vw); background: radial-gradient(circle, rgba(255,140,66,0.09), transparent 70%); top: 40%; left: 50%; transform: translate(-50%,-50%); animation-delay: -8s; }
-@keyframes orbFloat { from { transform: translate(0,0) scale(1); } to { transform: translate(20px,15px) scale(1.05); } }
-.grid-overlay {
-  position: fixed; inset: 0; z-index: 2; pointer-events: none;
-  background-image: linear-gradient(rgba(255,255,255,0.02) 1px,transparent 1px), linear-gradient(90deg,rgba(255,255,255,0.02) 1px,transparent 1px);
-  background-size: 60px 60px;
-  mask-image: radial-gradient(ellipse 80% 70% at 50% 50%, black 0%, transparent 70%);
+::-webkit-scrollbar-thumb {
+  background: var(--accent);
+  border-radius: 2px;
 }
-.scan-line { position: fixed; left:0; right:0; height:1px; background: linear-gradient(to right, transparent, rgba(255,107,53,0.3), rgba(255,107,53,0.6), transparent); pointer-events:none; z-index:3; animation: scan 8s linear infinite; }
-@keyframes scan { 0% { top:-2px; opacity:0; } 5% { opacity:1; } 95% { opacity:1; } 100% { top:100vh; opacity:0; } }
-main { position:relative; z-index:10; min-height:100vh; width:100%; max-width:100vw; display:flex; flex-direction:column; align-items:center; justify-content:center; padding:40px 20px; text-align:center; overflow-x:hidden; box-sizing:border-box; }
-.logo-wrap { display:flex; align-items:center; justify-content:center; gap:12px; margin-bottom:36px; opacity:0; transform:translateY(-20px); animation:fadeDown 0.8s cubic-bezier(0.22,1,0.36,1) 0.1s forwards; flex-wrap:wrap; }
-.logo-mark { width:46px; height:46px; background: linear-gradient(135deg, var(--orange), var(--orange2)); border-radius:14px; display:flex; align-items:center; justify-content:center; font-family:'Syne',sans-serif; font-weight:800; font-size:0.8rem; color:#fff; box-shadow:0 0 28px rgba(255,107,53,0.35); }
-.logo-icon { font-size:1.1rem; }
-.logo-name { font-family:'Syne',sans-serif; font-weight:800; font-size:1.25rem; color:var(--text); letter-spacing:-0.02em; line-height:1.1; }
-.logo-name span { color:var(--orange); }
-.logo-sub { font-size:0.62rem; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; margin-top:1px; }
-.badge { display:inline-flex; align-items:center; gap:8px; padding:6px 16px; border:1px solid var(--border); border-radius:50px; font-size:0.7rem; font-weight:500; color:var(--text2); letter-spacing:0.06em; text-transform:uppercase; background:var(--surface); backdrop-filter:blur(12px); margin-bottom:26px; opacity:0; animation:fadeUp 0.8s cubic-bezier(0.22,1,0.36,1) 0.25s forwards; white-space:nowrap; }
-.badge-dot { width:6px; height:6px; background:#FF6B35; border-radius:50%; animation:pulse-dot 2.2s ease-in-out infinite; flex-shrink:0; }
-@keyframes pulse-dot { 0%,100% { opacity:1; box-shadow:0 0 0 0 rgba(255,107,53,0.5); } 50% { opacity:0.5; box-shadow:0 0 0 5px rgba(255,107,53,0); } }
-.heading { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(2rem,8vw,5.5rem); line-height:1.05; letter-spacing:-0.03em; margin-bottom:18px; width:100%; opacity:0; animation:fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.35s forwards; }
-.heading .line1 { display:block; color:var(--text); }
-.heading .line2 { display:block; background:linear-gradient(120deg, var(--orange) 0%, #FFB347 45%, var(--blue) 100%); -webkit-background-clip:text; background-clip:text; color:transparent; animation:shimmer 4s linear infinite; background-size:200%; }
-.heading .line3 { display:block; color:rgba(240,244,255,0.25); font-size:clamp(0.6rem,2.5vw,0.8rem); font-weight:600; letter-spacing:0.12em; text-transform:uppercase; margin-top:14px; font-family:'DM Sans',sans-serif; }
-@keyframes shimmer { 0% { background-position:0% center; } 100% { background-position:200% center; } }
-.sub { font-size:clamp(0.82rem,3.5vw,0.95rem); color:var(--text2); font-weight:300; max-width:480px; width:90%; line-height:1.65; margin-bottom:32px; opacity:0; animation:fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.45s forwards; padding:0 8px; }
 
-/* COUNTDOWN */
-.countdown-wrap { display:flex; align-items:center; gap:6px; margin-bottom:40px; opacity:0; animation:fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.5s forwards; flex-wrap:wrap; justify-content:center; }
-.countdown-item { display:flex; flex-direction:column; align-items:center; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:14px 18px 10px; min-width:72px; backdrop-filter:blur(12px); }
-.countdown-num { font-family:'Syne',sans-serif; font-weight:800; font-size:clamp(1.6rem,5vw,2.4rem); line-height:1; color:var(--orange); letter-spacing:-0.03em; }
-.countdown-label { font-size:0.58rem; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; margin-top:5px; font-weight:500; }
-.countdown-sep { font-family:'Syne',sans-serif; font-size:1.8rem; color:var(--orange); font-weight:800; opacity:0.5; margin-top:-8px; animation:blink 1s step-end infinite; }
-@keyframes blink { 0%,100% { opacity:0.5; } 50% { opacity:0.1; } }
-.countdown-expired { font-family:'Syne',sans-serif; font-size:1.1rem; color:var(--orange); font-weight:700; letter-spacing:-0.01em; }
+/* NAVIGATION */
+nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 18px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  transition: all 0.4s;
+  background: transparent;
+}
 
-/* SERVICES */
-.services { display:flex; gap:10px; flex-wrap:wrap; justify-content:center; margin-bottom:36px; opacity:0; animation:fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.52s forwards; max-width:520px; }
-.svc-chip { display:inline-flex; align-items:center; gap:7px; padding:7px 14px; background:var(--surface); border:1px solid var(--border); border-radius:50px; font-size:0.72rem; color:var(--text2); font-weight:500; letter-spacing:0.03em; backdrop-filter:blur(10px); }
-.svc-chip i { color:var(--orange); font-size:0.75rem; }
+nav.scrolled {
+  background: rgba(10, 61, 98, 0.98);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 12px 40px;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+}
 
-/* ACTIONS */
-.actions { display:flex; align-items:center; justify-content:center; gap:12px; flex-wrap:wrap; width:100%; max-width:500px; margin:0 auto 36px; opacity:0; animation:fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.57s forwards; padding:0 8px; }
-.btn { display:inline-flex; align-items:center; justify-content:center; gap:9px; padding:13px 22px; border-radius:14px; font-family:'DM Sans',sans-serif; font-size:0.85rem; font-weight:500; text-decoration:none; transition:transform 0.25s cubic-bezier(0.22,1,0.36,1), box-shadow 0.2s; cursor:pointer; border:none; outline:none; letter-spacing:-0.01em; white-space:nowrap; }
-.btn-wa { background:linear-gradient(135deg,#25D366,#128C7E); color:#fff; box-shadow:0 4px 20px rgba(37,211,102,0.25); }
-.btn-wa:hover { transform:translateY(-3px) scale(1.02); box-shadow:0 14px 32px rgba(37,211,102,0.35); }
-.btn-call { background:linear-gradient(135deg,var(--orange),var(--orange2)); color:#fff; box-shadow:0 4px 20px rgba(255,107,53,0.28); }
-.btn-call:hover { transform:translateY(-3px) scale(1.02); box-shadow:0 14px 32px rgba(255,107,53,0.4); }
-.btn-call2 { background:var(--surface); border:1px solid var(--border); color:var(--text); backdrop-filter:blur(12px); }
-.btn-call2:hover { transform:translateY(-3px) scale(1.02); border-color:rgba(255,107,53,0.5); background:rgba(255,107,53,0.08); }
-@media (max-width:500px) { .btn { white-space:normal; padding:12px 16px; font-size:0.78rem; flex:1 1 auto; min-width:130px; } }
+.nav-logo {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  text-decoration: none;
+}
 
-/* ADDRESS */
-.address-card { background:var(--surface); border:1px solid var(--border); border-radius:16px; padding:16px 22px; max-width:480px; width:90%; text-align:left; margin-bottom:16px; opacity:0; animation:fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.62s forwards; backdrop-filter:blur(12px); }
-.address-row { display:flex; align-items:flex-start; gap:10px; font-size:0.8rem; color:var(--text2); line-height:1.55; margin-bottom:8px; }
-.address-row:last-child { margin-bottom:0; }
-.address-row i { color:var(--orange); font-size:0.8rem; margin-top:2px; flex-shrink:0; }
+.nav-logo-icon {
+  width: 42px;
+  height: 42px;
+  background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--white);
+}
 
-/* DISTRICTS */
-.districts { max-width:480px; width:90%; margin-bottom:36px; opacity:0; animation:fadeUp 0.9s cubic-bezier(0.22,1,0.36,1) 0.67s forwards; }
-.districts-title { font-size:0.65rem; color:var(--text3); letter-spacing:0.1em; text-transform:uppercase; margin-bottom:10px; font-weight:500; }
-.district-tags { display:flex; flex-wrap:wrap; gap:6px; justify-content:center; }
-.district-tag { font-size:0.68rem; color:var(--text3); background:rgba(255,255,255,0.04); border:1px solid rgba(255,255,255,0.07); border-radius:50px; padding:4px 10px; }
+.nav-logo-text {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.5rem;
+  letter-spacing: 0.05em;
+  color: var(--white);
+}
 
-.corner-tl, .corner-br { position:fixed; font-size:0.6rem; color:var(--text3); letter-spacing:0.08em; text-transform:uppercase; z-index:20; font-family:'DM Sans',sans-serif; opacity:0; animation:fadeIn 1s 0.8s forwards; pointer-events:none; }
-.corner-tl { top:16px; left:18px; }
-.corner-br { bottom:16px; right:18px; text-align:right; line-height:1.2; }
-@media (max-width:550px) { .corner-tl { font-size:0.5rem; top:12px; left:12px; } .corner-br { font-size:0.5rem; bottom:12px; right:12px; } }
-@keyframes fadeUp { from { opacity:0; transform:translateY(24px); } to { opacity:1; transform:translateY(0); } }
-@keyframes fadeDown { from { opacity:0; transform:translateY(-15px); } to { opacity:1; transform:translateY(0); } }
-@keyframes fadeIn { from { opacity:0; } to { opacity:1; } }
-.cursor-dot, .cursor-ring { position:fixed; pointer-events:none; z-index:9999; transform:translate(-50%,-50%); will-change:left,top; }
-.cursor-dot { width:8px; height:8px; background:var(--orange); border-radius:50%; mix-blend-mode:screen; }
-.cursor-ring { width:32px; height:32px; border:1px solid rgba(255,107,53,0.4); border-radius:50%; transition:width 0.2s,height 0.2s; }
-@media (hover:none) and (pointer:coarse) { .cursor-dot, .cursor-ring { display:none; } }
-img, svg, iframe, .btn, .heading, .sub, .actions { max-width:100%; }
-body { overflow-x:hidden; }
+.nav-logo-text span {
+  color: var(--accent);
+}
+
+.nav-links {
+  display: flex;
+  gap: 32px;
+  list-style: none;
+}
+
+.nav-links a {
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  font-size: 0.85rem;
+  font-weight: 500;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  transition: color 0.2s;
+}
+
+.nav-links a:hover {
+  color: var(--accent);
+}
+
+.nav-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 22px;
+  background: var(--accent);
+  border-radius: 50px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: var(--white);
+  text-decoration: none;
+  transition: all 0.2s;
+  box-shadow: 0 4px 12px rgba(243, 156, 18, 0.3);
+}
+
+.nav-cta:hover {
+  background: var(--accent-dark);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(243, 156, 18, 0.4);
+}
+
+@media(max-width:900px) {
+  .nav-links, .nav-cta { display: none; }
+  nav { padding: 16px 20px; }
+  nav.scrolled { padding: 10px 20px; }
+}
+
+/* HERO */
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  overflow: hidden;
+}
+
+.hero-bg {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(ellipse 80% 80% at 80% 50%, rgba(243,156,18,0.12), transparent);
+  pointer-events: none;
+}
+
+.hero-grid {
+  position: absolute;
+  inset: 0;
+  background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+.hero-content {
+  position: relative;
+  z-index: 10;
+  max-width: 1300px;
+  margin: 0 auto;
+  padding: 120px 40px 80px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  width: 100%;
+}
+
+@media(max-width:900px) {
+  .hero-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
+    padding: 100px 20px 60px;
+  }
+  .hero-image-wrap { display: none; }
+}
+
+.hero-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 18px;
+  border: 1px solid rgba(243,156,18,0.6);
+  border-radius: 50px;
+  font-size: 0.72rem;
+  font-weight: 600;
+  color: var(--accent);
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  margin-bottom: 24px;
+  background: rgba(243,156,18,0.12);
+}
+
+.hero-badge i {
+  font-size: 0.65rem;
+  animation: blink 1.5s infinite;
+}
+
+@keyframes blink {
+  0%,100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+
+h1.hero-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3.5rem, 8vw, 7rem);
+  line-height: 0.95;
+  letter-spacing: 0.02em;
+  margin-bottom: 20px;
+  color: var(--white);
+}
+
+h1.hero-title .lf { color: var(--accent); display: block; }
+h1.hero-title .li { color: rgba(255,255,255,0.9); display: block; }
+h1.hero-title .lw { color: var(--white); display: block; }
+
+.hero-sub {
+  font-size: 1rem;
+  color: rgba(255,255,255,0.75);
+  line-height: 1.7;
+  max-width: 480px;
+  margin-bottom: 36px;
+}
+
+.hero-actions {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.btn-p {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: var(--accent);
+  border-radius: 14px;
+  color: var(--white);
+  font-weight: 700;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.25s;
+  box-shadow: 0 8px 20px rgba(243,156,18,0.4);
+}
+
+.btn-p:hover {
+  background: var(--accent-dark);
+  transform: translateY(-3px);
+  box-shadow: 0 12px 28px rgba(243,156,18,0.5);
+}
+
+.btn-s {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 15px 30px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 14px;
+  color: var(--white);
+  font-weight: 600;
+  font-size: 0.95rem;
+  text-decoration: none;
+  transition: all 0.25s;
+  backdrop-filter: blur(8px);
+}
+
+.btn-s:hover {
+  background: rgba(255,255,255,0.2);
+  border-color: var(--accent);
+}
+
+.hero-stats {
+  display: flex;
+  gap: 32px;
+  margin-top: 40px;
+  padding-top: 36px;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  flex-wrap: wrap;
+}
+
+.hs-num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 2.2rem;
+  line-height: 1;
+  color: var(--accent);
+}
+
+.hs-lbl {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.6);
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  margin-top: 4px;
+}
+
+/* GENEL BÖLÜMLER */
+section {
+  padding: 100px 40px;
+}
+
+@media(max-width:900px) {
+  section { padding: 70px 20px; }
+}
+
+.container {
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.sec-label {
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.sec-label::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(90deg, var(--accent), transparent);
+}
+
+h2.sec-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  line-height: 1;
+  letter-spacing: 0.02em;
+  margin-bottom: 16px;
+  color: var(--text);
+}
+
+h2.sec-title span {
+  color: var(--accent);
+}
+
+.sec-sub {
+  font-size: 1rem;
+  color: var(--text-light);
+  line-height: 1.7;
+  max-width: 560px;
+}
+
+/* HİZMET KARTLARI */
+.svc-sec {
+  background: var(--white);
+  border-radius: 0;
+}
+
+.svc-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 60px;
+}
+
+@media(max-width:900px) {
+  .svc-grid { grid-template-columns: 1fr; gap: 24px; }
+}
+
+.svc-card {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 40px 32px;
+  position: relative;
+  transition: all 0.3s;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+}
+
+.svc-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 30px 45px -15px rgba(0,0,0,0.12);
+  border-color: var(--accent);
+}
+
+.svc-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+  margin-bottom: 24px;
+}
+
+.svc-icon.fire { background: rgba(243,156,18,0.12); color: var(--accent); }
+.svc-icon.ice { background: rgba(60,99,130,0.12); color: var(--secondary); }
+.svc-icon.elec { background: rgba(10,61,98,0.12); color: var(--primary); }
+
+.svc-card h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 14px;
+  color: var(--primary);
+}
+
+.svc-card p {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+.svc-card ul {
+  margin-top: 20px;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.svc-card ul li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: var(--text);
+}
+
+.svc-card ul li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  background: var(--accent);
+}
+
+/* BANNER (kartvizit) */
+.banner-sec {
+  padding: 0;
+  position: relative;
+  overflow: hidden;
+}
+
+.banner-img {
+  width: 100%;
+  display: block;
+  max-height: 560px;
+  object-fit: cover;
+  object-position: center;
+}
+
+.banner-ov {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to right, rgba(10,61,98,0.85), rgba(10,61,98,0.5));
+}
+
+.banner-cnt {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  width: 90%;
+  max-width: 800px;
+}
+
+.banner-cnt h2 {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(3rem, 7vw, 5.5rem);
+  line-height: 1;
+  color: var(--white);
+  text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+
+.banner-cnt p {
+  font-size: 1.1rem;
+  color: rgba(255,255,255,0.85);
+  margin-top: 14px;
+}
+
+.banner-phones {
+  display: flex;
+  gap: 16px;
+  justify-content: center;
+  margin-top: 28px;
+  flex-wrap: wrap;
+}
+
+.bp {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  padding: 14px 28px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.3);
+  border-radius: 50px;
+  color: var(--white);
+  font-size: 1rem;
+  font-weight: 700;
+  text-decoration: none;
+  backdrop-filter: blur(12px);
+  transition: all 0.25s;
+}
+
+.bp:hover {
+  background: var(--accent);
+  border-color: var(--accent);
+}
+
+.bp.wa {
+  background: rgba(37,211,102,0.2);
+  border-color: rgba(37,211,102,0.5);
+}
+
+.bp.wa:hover {
+  background: #25D366;
+  border-color: #25D366;
+}
+
+/* HAKKIMIZDA */
+.about-sec {
+  background: var(--white);
+}
+
+.about-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+  align-items: center;
+  margin-top: 60px;
+}
+
+@media(max-width:900px) {
+  .about-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+.about-imgs {
+  position: relative;
+  height: 460px;
+}
+
+.ai1 {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 75%;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.ai1 img {
+  width: 100%;
+  height: 320px;
+  object-fit: cover;
+}
+
+.ai2 {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  width: 55%;
+  border-radius: 24px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  border: 3px solid var(--white);
+}
+
+.ai2 img {
+  width: 100%;
+  height: 220px;
+  object-fit: cover;
+}
+
+.about-badge-ov {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: var(--accent);
+  border-radius: 20px;
+  padding: 20px 24px;
+  text-align: center;
+  box-shadow: 0 20px 30px rgba(0,0,0,0.2);
+  z-index: 10;
+}
+
+.about-badge-ov .num {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 3rem;
+  line-height: 1;
+  color: var(--white);
+}
+
+.about-badge-ov .txt {
+  font-size: 0.72rem;
+  color: rgba(255,255,255,0.9);
+  text-transform: uppercase;
+}
+
+.about-text p {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  line-height: 1.8;
+  margin-bottom: 16px;
+}
+
+.about-feats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.af {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 0.84rem;
+  color: var(--text);
+}
+
+.af i {
+  color: var(--accent);
+  width: 20px;
+}
+
+/* MAKALE ALANI */
+.art-sec {
+  background: var(--background);
+}
+
+.art-hero-img {
+  width: 100%;
+  border-radius: 24px;
+  overflow: hidden;
+  margin-bottom: 50px;
+  box-shadow: var(--card-shadow);
+}
+
+.art-hero-img img {
+  width: 100%;
+  max-height: 420px;
+  object-fit: cover;
+}
+
+.art-grid {
+  display: grid;
+  grid-template-columns: 2fr 1fr;
+  gap: 60px;
+  align-items: start;
+}
+
+@media(max-width:900px) {
+  .art-grid { grid-template-columns: 1fr; gap: 40px; }
+}
+
+.art-body h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin: 28px 0 12px;
+  color: var(--primary);
+}
+
+.art-body h4 {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin: 20px 0 10px;
+  color: var(--secondary);
+}
+
+.art-body p {
+  font-size: 0.94rem;
+  color: var(--text-light);
+  line-height: 1.85;
+  margin-bottom: 14px;
+}
+
+.art-body ul {
+  margin: 12px 0 18px;
+  list-style: none;
+}
+
+.art-body ul li {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  font-size: 0.88rem;
+  color: var(--text);
+  margin-bottom: 8px;
+}
+
+.art-body ul li i {
+  color: var(--accent);
+  margin-top: 3px;
+}
+
+.art-sidebar {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  position: sticky;
+  top: 100px;
+}
+
+.sb-card {
+  background: var(--white);
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+}
+
+.sb-hdr {
+  padding: 18px 20px;
+  background: rgba(10,61,98,0.04);
+  border-bottom: 1px solid var(--border);
+}
+
+.sb-hdr h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.sb-body {
+  padding: 20px;
+}
+
+.sb-body p {
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.sb-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.sb-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 18px;
+  border-radius: 14px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  text-decoration: none;
+  transition: all 0.2s;
+}
+
+.sb-btn.f {
+  background: var(--accent);
+  color: var(--white);
+}
+
+.sb-btn.g {
+  background: var(--background);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.sb-btn:hover {
+  transform: translateX(4px);
+}
+
+/* BÖLGELER */
+.reg-sec {
+  background: var(--white);
+}
+
+.reg-wrap {
+  background: var(--background);
+  border-radius: 28px;
+  padding: 50px;
+  margin-top: 50px;
+  border: 1px solid var(--border);
+}
+
+.reg-intro {
+  font-size: 0.95rem;
+  color: var(--text-light);
+  margin-bottom: 36px;
+}
+
+.reg-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(160px, 1fr));
+  gap: 16px;
+}
+
+.reg-item {
+  background: var(--white);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  padding: 14px 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  transition: all 0.2s;
+}
+
+.reg-item:hover {
+  border-color: var(--accent);
+  transform: translateY(-2px);
+}
+
+.reg-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.reg-name {
+  font-weight: 600;
+  font-size: 0.85rem;
+}
+
+.reg-dist {
+  font-size: 0.7rem;
+  color: var(--muted);
+}
+
+.reg-art {
+  margin-top: 48px;
+}
+
+.reg-art h3 {
+  font-size: 1.3rem;
+  font-weight: 700;
+  margin-bottom: 16px;
+  color: var(--primary);
+}
+
+.reg-art p {
+  font-size: 0.92rem;
+  color: var(--text-light);
+  line-height: 1.85;
+  margin-bottom: 14px;
+}
+
+/* NEDEN BİZ */
+.why-sec {
+  background: var(--background);
+}
+
+.why-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+  margin-top: 60px;
+}
+
+@media(max-width:1100px) { .why-grid { grid-template-columns: repeat(2,1fr); } }
+@media(max-width:600px) { .why-grid { grid-template-columns: 1fr; } }
+
+.why-card {
+  background: var(--white);
+  border-radius: 24px;
+  padding: 40px 28px;
+  text-align: center;
+  transition: all 0.3s;
+  box-shadow: var(--card-shadow);
+  border: 1px solid var(--border);
+}
+
+.why-card:hover {
+  transform: translateY(-6px);
+  border-color: var(--accent);
+}
+
+.why-icon {
+  width: 70px;
+  height: 70px;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6rem;
+  margin: 0 auto 20px;
+  background: rgba(243,156,18,0.12);
+  color: var(--accent);
+}
+
+.why-card h3 {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 12px;
+  color: var(--primary);
+}
+
+.why-card p {
+  font-size: 0.84rem;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+/* TESTIMONIALS */
+.test-sec {
+  background: var(--white);
+}
+
+.test-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  margin-top: 60px;
+}
+
+@media(max-width:900px) { .test-grid { grid-template-columns: 1fr; } }
+
+.test-card {
+  background: var(--background);
+  border-radius: 24px;
+  padding: 32px;
+  border: 1px solid var(--border);
+  position: relative;
+}
+
+.test-card::before {
+  content: '"';
+  position: absolute;
+  top: 20px;
+  right: 28px;
+  font-family: 'DM Serif Display', serif;
+  font-size: 5rem;
+  line-height: 1;
+  color: rgba(243,156,18,0.12);
+}
+
+.stars i {
+  color: var(--accent);
+  font-size: 0.85rem;
+}
+
+.test-card p {
+  font-size: 0.9rem;
+  color: var(--text-light);
+  line-height: 1.75;
+  margin: 16px 0 20px;
+}
+
+.test-author {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.test-av {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  background: var(--primary);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  color: white;
+}
+
+.test-name {
+  font-weight: 700;
+  font-size: 0.9rem;
+}
+
+.test-loc {
+  font-size: 0.75rem;
+  color: var(--muted);
+}
+
+/* İLETİŞİM */
+.con-sec {
+  background: var(--background);
+}
+
+.con-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 60px;
+  margin-top: 60px;
+}
+
+@media(max-width:900px) { .con-grid { grid-template-columns: 1fr; } }
+
+.con-img-wrap {
+  border-radius: 28px;
+  overflow: hidden;
+  box-shadow: var(--card-shadow);
+}
+
+.con-img-wrap img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+}
+
+.con-info-list {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.cii {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+}
+
+.cii-icon {
+  width: 48px;
+  height: 48px;
+  background: rgba(10,61,98,0.08);
+  border-radius: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  color: var(--accent);
+}
+
+.cii-label {
+  font-size: 0.7rem;
+  color: var(--muted);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: 4px;
+}
+
+.cii-value {
+  font-size: 1rem;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.cii-sub {
+  font-size: 0.8rem;
+  color: var(--text-light);
+}
+
+.con-btns {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  margin-top: 28px;
+}
+
+.con-btn {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 22px;
+  border-radius: 18px;
+  text-decoration: none;
+  font-weight: 600;
+  transition: all 0.2s;
+}
+
+.con-btn.f {
+  background: var(--accent);
+  color: var(--white);
+}
+
+.con-btn.wa {
+  background: #25D366;
+  color: white;
+}
+
+.con-btn.gh {
+  background: var(--white);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+
+.con-btn:hover {
+  transform: translateY(-3px);
+  filter: brightness(1.02);
+}
+
+/* FAQ */
+.faq-sec {
+  background: var(--white);
+}
+
+.faq-list {
+  max-width: 800px;
+  margin: 50px auto 0;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.faq-item {
+  background: var(--background);
+  border-radius: 20px;
+  border: 1px solid var(--border);
+  overflow: hidden;
+}
+
+.faq-q {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 28px;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--primary);
+  background: none;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  gap: 16px;
+}
+
+.faq-q i {
+  color: var(--accent);
+  transition: transform 0.3s;
+}
+
+.faq-a {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+  padding: 0 28px;
+}
+
+.faq-a.open {
+  max-height: 200px;
+  padding: 0 28px 22px;
+}
+
+.faq-a p {
+  font-size: 0.88rem;
+  color: var(--text-light);
+  line-height: 1.7;
+}
+
+/* FOOTER */
+footer {
+  background: var(--primary);
+  color: rgba(255,255,255,0.8);
+  padding: 60px 40px 30px;
+}
+
+.ft-grid {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: grid;
+  grid-template-columns: 2fr 1fr 1fr 1fr;
+  gap: 50px;
+  margin-bottom: 50px;
+}
+
+@media(max-width:900px) { .ft-grid { grid-template-columns: 1fr 1fr; gap: 30px; } }
+@media(max-width:600px) { .ft-grid { grid-template-columns: 1fr; } }
+
+.ft-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 18px;
+  text-decoration: none;
+}
+
+.ft-brand-ico {
+  width: 42px;
+  height: 42px;
+  background: var(--accent);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+}
+
+.ft-brand-nm {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 1.4rem;
+  color: white;
+}
+.ft-brand-nm span { color: var(--accent); }
+
+.ft-desc {
+  font-size: 0.82rem;
+  color: rgba(255,255,255,0.65);
+  line-height: 1.7;
+  margin-bottom: 20px;
+}
+
+.ft-socs {
+  display: flex;
+  gap: 12px;
+}
+
+.ft-soc {
+  width: 36px;
+  height: 36px;
+  background: rgba(255,255,255,0.12);
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  text-decoration: none;
+}
+
+.ft-col h4 {
+  font-size: 0.8rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--accent);
+  margin-bottom: 18px;
+}
+
+.ft-col ul {
+  list-style: none;
+}
+
+.ft-col li, .ft-col li a {
+  font-size: 0.84rem;
+  color: rgba(255,255,255,0.7);
+  text-decoration: none;
+  margin-bottom: 10px;
+  display: block;
+}
+
+.ft-col li a:hover { color: var(--accent); }
+
+.ft-bottom {
+  max-width: 1300px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid rgba(255,255,255,0.15);
+  padding-top: 28px;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.ft-bottom p, .ft-bottom span {
+  font-size: 0.75rem;
+  color: rgba(255,255,255,0.5);
+}
+
+.sticky-cta {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 90;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.st-btn {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 12px 22px;
+  border-radius: 50px;
+  font-weight: 700;
+  text-decoration: none;
+  color: white;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+.st-btn.wa { background: #25D366; }
+.st-btn.call { background: var(--accent); }
+
+@media(max-width:600px) {
+  .st-btn span { display: none; }
+  .st-btn { padding: 14px; border-radius: 50%; width: 52px; height: 52px; justify-content: center; }
+}
+
+/* Animasyon */
+.fi, .fil, .fir { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+.fil { transform: translateX(-30px); }
+.fir { transform: translateX(30px); }
+.fi.v, .fil.v, .fir.v { opacity: 1; transform: translateY(0) translateX(0); }
 </style>
 </head>
 <body>
-<div class="cursor-dot" id="cursorDot"></div>
-<div class="cursor-ring" id="cursorRing"></div>
-<canvas id="bg"></canvas>
-<div class="noise"></div>
-<div class="orb orb-1"></div>
-<div class="orb orb-2"></div>
-<div class="orb orb-3"></div>
-<div class="grid-overlay"></div>
-<div class="scan-line"></div>
-<div class="corner-tl">Aydın · Efeler · 2026</div>
-<div class="corner-br">Klima & Kombi & Elektrik<br>Ada Isı Teknik</div>
 
-<main>
-  <div class="logo-wrap">
-    <div class="logo-mark"><i class="fas fa-fire-flame-curved logo-icon"></i></div>
-    <div>
-      <div class="logo-name">Ada Isı <span>Teknik</span></div>
-      <div class="logo-sub">Klima · Kombi · Elektrik</div>
+<div class="sticky-cta">
+  <a href="https://wa.me/905449066450" class="st-btn wa" target="_blank"><i class="fab fa-whatsapp"></i><span>WhatsApp</span></a>
+  <a href="tel:05449066450" class="st-btn call"><i class="fas fa-phone-alt"></i><span>0544 906 64 50</span></a>
+</div>
+
+<nav id="mainNav">
+  <a href="#" class="nav-logo"><div class="nav-logo-icon"><i class="fas fa-fire-flame-curved"></i></div><span class="nav-logo-text">Ada Isı <span>Teknik</span></span></a>
+  <ul class="nav-links"><li><a href="#hizmetler">Hizmetler</a></li><li><a href="#kombi">Kombi</a></li><li><a href="#klima">Klima</a></li><li><a href="#bolgeler">Bölgeler</a></li><li><a href="#iletisim">İletişim</a></li></ul>
+  <a href="tel:05449066450" class="nav-cta"><i class="fas fa-phone-alt"></i> Hemen Ara</a>
+</nav>
+
+<!-- HERO -->
+<section class="hero" id="hero">
+  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="hero-content">
+    <div><div class="hero-badge"><i class="fas fa-circle"></i> Aydın'ın Lider Teknik Servisi</div>
+      <h1 class="hero-title"><span class="lf">Kombi</span><span class="li">Klima</span><span class="lw">Elektrik</span></h1>
+      <p class="hero-sub">Aydın ve tüm ilçelerinde profesyonel kombi servisi, klima kurulum & bakım ve elektrik tesisatı. Kemal Türkmenoğlu liderliğinde 15 yılı aşkın deneyim.</p>
+      <div class="hero-actions"><a href="tel:05449066450" class="btn-p"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="https://wa.me/905449066450" class="btn-s" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div>
+      <div class="hero-stats"><div><div class="hs-num">15+</div><div class="hs-lbl">Yıl Deneyim</div></div><div><div class="hs-num">5000+</div><div class="hs-lbl">Mutlu Müşteri</div></div><div><div class="hs-num">11</div><div class="hs-lbl">Hizmet İlçesi</div></div><div><div class="hs-num">7/24</div><div class="hs-lbl">Teknik Destek</div></div></div>
     </div>
+    <div class="hero-image-wrap fir"><div class="hero-img-main"><img src="https://www.aydinadateknik.com/images/aydinkombiservis.webp" alt="Aydın Kombi Servisi Ada Isı Teknik"/></div></div>
   </div>
+</section>
 
-  <div class="badge">
-    <span class="badge-dot"></span>
-    Yakında · Yeni Tasarım Geliyor
-  </div>
+<!-- HİZMETLER -->
+<section class="svc-sec" id="hizmetler"><div class="container"><div class="sec-label fi">Hizmetlerimiz</div><h2 class="sec-title fi">Uzman <span>Teknik</span> Çözümler</h2><p class="sec-sub fi">Aydın genelinde kombi, klima ve elektrik alanlarında kapsamlı teknik servis.</p>
+<div class="svc-grid"><div class="svc-card fi"><div class="svc-icon fire"><i class="fas fa-fire-flame-curved"></i></div><h3>Kombi Servisi & Bakım</h3><p>Kış öncesi bakım, arıza tespit, orijinal parça.</p><ul><li>Kombi arıza tespiti</li><li>Periyodik bakım</li><li>Baca temizliği</li><li>Baymak, Buderus, Vaillant</li></ul></div>
+<div class="svc-card fi"><div class="svc-icon ice"><i class="fas fa-snowflake"></i></div><h3>Klima Servisi & Kurulum</h3><p>Split, inverter, kaset tipi. Gaz dolum, bakım, montaj.</p><ul><li>Kurulum ve montaj</li><li>Gaz dolumu R32/R410A</li><li>Yıllık bakım</li><li>Daikin, Mitsubishi, Bosch</li></ul></div>
+<div class="svc-card fi"><div class="svc-icon elec"><i class="fas fa-bolt"></i></div><h3>Elektrik Tesisatı & Onarım</h3><p>Konut, iş yeri, sanayi. Güvenli tesisat çözümleri.</p><ul><li>Tesisat döşeme</li><li>Sigorta panosu</li><li>Topraklama</li><li>Arıza tespiti</li></ul></div></div></div></section>
 
-  <h1 class="heading">
-    <span class="line1">Yenileniyoruz.</span>
-    <span class="line2">Güçleniyoruz.</span>
-    <span class="line3">Aydın'ın Güvenilir Teknik Servisi</span>
-  </h1>
+<!-- BANNER KARTVİZİT -->
+<section class="banner-sec"><img src="https://www.aydinadateknik.com/images/kombiciwebp" alt="Ada Isı Teknik" class="banner-img"/><div class="banner-ov"></div><div class="banner-cnt"><h2>Ada Isı Teknik</h2><p>Kemal Türkmenoğlu · Güvenilir Servis</p><div class="banner-phones"><a href="tel:05449066450" class="bp"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="tel:05449086450" class="bp"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449066450" class="bp wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></div></section>
 
-  <p class="sub">Daha modern, daha hızlı bir deneyim için sahne arkasında çalışıyoruz. Klima, kombi ve elektrik hizmetlerimiz için bize ulaşın.</p>
+<!-- HAKKIMIZDA -->
+<section class="about-sec"><div class="container"><div class="sec-label fi">Hakkımızda</div><div class="about-grid"><div class="about-imgs fil"><div class="ai1"><img src="https://www.aydinadateknik.com/images/aydinkombiservis2.webp" alt="Ada Isı Teknik Ekibi"/></div><div class="ai2"><img src="https://www.aydinadateknik.com/images/aydinkombiservis4.webp" alt="Aydın Kombi Bakım"/></div><div class="about-badge-ov"><div class="num">15+</div><div class="txt">Yıl Deneyim</div></div></div><div class="about-text fir"><div class="sec-label">Kim Biz?</div><h2 class="sec-title">Kemal <span>Türkmenoğlu</span></h2><p>Ada Isı Teknik olarak Aydın'da 15 yılı aşkın süredir kombi, klima ve elektrik servisi vermekteyiz. Zafer Mahallesi, Egemenlik Bulvarı No:3/F Efeler adresimizden tüm ilçelere hizmet sunuyoruz.</p><div class="about-feats"><div class="af"><i class="fas fa-shield-check"></i> İşçilik Garantisi</div><div class="af"><i class="fas fa-bolt"></i> Hızlı Müdahale</div><div class="af"><i class="fas fa-tags"></i> Şeffaf Fiyat</div><div class="af"><i class="fas fa-award"></i> Orijinal Parça</div></div></div></div></div></section>
 
-  <div class="services">
-    <div class="svc-chip"><i class="fas fa-snowflake"></i> Klima Servisi</div>
-    <div class="svc-chip"><i class="fas fa-fire"></i> Kombi Servisi</div>
-    <div class="svc-chip"><i class="fas fa-bolt"></i> Elektrik</div>
-    <div class="svc-chip"><i class="fas fa-tools"></i> Teknik Servis</div>
-  </div>
+<!-- KOMBİ MAKALE -->
+<section class="art-sec" id="kombi"><div class="container"><div class="sec-label fi">Uzmanlık Alanımız</div><h2 class="sec-title fi">Aydın'da <span>Kombi Servisi</span></h2><div class="art-hero-img fi"><img src="https://www.aydinadateknik.com/images/kombi.webp" alt="Kombi Servisi"/></div><div class="art-grid"><div class="art-body fi"><h3>Kombinizin Düzgün Çalışması İçin Periyodik Bakım Şart</h3><p>Yıllık bakım; baca gazı analizi, eşanjör temizliği ve pompa testi ile kombi ömrünü uzatır.</p><h3>En Sık Karşılaşılan Arızalar</h3><ul><li><i class="fas fa-check"></i> Su basıncı düşüklüğü</li><li><i class="fas fa-check"></i> Tutuşmama ve hata kodları</li><li><i class="fas fa-check"></i> Aşırı ısınma</li></ul><h4>Hizmet Verdiğimiz Markalar</h4><p>Baymak, Buderus, Vaillant, Demirdöküm, Bosch, Ariston, Protherm, Eca.</p></div><div class="art-sidebar"><div class="sb-card"><div class="sb-hdr"><h4>Acil Kombi Servisi</h4></div><div class="sb-body"><p>Kombiniz çalışmıyor mu? Hemen arayın.</p><div class="sb-btns"><a href="tel:05449086450" class="sb-btn f"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449066450" class="sb-btn g" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></div></div></div></div></div></section>
 
-  <!-- Countdown -->
-  <div class="countdown-wrap" id="countdownWrap">
-    <div class="countdown-item">
-      <span class="countdown-num" id="cd-h">--</span>
-      <span class="countdown-label">Saat</span>
-    </div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-item">
-      <span class="countdown-num" id="cd-m">--</span>
-      <span class="countdown-label">Dakika</span>
-    </div>
-    <div class="countdown-sep">:</div>
-    <div class="countdown-item">
-      <span class="countdown-num" id="cd-s">--</span>
-      <span class="countdown-label">Saniye</span>
-    </div>
-  </div>
+<!-- KLİMA MAKALE -->
+<section class="art-sec" id="klima"><div class="container"><div class="sec-label fi">Bilgi Merkezi</div><h2 class="sec-title fi">Aydın'da <span>Klima Servisi</span></h2><div class="art-hero-img fi"><img src="https://www.aydinadateknik.com/images/aydinkombiservis.webp" alt="Klima Servisi"/></div><div class="art-grid"><div class="art-body fi"><h3>Yaz ve Kış Konforu İçin Klima Bakımı</h3><p>Yıllık filtre temizliği, gaz kontrolü ve dış ünite bakımı ile verimlilik artar.</p><ul><li><i class="fas fa-check"></i> Filtre temizliği</li><li><i class="fas fa-check"></i> Gaz seviyesi kontrolü</li><li><i class="fas fa-check"></i> Kondens tahliyesi</li></ul><h4>Daikin, Mitsubishi, Samsung, LG, Arçelik</h4></div><div class="art-sidebar"><div class="sb-card"><div class="sb-hdr"><h4>Hızlı Servis</h4></div><div class="sb-body"><p>Arayın, klima arızanıza müdahale edelim.</p><div class="sb-btns"><a href="tel:05449066450" class="sb-btn f"><i class="fas fa-phone-alt"></i> Ara</a></div></div></div></div></div></div></section>
 
-  <div class="actions">
-    <a href="https://wa.me/905449066450" target="_blank" class="btn btn-wa">
-      <i class="fab fa-whatsapp"></i>
-      WhatsApp'tan Yazın
-    </a>
-    <a href="tel:05449066450" class="btn btn-call">
-      <i class="fas fa-phone-alt"></i>
-      0544 906 64 50
-    </a>
-    <a href="tel:05449086450" class="btn btn-call2">
-      <i class="fas fa-phone-alt"></i>
-      0544 908 64 50
-    </a>
-  </div>
+<!-- BÖLGELER -->
+<section class="reg-sec" id="bolgeler"><div class="container"><div class="sec-label fi">Hizmet Bölgeleri</div><h2 class="sec-title fi">Tüm <span>Aydın</span>'a Hizmet</h2><div class="reg-wrap fi"><div class="reg-grid"><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Efeler</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Köşk</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">İncirliova</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Germencik</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Sultanhisar</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Çine</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Karpuzlu</div></div></div></div></div></div></section>
 
-  <div class="address-card">
-    <div class="address-row">
-      <i class="fas fa-user"></i>
-      <span>Kemal Türkmenoğlu</span>
-    </div>
-    <div class="address-row">
-      <i class="fas fa-map-marker-alt"></i>
-      <span>Zafer Mahallesi, Egemenlik Bulvarı No:3/F, Efeler / Aydın</span>
-    </div>
-  </div>
+<!-- NEDEN BİZ -->
+<section class="why-sec"><div class="container"><div class="sec-label fi">Neden Ada Isı Teknik?</div><h2 class="sec-title fi">Farkımız <span>Kalitemizde</span></h2><div class="why-grid"><div class="why-card fi"><div class="why-icon"><i class="fas fa-clock"></i></div><h3>Hızlı Müdahale</h3><p>Aynı gün servis, acil durumlarda 1-3 saat içinde yanınızdayız.</p></div><div class="why-card fi"><div class="why-icon"><i class="fas fa-shield-halved"></i></div><h3>Garantili İşçilik</h3><p>Tüm işlemlerde işçilik garantisi.</p></div><div class="why-card fi"><div class="why-icon"><i class="fas fa-box"></i></div><h3>Orijinal Parça</h3><p>Sertifikalı yedek parça kullanımı.</p></div><div class="why-card fi"><div class="why-icon"><i class="fas fa-coins"></i></div><h3>Şeffaf Fiyat</h3><p>Keşif sonrası net fiyat, gizli maliyet yok.</p></div></div></div></section>
 
-  <div class="districts">
-    <div class="districts-title">Hizmet Verilen İlçeler</div>
-    <div class="district-tags">
-      <span class="district-tag">Merkez</span>
-      <span class="district-tag">Efeler</span>
-      <span class="district-tag">Köşk</span>
-      <span class="district-tag">Umurlu</span>
-      <span class="district-tag">Sultanhisar</span>
-      <span class="district-tag">Yenipazar</span>
-      <span class="district-tag">İncirliova</span>
-      <span class="district-tag">Germencik</span>
-      <span class="district-tag">Ortaklar</span>
-      <span class="district-tag">Çine</span>
-      <span class="district-tag">Karpuzlu</span>
-    </div>
-  </div>
-</main>
+<!-- TESTIMONIALS -->
+<section class="test-sec"><div class="container"><div class="sec-label fi">Müşteri Görüşleri</div><h2 class="sec-title fi">Müşterilerimiz <span>Ne Diyor?</span></h2><div class="test-grid"><div class="test-card fi"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>Kombim kışın çalışmayı bırakmıştı. Kemal Bey çok hızlı çözüm buldu. Teşekkürler.</p><div class="test-author"><div class="test-av">AY</div><div><div class="test-name">Ayşe Y.</div><div class="test-loc">Efeler</div></div></div></div><div class="test-card fi"><div class="stars"><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i></div><p>Klima kurulumu çok temiz yapıldı. Yıllardır bakımını yaptırıyorum.</p><div class="test-author"><div class="test-av">MK</div><div><div class="test-name">Mehmet K.</div><div class="test-loc">İncirliova</div></div></div></div></div></div></section>
+
+<!-- İLETİŞİM -->
+<section class="con-sec" id="iletisim"><div class="container"><div class="sec-label fi">İletişim</div><h2 class="sec-title fi">Bize <span>Ulaşın</span></h2><div class="con-grid"><div class="fil"><div class="con-img-wrap"><img src="https://www.aydinadateknik.com/images/aydin-ada-teknik.webp" alt="Ada Isı Teknik Dükkan"/></div></div><div class="fir"><div class="con-info-list"><div class="cii"><div class="cii-icon"><i class="fas fa-user"></i></div><div><div class="cii-label">Yetkili</div><div class="cii-value">Kemal Türkmenoğlu</div></div></div><div class="cii"><div class="cii-icon"><i class="fas fa-map-marker-alt"></i></div><div><div class="cii-label">Adres</div><div class="cii-value">Zafer Mah. Egemenlik Bulvarı No:3/F, Efeler/Aydın</div></div></div><div class="cii"><div class="cii-icon"><i class="fas fa-phone-alt"></i></div><div><div class="cii-label">Telefon</div><div class="cii-value">0544 906 64 50</div><div class="cii-sub">0544 908 64 50</div></div></div></div><div class="con-btns"><a href="tel:05449066450" class="con-btn f"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="https://wa.me/905449066450" class="con-btn wa" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp'tan Yazın</a></div></div></div></div></section>
+
+<footer><div class="ft-grid"><div><a href="#" class="ft-brand"><div class="ft-brand-ico"><i class="fas fa-fire-flame-curved"></i></div><span class="ft-brand-nm">Ada Isı <span>Teknik</span></span></a><p class="ft-desc">Aydın'ın güvenilir kombi, klima ve elektrik teknik servisi.</p></div><div class="ft-col"><h4>Hizmetler</h4><ul><li><a href="#kombi">Kombi Servisi</a></li><li><a href="#klima">Klima Bakımı</a></li><li><a href="#elektrik">Elektrik Tesisatı</a></li></ul></div><div class="ft-col"><h4>Bölgeler</h4><ul><li>Efeler</li><li>Köşk</li><li>İncirliova</li><li>Germencik</li></ul></div><div class="ft-col"><h4>İletişim</h4><ul><li><a href="tel:05449066450">0544 906 64 50</a></li><li>Zafer Mah. No:3/F</li></ul></div></div><div class="ft-bottom"><p>© 2025 Ada Isı Teknik · Kemal Türkmenoğlu</p><span>Ada Isı Teknik | Aydın Kombi Klima Elektrik</span></div></footer>
 
 <script>
-/* Cursor */
-const dot = document.getElementById('cursorDot');
-const ring = document.getElementById('cursorRing');
-if (dot && ring && window.matchMedia('(hover: hover)').matches) {
-  let mx=0,my=0,rx=0,ry=0;
-  window.addEventListener('mousemove', e => {
-    mx=e.clientX; my=e.clientY;
-    dot.style.left=mx+'px'; dot.style.top=my+'px';
-  });
-  function animRing(){ rx+=(mx-rx)*0.1; ry+=(my-ry)*0.1; ring.style.left=rx+'px'; ring.style.top=ry+'px'; requestAnimationFrame(animRing); }
-  animRing();
-  document.querySelectorAll('a,button,.btn').forEach(el => {
-    el.addEventListener('mouseenter', () => { dot.style.width='14px'; dot.style.height='14px'; ring.style.width='48px'; ring.style.height='48px'; });
-    el.addEventListener('mouseleave', () => { dot.style.width='8px'; dot.style.height='8px'; ring.style.width='32px'; ring.style.height='32px'; });
-  });
-} else { if(dot) dot.style.display='none'; if(ring) ring.style.display='none'; }
-
-/* Countdown — hedef: 16 Nisan 2026 22:00 (yerel saat) */
-const TARGET = new Date('2026-04-16T22:00:00').getTime();
-function pad(n){ return String(Math.max(0,n)).padStart(2,'0'); }
-function updateCountdown(){
-  const now = Date.now();
-  const diff = TARGET - now;
-  if(diff <= 0){
-    document.getElementById('countdownWrap').innerHTML = '<span class="countdown-expired">🎉 Yeni Site Yayında!</span>';
-    return;
-  }
-  const totalSec = Math.floor(diff/1000);
-  const hours = Math.floor(totalSec/3600);
-  const mins  = Math.floor((totalSec%3600)/60);
-  const secs  = totalSec%60;
-  document.getElementById('cd-h').textContent = pad(hours);
-  document.getElementById('cd-m').textContent = pad(mins);
-  document.getElementById('cd-s').textContent = pad(secs);
-}
-updateCountdown();
-setInterval(updateCountdown, 1000);
-
-/* Particle Canvas */
-const canvas = document.getElementById('bg');
-const ctx = canvas.getContext('2d');
-let width, height, particles=[];
-function resizeCanvas(){ width=window.innerWidth; height=window.innerHeight; canvas.width=width; canvas.height=height; initParticles(); }
-function initParticles(){
-  const n = Math.min(55, Math.max(28, Math.floor(window.innerWidth/22)));
-  particles=[];
-  const COLS=['255,107,53','255,140,66','30,136,229','255,188,5'];
-  for(let i=0;i<n;i++) particles.push({ x:Math.random()*width, y:Math.random()*height, vx:(Math.random()-0.5)*0.28, vy:(Math.random()-0.5)*0.28, r:Math.random()*1.8+0.5, color:COLS[Math.floor(Math.random()*COLS.length)], alpha:Math.random()*0.45+0.1 });
-}
-function draw(){
-  ctx.clearRect(0,0,width,height);
-  for(let i=0;i<particles.length;i++){
-    for(let j=i+1;j<particles.length;j++){
-      const dx=particles[i].x-particles[j].x, dy=particles[i].y-particles[j].y, dist=Math.sqrt(dx*dx+dy*dy);
-      if(dist<100){ ctx.beginPath(); ctx.strokeStyle=`rgba(${particles[i].color},${0.055*(1-dist/100)})`; ctx.lineWidth=0.45; ctx.moveTo(particles[i].x,particles[i].y); ctx.lineTo(particles[j].x,particles[j].y); ctx.stroke(); }
-    }
-  }
-  particles.forEach(p=>{ ctx.beginPath(); ctx.arc(p.x,p.y,p.r,0,Math.PI*2); ctx.fillStyle=`rgba(${p.color},${p.alpha})`; ctx.fill(); p.x+=p.vx; p.y+=p.vy; if(p.x<-15)p.x=width+15; if(p.x>width+15)p.x=-15; if(p.y<-15)p.y=height+15; if(p.y>height+15)p.y=-15; });
-  requestAnimationFrame(draw);
-}
-window.addEventListener('resize', ()=>{ clearTimeout(window._rt); window._rt=setTimeout(resizeCanvas,80); });
-resizeCanvas(); draw();
-document.querySelectorAll('.btn').forEach(btn=>{
-  btn.addEventListener('touchstart',function(){ this.style.transform='scale(0.97)'; setTimeout(()=>{ if(this)this.style.transform=''; },120); });
-});
+window.addEventListener('scroll',()=>{document.getElementById('mainNav').classList.toggle('scrolled',window.scrollY>60);});
+const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('v');obs.unobserve(en.target);}});},{threshold:0.1});
+document.querySelectorAll('.fi,.fil,.fir').forEach(el=>obs.observe(el));
+function tFaq(btn){const a=btn.nextElementSibling,i=btn.querySelector('i');a.classList.toggle('open');i.style.transform=a.classList.contains('open')?'rotate(180deg)':'';}
 </script>
 </body>
 </html>
