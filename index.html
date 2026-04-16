@@ -165,33 +165,53 @@ nav.scrolled {
   nav.scrolled { padding: 10px 20px; }
 }
 
-/* HERO */
+/* HERO - ARKAPLAN GÖRSELLİ MODERN VERSİYON */
 .hero {
   position: relative;
   min-height: 100vh;
   display: flex;
   align-items: center;
-  background: linear-gradient(135deg, var(--primary), var(--secondary));
+  background: var(--primary); /* fallback rengi */
   overflow: hidden;
 }
 
+/* Hero arkaplan görseli */
 .hero-bg {
   position: absolute;
   inset: 0;
-  background: radial-gradient(ellipse 80% 80% at 80% 50%, rgba(243,156,18,0.12), transparent);
-  pointer-events: none;
+  background-image: url('https://www.aydinadateknik.com/images/hero.webp');
+  background-size: cover;
+  background-position: center 30%;
+  background-repeat: no-repeat;
+  filter: brightness(0.45) contrast(1.08) saturate(1.1);
+  transform: scale(1);
+  transition: transform 0.1s ease-out;
+  will-change: transform;
+  z-index: 1;
 }
 
+/* Gradient overlay - yazı okunabilirliği ve derinlik */
+.hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(105deg, rgba(10,61,98,0.88) 0%, rgba(10,61,98,0.55) 45%, rgba(0,0,0,0.3) 100%);
+  z-index: 2;
+}
+
+/* Izgara deseni - dokusal his */
 .hero-grid {
   position: absolute;
   inset: 0;
   background-image: linear-gradient(rgba(255,255,255,0.04) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,0.04) 1px, transparent 1px);
-  background-size: 50px 50px;
+  background-size: 55px 55px;
+  z-index: 3;
+  pointer-events: none;
 }
 
+/* Hero içerik */
 .hero-content {
   position: relative;
-  z-index: 10;
+  z-index: 15;
   max-width: 1300px;
   margin: 0 auto;
   padding: 120px 40px 80px;
@@ -216,7 +236,7 @@ nav.scrolled {
   align-items: center;
   gap: 8px;
   padding: 6px 18px;
-  border: 1px solid rgba(243,156,18,0.6);
+  border: 1px solid rgba(243,156,18,0.7);
   border-radius: 50px;
   font-size: 0.72rem;
   font-weight: 600;
@@ -224,7 +244,8 @@ nav.scrolled {
   letter-spacing: 0.1em;
   text-transform: uppercase;
   margin-bottom: 24px;
-  background: rgba(243,156,18,0.12);
+  background: rgba(0,0,0,0.3);
+  backdrop-filter: blur(4px);
 }
 
 .hero-badge i {
@@ -244,18 +265,20 @@ h1.hero-title {
   letter-spacing: 0.02em;
   margin-bottom: 20px;
   color: var(--white);
+  text-shadow: 0 2px 15px rgba(0,0,0,0.2);
 }
 
 h1.hero-title .lf { color: var(--accent); display: block; }
-h1.hero-title .li { color: rgba(255,255,255,0.9); display: block; }
+h1.hero-title .li { color: rgba(255,255,255,0.95); display: block; }
 h1.hero-title .lw { color: var(--white); display: block; }
 
 .hero-sub {
   font-size: 1rem;
-  color: rgba(255,255,255,0.75);
+  color: rgba(255,255,255,0.85);
   line-height: 1.7;
   max-width: 480px;
   margin-bottom: 36px;
+  text-shadow: 0 1px 2px rgba(0,0,0,0.1);
 }
 
 .hero-actions {
@@ -311,7 +334,7 @@ h1.hero-title .lw { color: var(--white); display: block; }
   gap: 32px;
   margin-top: 40px;
   padding-top: 36px;
-  border-top: 1px solid rgba(255,255,255,0.15);
+  border-top: 1px solid rgba(255,255,255,0.2);
   flex-wrap: wrap;
 }
 
@@ -324,7 +347,7 @@ h1.hero-title .lw { color: var(--white); display: block; }
 
 .hs-lbl {
   font-size: 0.75rem;
-  color: rgba(255,255,255,0.6);
+  color: rgba(255,255,255,0.7);
   letter-spacing: 0.04em;
   text-transform: uppercase;
   margin-top: 4px;
@@ -1333,9 +1356,11 @@ footer {
   <a href="tel:05449066450" class="nav-cta"><i class="fas fa-phone-alt"></i> Hemen Ara</a>
 </nav>
 
-<!-- HERO -->
+<!-- HERO - ARKAPLAN GÖRSELLİ MODERN VERSİYON -->
 <section class="hero" id="hero">
-  <div class="hero-bg"></div><div class="hero-grid"></div>
+  <div class="hero-bg"></div>
+  <div class="hero-overlay"></div>
+  <div class="hero-grid"></div>
   <div class="hero-content">
     <div><div class="hero-badge"><i class="fas fa-circle"></i> Aydın'ın Lider Teknik Servisi</div>
       <h1 class="hero-title"><span class="lf">Kombi</span><span class="li">Klima</span><span class="lw">Elektrik</span></h1>
@@ -1381,6 +1406,14 @@ window.addEventListener('scroll',()=>{document.getElementById('mainNav').classLi
 const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('v');obs.unobserve(en.target);}});},{threshold:0.1});
 document.querySelectorAll('.fi,.fil,.fir').forEach(el=>obs.observe(el));
 function tFaq(btn){const a=btn.nextElementSibling,i=btn.querySelector('i');a.classList.toggle('open');i.style.transform=a.classList.contains('open')?'rotate(180deg)':'';}
+// Scroll'da hafif parallax efekti (hero bg)
+window.addEventListener('scroll', () => {
+  const scrolled = window.scrollY;
+  const heroBg = document.querySelector('.hero-bg');
+  if (heroBg && scrolled < window.innerHeight) {
+    heroBg.style.transform = `scale(${1 + scrolled * 0.0004})`;
+  }
+});
 </script>
 </body>
 </html>
