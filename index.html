@@ -331,7 +331,7 @@ h2.sec-title span { color: var(--accent); }
   max-width: 560px;
 }
 
-/* HİZMET KARTLARI - 3D DÖNEN EFFECT */
+/* HİZMET KARTLARI - 3D DÖNEN (TAŞMA DÜZELTİLDİ) */
 .svc-sec { background: var(--white); }
 .svc-grid {
   display: grid;
@@ -341,7 +341,6 @@ h2.sec-title span { color: var(--accent); }
 }
 @media(max-width:900px) { .svc-grid { grid-template-columns: 1fr; gap: 24px; } }
 
-/* 3D Kart Konteyneri */
 .flip-card {
   background-color: transparent;
   height: 100%;
@@ -352,6 +351,7 @@ h2.sec-title span { color: var(--accent); }
   position: relative;
   width: 100%;
   height: 100%;
+  min-height: 480px;
   text-align: center;
   transition: transform 0.6s cubic-bezier(0.23, 1, 0.32, 1);
   transform-style: preserve-3d;
@@ -361,45 +361,47 @@ h2.sec-title span { color: var(--accent); }
   transform: rotateY(180deg);
 }
 .flip-card-front, .flip-card-back {
-  position: relative;
+  position: absolute;
   width: 100%;
+  height: 100%;
   backface-visibility: hidden;
   border-radius: 24px;
   background: var(--white);
   box-shadow: var(--card-shadow);
   border: 1px solid var(--border);
+  overflow-y: auto;
+  top: 0;
+  left: 0;
 }
 .flip-card-front {
   z-index: 2;
   transform: rotateY(0deg);
   padding: 40px 32px;
+  display: flex;
+  flex-direction: column;
 }
 .flip-card-back {
-  position: absolute;
-  top: 0;
-  left: 0;
   transform: rotateY(180deg);
-  padding: 32px 28px;
+  padding: 32px 24px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  gap: 24px;
-  background: var(--white);
-  height: 100%;
+  gap: 20px;
+  background: linear-gradient(145deg, var(--white) 0%, #fef9f0 100%);
 }
 .flip-card-back h3 {
   font-size: 1.4rem;
   font-weight: 700;
   color: var(--primary);
-  margin-bottom: 8px;
+  margin-bottom: 4px;
 }
 .back-buttons {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 14px;
   width: 100%;
-  margin-top: 20px;
+  margin-top: 8px;
 }
 .back-btn {
   display: flex;
@@ -409,7 +411,7 @@ h2.sec-title span { color: var(--accent); }
   padding: 14px 0;
   border-radius: 60px;
   font-weight: 700;
-  font-size: 1rem;
+  font-size: 0.95rem;
   text-decoration: none;
   transition: all 0.2s;
   width: 100%;
@@ -428,10 +430,10 @@ h2.sec-title span { color: var(--accent); }
   position: absolute;
   top: 18px;
   right: 20px;
-  z-index: 5;
+  z-index: 10;
   font-size: 1rem;
   color: var(--accent);
-  background: rgba(255,255,255,0.9);
+  background: rgba(255,255,255,0.95);
   width: 32px;
   height: 32px;
   border-radius: 50%;
@@ -445,7 +447,7 @@ h2.sec-title span { color: var(--accent); }
 }
 .flip-card.flipped .flip-hint { opacity: 0.5; }
 
-/* Kart içi stil korunsun */
+/* Kart içi stiller */
 .svc-icon {
   width: 56px;
   height: 56px;
@@ -464,11 +466,13 @@ h2.sec-title span { color: var(--accent); }
   font-weight: 700;
   margin-bottom: 14px;
   color: var(--primary);
+  text-align: left;
 }
 .flip-card-front p {
   font-size: 0.88rem;
   color: var(--text-light);
   line-height: 1.7;
+  text-align: left;
 }
 .flip-card-front ul {
   margin-top: 20px;
@@ -476,6 +480,7 @@ h2.sec-title span { color: var(--accent); }
   display: flex;
   flex-direction: column;
   gap: 10px;
+  text-align: left;
 }
 .flip-card-front ul li {
   display: flex;
@@ -493,8 +498,7 @@ h2.sec-title span { color: var(--accent); }
   background: var(--accent);
 }
 
-/* diğer stiller (sabit) */
-.banner-sec, .about-sec, .art-sec, .reg-sec, .why-sec, .test-sec, .con-sec, .faq-sec, footer { /* mevcut stil aynı */ }
+/* diğer stiller */
 .about-sec { background: var(--white); }
 .about-grid {
   display: grid;
@@ -634,9 +638,27 @@ footer {
 }
 .st-btn.wa { background: #25D366; }
 .st-btn.call { background: var(--accent); }
+
+/* Mobil düzenleme - butonları daha yukarı al ve aralığı artır */
 @media(max-width:600px){
+  .sticky-cta {
+    bottom: 80px;  /* Yukarı çekildi - eskiden 24px idi */
+    gap: 16px;     /* Aralık artırıldı */
+    right: 16px;
+  }
   .st-btn span { display: none; }
-  .st-btn { padding: 14px; border-radius: 50%; width: 52px; height: 52px; justify-content: center; }
+  .st-btn { 
+    padding: 14px; 
+    border-radius: 50%; 
+    width: 52px; 
+    height: 52px; 
+    justify-content: center;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+  }
+  /* İkinci butona (telefon) ekstra margin vererek ayrıştır */
+  .st-btn.call {
+    margin-top: 4px;
+  }
 }
 .fi, .fil, .fir { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
 .fil { transform: translateX(-30px); }
@@ -670,36 +692,33 @@ footer {
   </div>
 </section>
 
-<!-- HİZMETLER 3D FLIP KARTLAR -->
+<!-- HİZMETLER 3D FLIP KARTLAR (TAŞMA DÜZELTİLDİ) -->
 <section class="svc-sec" id="hizmetler"><div class="container"><div class="sec-label fi">Hizmetlerimiz</div><h2 class="sec-title fi">Uzman <span>Teknik</span> Çözümler</h2><p class="sec-sub fi">Aydın genelinde kombi, klima ve elektrik alanlarında kapsamlı teknik servis.</p>
 <div class="svc-grid">
-  <!-- KOMBİ KARTI -->
+  <!-- KOMBİ -->
   <div class="flip-card" data-flip="kombi"><div class="flip-card-inner">
     <div class="flip-card-front"><div class="flip-hint"><i class="fas fa-sync-alt"></i></div><div class="svc-icon fire"><i class="fas fa-fire-flame-curved"></i></div><h3>Kombi Servisi & Bakım</h3><p>Kış öncesi bakım, arıza tespit, orijinal parça.</p><ul><li>Kombi arıza tespiti</li><li>Periyodik bakım</li><li>Baca temizliği</li><li>Baymak, Buderus, Vaillant</li></ul></div>
-    <div class="flip-card-back"><i class="fas fa-phone-alt" style="font-size:2rem; color:var(--accent);"></i><h3>Hemen Destek Alın</h3><div class="back-buttons"><a href="tel:05449066450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="tel:05449086450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449086450" class="back-btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Yaz</a></div><p style="margin-top:12px; font-size:0.75rem; color:var(--muted);">Karta tekrar tıklayın</p></div>
+    <div class="flip-card-back"><i class="fas fa-phone-alt" style="font-size:2rem; color:var(--accent);"></i><h3>Hemen Destek Alın</h3><div class="back-buttons"><a href="tel:05449066450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="tel:05449086450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449086450" class="back-btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp ile Yaz</a></div><p style="margin-top:12px; font-size:0.7rem; color:var(--muted);">Karta tekrar tıklayın</p></div>
   </div></div>
-  <!-- KLİMA KARTI -->
+  <!-- KLİMA -->
   <div class="flip-card" data-flip="klima"><div class="flip-card-inner">
     <div class="flip-card-front"><div class="flip-hint"><i class="fas fa-sync-alt"></i></div><div class="svc-icon ice"><i class="fas fa-snowflake"></i></div><h3>Klima Servisi & Kurulum</h3><p>Split, inverter, kaset tipi. Gaz dolum, bakım, montaj.</p><ul><li>Kurulum ve montaj</li><li>Gaz dolumu R32/R410A</li><li>Yıllık bakım</li><li>Daikin, Mitsubishi, Bosch</li></ul></div>
-    <div class="flip-card-back"><i class="fas fa-headset" style="font-size:2rem; color:var(--accent);"></i><h3>Hemen Arayın</h3><div class="back-buttons"><a href="tel:05449066450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="tel:05449086450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449086450" class="back-btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp'tan Yaz</a></div><p style="margin-top:12px; font-size:0.75rem; color:var(--muted);">Tekrar dokunun/kartı kapatın</p></div>
+    <div class="flip-card-back"><i class="fas fa-headset" style="font-size:2rem; color:var(--accent);"></i><h3>Hemen Arayın</h3><div class="back-buttons"><a href="tel:05449066450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="tel:05449086450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449086450" class="back-btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp'tan Yaz</a></div><p style="margin-top:12px; font-size:0.7rem; color:var(--muted);">Tekrar dokunun/kartı kapatın</p></div>
   </div></div>
-  <!-- ELEKTRİK KARTI -->
+  <!-- ELEKTRİK -->
   <div class="flip-card" data-flip="elektrik"><div class="flip-card-inner">
     <div class="flip-card-front"><div class="flip-hint"><i class="fas fa-sync-alt"></i></div><div class="svc-icon elec"><i class="fas fa-bolt"></i></div><h3>Elektrik Tesisatı & Onarım</h3><p>Konut, iş yeri, sanayi. Güvenli tesisat çözümleri.</p><ul><li>Tesisat döşeme</li><li>Sigorta panosu</li><li>Topraklama</li><li>Arıza tespiti</li></ul></div>
-    <div class="flip-card-back"><i class="fas fa-tools" style="font-size:2rem; color:var(--accent);"></i><h3>7/24 Servis</h3><div class="back-buttons"><a href="tel:05449066450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="tel:05449086450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449086450" class="back-btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp İletişim</a></div><p style="margin-top:12px; font-size:0.75rem; color:var(--muted);">Kartı kapatmak için tıklayın</p></div>
+    <div class="flip-card-back"><i class="fas fa-tools" style="font-size:2rem; color:var(--accent);"></i><h3>7/24 Servis</h3><div class="back-buttons"><a href="tel:05449066450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a><a href="tel:05449086450" class="back-btn call"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449086450" class="back-btn whatsapp" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp İletişim</a></div><p style="margin-top:12px; font-size:0.7rem; color:var(--muted);">Kartı kapatmak için tıklayın</p></div>
   </div></div>
 </div></div></section>
 
-<!-- HAKKIMIZDA + DİĞER BÖLÜMLER (SABİT) -->
+<!-- HAKKIMIZDA + DİĞER BÖLÜMLER -->
 <section class="about-sec"><div class="container"><div class="sec-label fi">Hakkımızda</div><div class="about-grid"><div class="about-imgs fil"><div class="ai1"><img src="https://www.aydinadateknik.com/images/aydinkombiservis2.webp" alt="Ada Isı Teknik Ekibi"/></div><div class="ai2"><img src="https://www.aydinadateknik.com/images/aydinkombiservis4.webp" alt="Aydın Kombi Bakım"/></div><div class="about-badge-ov"><div class="num">15+</div><div class="txt">Yıl Deneyim</div></div></div><div class="about-text fir"><div class="sec-label">Kim Biz?</div><h2 class="sec-title">Kemal <span>Türkmenoğlu</span></h2><p>Ada Isı Teknik olarak Aydın'da 15 yılı aşkın süredir kombi, klima ve elektrik servisi vermekteyiz. Zafer Mahallesi, Egemenlik Bulvarı No:3/F Efeler adresimizden tüm ilçelere hizmet sunuyoruz.</p><div class="about-feats"><div class="af"><i class="fas fa-shield-check"></i> İşçilik Garantisi</div><div class="af"><i class="fas fa-bolt"></i> Hızlı Müdahale</div><div class="af"><i class="fas fa-tags"></i> Şeffaf Fiyat</div><div class="af"><i class="fas fa-award"></i> Orijinal Parça</div></div></div></div></div></section>
 
-<!-- KOMBİ MAKALE -->
 <section class="art-sec" id="kombi"><div class="container"><div class="sec-label fi">Uzmanlık Alanımız</div><h2 class="sec-title fi">Aydın'da <span>Kombi Servisi</span></h2><div class="art-hero-img fi"><img src="https://www.aydinadateknik.com/images/kombi.webp" alt="Kombi Servisi"/></div><div class="art-grid"><div class="art-body fi"><h3>Kombinizin Düzgün Çalışması İçin Periyodik Bakım Şart</h3><p>Yıllık bakım; baca gazı analizi, eşanjör temizliği ve pompa testi ile kombi ömrünü uzatır.</p><h3>En Sık Karşılaşılan Arızalar</h3><ul><li><i class="fas fa-check"></i> Su basıncı düşüklüğü</li><li><i class="fas fa-check"></i> Tutuşmama ve hata kodları</li><li><i class="fas fa-check"></i> Aşırı ısınma</li></ul><h4>Hizmet Verdiğimiz Markalar</h4><p>Baymak, Buderus, Vaillant, Demirdöküm, Bosch, Ariston, Protherm, Eca.</p></div><div class="art-sidebar"><div class="sb-card"><div class="sb-hdr"><h4>Acil Kombi Servisi</h4></div><div class="sb-body"><p>Kombiniz çalışmıyor mu? Hemen arayın.</p><div class="sb-btns"><a href="tel:05449086450" class="sb-btn f"><i class="fas fa-phone-alt"></i> 0544 908 64 50</a><a href="https://wa.me/905449086450" class="sb-btn g" target="_blank"><i class="fab fa-whatsapp"></i> WhatsApp</a></div></div></div></div></div></div></section>
 
-<!-- KLİMA MAKALE -->
 <section class="art-sec" id="klima"><div class="container"><div class="sec-label fi">Bilgi Merkezi</div><h2 class="sec-title fi">Aydın'da <span>Klima Servisi</span></h2><div class="art-hero-img fi"><img src="https://www.aydinadateknik.com/images/aydinkombiservis.webp" alt="Klima Servisi"/></div><div class="art-grid"><div class="art-body fi"><h3>Yaz ve Kış Konforu İçin Klima Bakımı</h3><p>Yıllık filtre temizliği, gaz kontrolü ve dış ünite bakımı ile verimlilik artar.</p><ul><li><i class="fas fa-check"></i> Filtre temizliği</li><li><i class="fas fa-check"></i> Gaz seviyesi kontrolü</li><li><i class="fas fa-check"></i> Kondens tahliyesi</li></ul><h4>Daikin, Mitsubishi, Samsung, LG, Arçelik</h4></div><div class="art-sidebar"><div class="sb-card"><div class="sb-hdr"><h4>Hızlı Servis</h4></div><div class="sb-body"><p>Arayın, klima arızanıza müdahale edelim.</p><div class="sb-btns"><a href="tel:05449066450" class="sb-btn f"><i class="fas fa-phone-alt"></i> 0544 906 64 50</a></div></div></div></div></div></div></section>
 
-<!-- BÖLGELER -->
 <section class="reg-sec" id="bolgeler"><div class="container"><div class="sec-label fi">Hizmet Bölgeleri</div><h2 class="sec-title fi">Tüm <span>Aydın</span>'a Hizmet</h2><div class="reg-wrap fi"><div class="reg-grid"><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Efeler</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Köşk</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">İncirliova</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Germencik</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Sultanhisar</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Çine</div></div></div><div class="reg-item"><span class="reg-dot"></span><div><div class="reg-name">Karpuzlu</div></div></div></div></div></div></section>
 
 <section class="why-sec"><div class="container"><div class="sec-label fi">Neden Ada Isı Teknik?</div><h2 class="sec-title fi">Farkımız <span>Kalitemizde</span></h2><div class="why-grid"><div class="why-card fi"><div class="why-icon"><i class="fas fa-clock"></i></div><h3>Hızlı Müdahale</h3><p>Aynı gün servis, acil durumlarda 1-3 saat içinde yanınızdayız.</p></div><div class="why-card fi"><div class="why-icon"><i class="fas fa-shield-halved"></i></div><h3>Garantili İşçilik</h3><p>Tüm işlemlerde işçilik garantisi.</p></div><div class="why-card fi"><div class="why-icon"><i class="fas fa-box"></i></div><h3>Orijinal Parça</h3><p>Sertifikalı yedek parça kullanımı.</p></div><div class="why-card fi"><div class="why-icon"><i class="fas fa-coins"></i></div><h3>Şeffaf Fiyat</h3><p>Keşif sonrası net fiyat, gizli maliyet yok.</p></div></div></div></section>
@@ -715,17 +734,14 @@ window.addEventListener('scroll',()=>{document.getElementById('mainNav').classLi
 const obs=new IntersectionObserver(e=>{e.forEach(en=>{if(en.isIntersecting){en.target.classList.add('v');obs.unobserve(en.target);}});},{threshold:0.1});
 document.querySelectorAll('.fi,.fil,.fir').forEach(el=>obs.observe(el));
 
-// Flip kart işlevleri: tıklanınca dönme, arka plan butonları, tekrar tıklayınca kapanma
+// Flip kart: tıklanınca dönme, butonlara tıklanınca kart dönmesin
 const flipCards = document.querySelectorAll('.flip-card');
 flipCards.forEach(card => {
   card.addEventListener('click', (e) => {
-    // Eğer tıklanan öğe .back-btn veya içindeki link ise kartın kapanmasını engelleme ama kart dönmüşse kullanıcı butona tıklayabilir.
-    // Butonlar a etiketi, onların tıklanması durumunda kartın dönmemesi için event.stopPropagation yap.
     if(e.target.closest('.back-btn')) {
       e.stopPropagation();
       return;
     }
-    // Kartı döndür / düzelt
     card.classList.toggle('flipped');
   });
 });
